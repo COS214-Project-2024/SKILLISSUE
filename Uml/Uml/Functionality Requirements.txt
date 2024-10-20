@@ -1,0 +1,98 @@
+Functional Requirements
+
+1. Player Management
+The system shall allow players to start a new game and select their preferred settings.
+Players shall be able to pause, resume, and save the game at any point.
+The system shall allow players to manage cities and take control of their policies and operations.
+Players shall be able to interact with the game world, such as selecting and building structures, managing resources, and issuing commands.
+
+2. City Management
+The system shall allow the player to build, upgrade, and manage cities.
+The player shall be able to create different types of buildings, including:
+Residential Buildings (e.g., houses, apartments)
+Commercial Buildings (e.g., stores, offices)
+Industrial Buildings (e.g., factories)
+Landmarks (e.g., parks, monuments)
+Utilities (e.g., power plants, water supply)
+The system shall manage citizens living and working in the city. Each citizen shall have attributes like:
+Name, age, and other personal details
+Occupation, residence, and economic status
+Citizens shall be affected by government policies, taxes, and infrastructure quality.
+
+3. Resource Management
+The system shall track and manage city resources, such as:
+Income: Generated from taxes, trade, and other sources.
+Expenditure: Costs of maintaining buildings and services.
+Electricity: Managed by the power plants, consumed by buildings.
+Water: Managed by water supply systems, consumed by citizens and industry.
+The player shall be able to allocate resources to various services, and shortages shall affect city functions (e.g., power outages or water shortages).
+
+4. Government and Policy Management
+The system shall allow the player to control the government and implement city-wide policies:
+Taxation policies
+Resource management policies (e.g., power, water)
+Employment policies affecting citizen jobs
+Public service policies (e.g., healthcare, education)
+The system shall allow the player to enact laws that will affect the happiness, productivity, and growth of the city.
+Government spending shall affect the budget, and policy decisions shall have consequences for the city (e.g., higher taxes reduce citizen happiness but increase revenue).
+5. Building and Infrastructure Management
+Players shall be able to construct, upgrade, and demolish buildings. Available buildings include:
+Residential, Commercial, Industrial, and Utility types.
+Players shall be able to adjust the capacity and function of these buildings as the city grows.
+The system shall allow the player to manage city infrastructure, including:
+Roads, Railways, Airports, and Transportation for citizens.
+The system shall allow players to build transportation networks, assign routes, and monitor traffic.
+Roads and railways shall connect different parts of the city, facilitating transportation and trade.
+
+6. Transportation System
+The system shall support a transportation system including:
+Cars, Public Transit, Trains, and Airports.
+Players shall be able to build and manage transportation hubs and routes, facilitating the movement of citizens and goods.
+The system shall calculate the travel time and adjust transportation routing accordingly.
+Public transportation networks (e.g., buses and trains) shall reduce traffic congestion in the city.
+
+7. Citizen Management
+Citizens in the city shall have a wide variety of needs, including:
+
+Housing, Employment, and Entertainment.
+Citizens shall move between residential, commercial, and industrial zones, seeking employment and services.
+
+The system shall allow the player to collect taxes from citizens, depending on their economic status and occupation.
+
+Citizens’ happiness and productivity shall be influenced by the services and amenities provided by the player. For example:
+
+Citizens in wealthier areas shall demand better services (e.g., parks, schools).
+Unemployed citizens may affect crime rates or city productivity.
+
+8. Game Engine and Time Progression
+The game engine shall handle the overall flow of the game, including:
+Game Start, Pause, Resume, and Save functions.
+The system shall implement a time progression system, where cities grow and change over time.
+Players shall be able to speed up or slow down time, affecting resource generation, building completion, and citizen actions.
+Events in the game (e.g., disasters, policy changes) shall trigger real-time responses from the game entities.
+
+9. Map Management
+The game shall provide a map interface that shows the player's city layout, including:
+Roads, buildings, infrastructure, and utilities.
+The system shall allow zooming in and out to view different areas of the city.
+Players shall be able to modify the map layout by placing new structures or adjusting existing ones.
+
+10. Economy and Trade
+The system shall simulate the economy of the city, with money being earned through taxes, trade, and industry.
+Players shall be able to engage in trade with neighboring cities or countries, exporting surplus goods and importing resources.
+Economic policies shall allow players to regulate trade agreements, tariffs, and resource exports.
+Changes in the economy (e.g., recessions) shall affect the player’s budget and the happiness of citizens.
+
+11. Save and Load Functionality
+Players shall be able to save the game at any point and resume it from the last save state.
+The system shall allow multiple save slots, so players can manage different cities or scenarios.
+Auto-save functionality shall periodically back up the game's progress.
+
+12. AI Commands and Automation
+The system shall support AI automation to assist in city management tasks:
+
+AI shall take over routine tasks, such as resource distribution, tax collection, and public services when enabled.
+The player shall issue high-level commands, and AI systems (e.g., City Manager) shall execute the necessary low-level actions to achieve these goals.
+
+Citizens and vehicles shall be controlled by an AI to move within the city, seeking the most optimal routes and destinations.
+
