@@ -6,6 +6,7 @@
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
+#include <bits/basic_string.h>
 
 void GameStateEditor::draw(const float dt)
 {

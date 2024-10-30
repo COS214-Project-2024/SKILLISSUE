@@ -6,7 +6,7 @@
 class TaxPolicy
 {
 protected:
-    int taxRate;
+    float taxRate;
     std::string type;
 
 public:

@@ -95,7 +95,7 @@ void Game::changeState(GameState* state)
 
 GameState* Game::peekState()
 {
-    if(this->states.empty()) return nullptr;
+    if(this->states.empty()) return NULL;
     return this->states.top();
 }
 
@@ -108,7 +108,7 @@ void Game::gameLoop()
     {
         dt = clock.restart().asSeconds();
 
-        if(peekState() == nullptr) continue;
+        if(peekState() == NULL) continue;
         peekState()->handleInput();
         peekState()->update(dt);
         this->window.clear(sf::Color::Black);

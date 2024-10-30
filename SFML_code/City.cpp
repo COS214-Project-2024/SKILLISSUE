@@ -354,6 +354,7 @@ void City::update(float dt)
     this->earnings = this->taxPolicy->calculateTax((this->population - this->populationPool) * 15);
     this->earnings += this->taxPolicy->calculateTax(commercialRevenue);
     this->earnings += this->taxPolicy->calculateTax(industrialRevenue);
+
  
     return;
 }
