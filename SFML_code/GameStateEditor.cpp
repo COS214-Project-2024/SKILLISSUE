@@ -2,11 +2,18 @@
 
 #include "GameState.h"
 #include "GameStateEditor.h"
+#include "GameStatePaused.h"
 #include "TaxPolicy.h"
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
 #include <bits/basic_string.h>
+#include <iostream>
+
+void GameStateEditor::getState()
+{
+    std::cout << "running";
+}
 
 void GameStateEditor::draw(const float dt)
 {
@@ -285,6 +292,10 @@ void GameStateEditor::handleInput()
 						this->guiSystem.at("TaxMenu").show();
 					}
 				}
+				else if(event.key.code == sf::Keyboard::P)
+				{
+					this->pauseGame();
+				}
                 break;
             }
 			default: break;
@@ -293,6 +304,14 @@ void GameStateEditor::handleInput()
 
 	return;
 }
+
+void GameStateEditor::pauseGame()
+{
+    this->game->pushState(new GameStatePaused(this->game, this));
+
+    return;
+}
+
 
 GameStateEditor::GameStateEditor(Game* game)
 {

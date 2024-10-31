@@ -109,6 +109,7 @@ void Game::gameLoop()
         dt = clock.restart().asSeconds();
 
         if(peekState() == NULL) continue;
+        // peekState()->getState();
         peekState()->handleInput();
         peekState()->update(dt);
         this->window.clear(sf::Color::Black);
