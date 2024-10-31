@@ -3,7 +3,7 @@
 
 
 #include "Tile.h"
-#include "City.h"
+class City;
 
 #include <string>
 
