@@ -2,6 +2,7 @@
  
 #include "AnimationHandler.h"
 #include "Tile.h"
+#include "CityMediator.h"
 
 
 Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
@@ -121,5 +122,7 @@ void Tile::setMediator(CityMediator* mediator){
 }
 
 void Tile::notify(std::string notification){
-    this->mediator->notify(this, notification);
+        if (this->mediator) {
+        this->mediator->notify(this, notification);
+    }
 }

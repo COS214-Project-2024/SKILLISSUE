@@ -3,7 +3,7 @@
 #include <string>
 #include <random>
 
-CityMediator::CityMediator(City gameCity) : city(gameCity ){}
+CityMediator::CityMediator(City* gameCity) : city(gameCity ){}
 
 CityMediator::CityMediator(){}
 
@@ -15,7 +15,7 @@ void CityMediator::notify(Tile* tile, std::string notification){
 
 }
 
-void burnHouse(Tile* tile){
+void CityMediator::burnHouse(Tile* tile){
     //check if house is connnected to a fireStation using depth first search (will check spec on that later)
     //if not destroy house and add to population pool, dec from population
 }

@@ -1,22 +1,27 @@
 #ifndef CITYMEDIATOR_H
 #define CITYMEDIATOR_H
 
-#include "City.h"
+
 #include "Tile.h"
+class City;
+
+#include <string>
 
 class CityMediator{
     private:
-    City city;
+    City* city;
     void react();
 
     public:
     CityMediator();
-    CityMediator(City city);
+    CityMediator(City* city);
 
 
-    void setCity(City city);
+    void setCity(City* city);
     void getCity(City city);
     void notify(Tile* tile, std::string notification);
+
+    void burnHouse(Tile* tile);
 };
 
 #endif
