@@ -47,6 +47,8 @@ void GameStateEditor::update(const float dt)
 
 void GameStateEditor::handleInput()
 {
+		//Turn this the button logic into commands
+		 //button.setCommand()
 	sf::Event event;
 
     sf::Vector2f guiPos = this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->guiView);

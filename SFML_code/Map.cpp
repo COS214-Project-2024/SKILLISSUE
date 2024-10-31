@@ -238,7 +238,6 @@ void Map::updateDirection(TileType tileType)
                 this->tiles[pos]->tileVariant = 1;
         }
     }
-
     return;
 }
 

@@ -115,3 +115,11 @@ std::string tileTypeToStr(TileType type)
         case TileType::LANDMARK:        return "landmark Zone";
     }
 }
+
+void Tile::setMediator(CityMediator* mediator){
+    this->mediator = mediator;
+}
+
+void Tile::notify(std::string notification){
+    this->mediator->notify(this, notification);
+}

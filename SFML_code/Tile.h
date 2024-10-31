@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "AnimationHandler.h"
+#include "CityMediator.h"
 
 enum class TileType
 {
@@ -26,6 +27,11 @@ class Tile
 private:
     Tile(Tile* tile);
 public:
+
+    CityMediator* mediator;
+    void setMediator(CityMediator* mediator);
+    void notify(std::string notification);
+
     AnimationHandler animHandler;
     sf::Sprite sprite;
 
@@ -68,6 +74,8 @@ public:
     std::string getCost();
 
     Tile* clone();
+
+    void notify(std::string notification);
 };
 
 #endif /* TILE_HPP */
