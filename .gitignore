@@ -31,5 +31,8 @@
 *.out
 *.app
 
-# .vscode
-.vs/
+# Ignore system files
+.DS_Store
+
+# Ignore Visual Studio Code settings
+.vscode/
