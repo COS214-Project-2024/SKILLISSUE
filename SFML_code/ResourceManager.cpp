@@ -1,53 +1,24 @@
 #include "ResourceManager.h"
 
-int ResourceManager::getWater() {
-	// TODO - implement ResourceManager::getWater
-	throw "Not yet implemented";
-}
+int ResourceManager::getWater() { return water; }
 
-int ResourceManager::getPower() {
-	// TODO - implement ResourceManager::getPower
-	throw "Not yet implemented";
-}
+int ResourceManager::getPower() { return power; }
 
-int ResourceManager::getSewage() {
-	// TODO - implement ResourceManager::getSewage
-	throw "Not yet implemented";
-}
+int ResourceManager::getSewage() { return sewage; }
 
-int ResourceManager::getMaterial() {
-	// TODO - implement ResourceManager::getMaterial
-	throw "Not yet implemented";
-}
+int ResourceManager::getMaterial() { return materials; }
 
-void ResourceManager::setWater(int value) {
-	// TODO - implement ResourceManager::setWater
-	throw "Not yet implemented";
-}
+void ResourceManager::setWater(int value) { water = value; }
 
-void ResourceManager::setPower(int value) {
-	// TODO - implement ResourceManager::setPower
-	throw "Not yet implemented";
-}
+void ResourceManager::setPower(int value) { power = value; }
 
-void ResourceManager::setSewage(int value) {
-	// TODO - implement ResourceManager::setSewage
-	throw "Not yet implemented";
-}
+void ResourceManager::setSewage(int value) { sewage = value; }
 
-void ResourceManager::setMaterial(int value) {
-	// TODO - implement ResourceManager::setMaterial
-	throw "Not yet implemented";
-}
+void ResourceManager::setMaterial(int value) { materials = value; }
 
-ResourceManager::ResourceManager() {
-	// TODO - implement ResourceManager::ResourceManager
-	throw "Not yet implemented";
-}
+ResourceManager::ResourceManager() {}
 
-ResourceManager* ResourceManager::getResourceManager() {
-	// TODO - implement ResourceManager::getResourceManager
-	throw "Not yet implemented";
+ResourceManager &ResourceManager::getResourceManagerInstance() {
+  static ResourceManager onlyInstance;
+  return onlyInstance;
 }
-
-ResourceManager* ResourceManager::Instance(nullptr);

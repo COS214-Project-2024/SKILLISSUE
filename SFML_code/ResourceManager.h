@@ -3,37 +3,102 @@
 
 #include "Subject.h"
 
-class ResourceManager : Subject 
-{
+/**
+ * @class ResourceManager
+ * @brief Manages various resources in a system, such as water, power, sewage,
+ * and materials.
+ *
+ * The ResourceManager class is a singleton that provides methods to access and
+ * modify different resources. It inherits from the Subject class.
+ */
+class ResourceManager : Subject {
 
 private:
-	int Water;
-	int Power;
-	int Sewage;
-	int Materials;
-	static ResourceManager* Instance;
+  int water;     ///< The amount of water resource.
+  int power;     ///< The amount of power resource.
+  int sewage;    ///< The amount of sewage resource.
+  int materials; ///< The amount of materials resource.
+  static ResourceManager
+      &Instance; ///< The singleton instance of ResourceManager.
+
+protected:
+  /**
+   * @brief Protected constructor to ensure only one instance of ResourceManager
+   * is created.
+   */
+  ResourceManager();
+
+  /**
+   * @brief Copy constructor (protected and not implemented to prevent copying).
+   */
+  ResourceManager(const ResourceManager &) {};
+
+  /**
+   * @brief Assignment operator (protected and not implemented to prevent
+   * copying).
+   */
+  ResourceManager &operator=(const ResourceManager &) {};
+
+  /**
+   * @brief Destructor.
+   */
+  virtual ~ResourceManager() {};
 
 public:
-	int getWater();
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  int getWater();
 
-	int getPower();
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  int getPower();
 
-	int getSewage();
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  int getSewage();
 
-	int getMaterial();
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  int getMaterial();
 
-	void setWater(int value);
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWater(int value);
 
-	void setPower(int value);
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPower(int value);
 
-	void setSewage(int value);
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewage(int value);
 
-	void setMaterial(int value);
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setMaterial(int value);
 
-public:
-	ResourceManager();
-
-	static ResourceManager* getResourceManager();
+  /**
+   * @brief Gets the singleton instance of ResourceManager.
+   * @return A reference to the singleton ResourceManager instance.
+   */
+  static ResourceManager &getResourceManagerInstance();
 };
 
-#endif
+#endif // RESOURCEMANAGER_H
+
