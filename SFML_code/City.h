@@ -12,6 +12,9 @@
 #include "MidTax.h"
 #include "HighTax.h"
 
+#include "CreateAndDistributeGoods.h"
+#include "CDReceiver.h"
+
 class cityMediator;
 
 class City

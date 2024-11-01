@@ -1,15 +1,18 @@
-#ifndef CREATEANDDISTRIBUTEGOODS_H
-#define CREATEANDDISTRIBUTEGOODS_H
+#ifndef CREATE_AND_DISTRIBUTE_GOODS_H
+#define CREATE_AND_DISTRIBUTE_GOODS_H
 
-#include "Command.h"
+#include "CDReceiver.h"
 
-class CreateAndDistributeGoods : public Command {
-    protected:
-    
-    public:
-    CreateAndDistributeGoods(){};
-    void execute() override;
+class CreateAndDistributeGoods {
+private:
+    CDReceiver* receiver;
 
+public:
+    CreateAndDistributeGoods(CDReceiver* receiver) : receiver(receiver) {}
+
+    void execute() {
+        receiver->update();
+    }
 };
 
-#endif
+#endif // CREATE_AND_DISTRIBUTE_GOODS_H
