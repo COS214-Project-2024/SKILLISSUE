@@ -94,6 +94,30 @@ public:
   void setMaterial(int value);
 
   /**
+   * @brief Decreases water resource by a specified amount.
+   * @param value The amount to decrease the water resource by.
+   */
+  void consumeWater(int value);
+
+  /**
+   * @brief Decreases power resource by a specified amount.
+   * @param value The amount to decrease the power resource by.
+   */
+  void consumePower(int value);
+
+  /**
+   * @brief Decreases sewage resource by a specified amount.
+   * @param value The amount to decrease the sewage resource by.
+   */
+  void consumeSewage(int value);
+
+  /**
+   * @brief Decreases materials resource by a specified amount.
+   * @param value The amount to decrease the materials resource by.
+   */
+  void consumeMaterial(int value);
+
+  /**
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
    */
@@ -101,4 +125,3 @@ public:
 };
 
 #endif // RESOURCEMANAGER_H
-

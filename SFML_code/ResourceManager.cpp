@@ -16,6 +16,14 @@ void ResourceManager::setSewage(int value) { sewage = value; }
 
 void ResourceManager::setMaterial(int value) { materials = value; }
 
+void ResourceManager::consumeWater(int value) { water -= value; }
+
+void ResourceManager::consumePower(int value) { power -= value; }
+
+void ResourceManager::consumeSewage(int value) { sewage -= value; }
+
+void ResourceManager::consumeMaterial(int value) { materials -= value; }
+
 ResourceManager::ResourceManager() {}
 
 ResourceManager &ResourceManager::getResourceManagerInstance() {
