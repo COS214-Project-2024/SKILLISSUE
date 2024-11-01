@@ -48,6 +48,7 @@ void GameStateEditor::update(const float dt)
 	else
 	{
 		this->city.update(dt);
+		undos->storeMemento(this->city.createMemento());
 
 		/* Update the info bar at the bottom of the screen */
 		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
@@ -110,8 +111,7 @@ void GameStateEditor::handleInput()
 					else if (event.key.code == sf::Keyboard::U)
 					{
 						//undo operation
-						delete this->city.map;
-						this->city.map = beginMap->clone();
+						this->city.loadMemento(undos->retrieveMemento());
 					}
 					else if (event.key.code == sf::Keyboard::P)
 					{
@@ -362,9 +362,7 @@ void GameStateEditor::handleInput()
 				}
 				else if (event.key.code == sf::Keyboard::M)
 				{
-					// this->pauseGame();
-					delete this->city.map;
-					this->city.map = beginMap->clone();
+					
 				}
 				break;
 			}
@@ -396,7 +394,8 @@ GameStateEditor::GameStateEditor(Game* game)
 	this->gameView.setCenter(pos);
 
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
-	this->beginMap = this->city.map->clone();
+	// this->beginMap = this->city.map->clone();
+	this->city.setCaretaker(this->undos);
 	this->city.shuffleTiles();
 
     /* Create gui elements */
