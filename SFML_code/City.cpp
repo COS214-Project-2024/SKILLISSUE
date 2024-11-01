@@ -289,73 +289,11 @@ void City::update(float dt)
     }
 
     /* Run second pass. Mostly handles goods manufacture */
-    for(int i = 0; i < this->map.tiles.size(); ++i)
-    {
-        Tile* tile = this->map.tiles[this->shuffledTiles[i]];
-        if (tile != NULL)
-        {
-            if (tile->tileType == TileType::INDUSTRIAL)
-            {
-                int receivedResources = 0;
-                /* Receive resources from smaller and connected zones */
-                for (Tile *tile2 : this->map.tiles)
-                {
-                    if (tile2->regions[0] == tile->regions[0] && tile2->tileType == TileType::INDUSTRIAL)
-                    {
-                        if (tile2->production > 0)
-                        {
-                            ++receivedResources;
-                            --tile2->production;
-                        }
-                        if (receivedResources >= tile->tileVariant + 1)
-                            break;
-                    }
-                }
-                /* Turn resources into goods */
-                tile->storedGoods += (receivedResources + tile->production) * (tile->tileVariant + 1);
-            }
-        }
-    }
+    CDReceiver receiver(map, shuffledTiles, industrialRevenue, commercialRevenue, commercialTax, industrialTax);
+    CreateAndDistributeGoods command(&receiver);
+    command.execute();  // Executes the command, calling CDReceiver's update
 
-    /* Run third pass. Mostly handles goods distribution. */
-    for(int i = 0; i < this->map.tiles.size(); ++i)
-    {
-        Tile* tile = this->map.tiles[this->shuffledTiles[i]];
-        if (tile != NULL)
-        {
-            if (tile->tileType == TileType::COMMERCIAL)
-            {
-                int receivedGoods = 0;
-                double maxCustomers = 0.0;
-                for (Tile *tile2 : this->map.tiles)
-                {
-                    if (tile2->regions[0] == tile->regions[0] &&
-                        tile2->tileType == TileType::INDUSTRIAL &&
-                        tile2->storedGoods > 0)
-                    {
-                        while (tile2->storedGoods > 0 && receivedGoods != tile->tileVariant + 1)
-                        {
-                            --tile2->storedGoods;
-                            ++receivedGoods;
-                            industrialRevenue += 100 * (1.0 - industrialTax);
-                        }
-                    }
-                    else if (tile2->regions[0] == tile->regions[0] &&
-                             tile2->tileType == TileType::RESIDENTIAL)
-                    {
-                        maxCustomers += tile2->population;
-                    }
-                    if (receivedGoods == tile->tileVariant + 1)
-                        break;
-                }
-                /* Calculate the overall revenue for the tile. */
-                tile->production = (receivedGoods * 100.0 + rand() % 20) * (1.0 - this->commercialTax);
-
-                double revenue = tile->production * maxCustomers * tile->population / 100.0;
-                commercialRevenue += revenue;
-            }
-        }
-    }
+    earnings += industrialRevenue + commercialRevenue;
 
     //Random chance that a house burns down
     std::random_device rd; // Obtain a random number from hardware
