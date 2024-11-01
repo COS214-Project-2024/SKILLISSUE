@@ -87,7 +87,8 @@ void Tile::update()
     if((this->tileType == TileType::RESIDENTIAL ||
         this->tileType == TileType::COMMERCIAL ||
         this->tileType == TileType::INDUSTRIAL ||
-        this->tileType == TileType::LANDMARK) &&
+        this->tileType == TileType::LANDMARK) ||
+        this->tileType == TileType::FIRESTATION &&
         this->population == this->maxPopPerLevel * (this->tileVariant+1) &&
         this->tileVariant < this->maxLevels)
     {

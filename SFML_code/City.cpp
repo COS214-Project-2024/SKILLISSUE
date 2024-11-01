@@ -115,7 +115,7 @@ void City::tileChanged()
     this->map.updateDirection(TileType::ROAD);
     this->map.findConnectedRegions(
         {TileType::ROAD, TileType::RESIDENTIAL,
-         TileType::COMMERCIAL, TileType::INDUSTRIAL},
+         TileType::COMMERCIAL, TileType::INDUSTRIAL, TileType::FIRESTATION},
         0);
 
     return;
@@ -362,8 +362,7 @@ void City::update(float dt)
     std::uniform_int_distribution<> distr(1, 100000); // Define the range
     int random_number = distr(gen); // Generate a random number
 
-    random_number = day;
-    if(random_number == 400){
+    if(random_number == 727){
         for (int i = 0; i < this->map.tiles.size(); ++i){
             
             Tile *tile = this->map.tiles[this->shuffledTiles[i]];

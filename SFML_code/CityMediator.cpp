@@ -33,7 +33,6 @@ void CityMediator::burnHouse(Tile* tile){
     }
     
     if(fireStationFound){return;}
-     std::cout << "No station" << std::endl;
     tile->tileVariant = 0;
     //okay for now, more complex logic later
 }

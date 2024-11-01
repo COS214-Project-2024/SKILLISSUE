@@ -88,7 +88,8 @@ void GameStateEditor::handleInput()
 						        this->currentTile->tileType,    TileType::FOREST,
 						        TileType::WATER,                TileType::ROAD,
 						        TileType::RESIDENTIAL,          TileType::COMMERCIAL,
-						        TileType::INDUSTRIAL,			TileType::LANDMARK
+						        TileType::INDUSTRIAL,			TileType::LANDMARK,
+								TileType::FIRESTATION, 			TileType::FIRESTATION
 						    });
 				    }
 				    
@@ -311,7 +312,7 @@ GameStateEditor::GameStateEditor(Game* game)
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
 	CityMediator* md = new CityMediator(&city);
 	this->city.setMediator(md);
-	
+
 	this->city.shuffleTiles();
 
     /* Create gui elements */
