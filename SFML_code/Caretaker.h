@@ -5,19 +5,18 @@
 #include <stack>
 
 class Caretaker {
-
 private:
-	// gonna use a stack to store the mementos that way we keep popping off the prev day when undoing
-	std::stack<Memento*> mementos;
+    std::stack<Memento*> mementos;  // Stack to store Mementos for undo functionality
 
 public:
-	// will just push the new memnto to the stack
-	void storeMemento(Memento* memento);
+    ~Caretaker();                   // Destructor to clean up Mementos
 
-	// will pop the stack and get the memento 
-	Memento* retrieveMemento();
+    void storeMemento(Memento* memento); // Store Memento in stack
+    Memento* retrieveMemento();          // Retrieve last Memento for undoing
 
-	void Caretaker::popState();
+    bool hasMementos() const;       // Check if there are any Mementos available
+
+    void popState();
 };
 
-#endif
+#endif // CARETAKER_H

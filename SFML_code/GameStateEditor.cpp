@@ -43,11 +43,22 @@ void GameStateEditor::update(const float dt)
 {
 	if(paused)
 	{
-
+		/* Update the info bar at the bottom of the screen */
+		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
+		this->guiSystem.at("infoBar").setEntryText(1, "$" + std::to_string(long(this->city.funds)));
+		this->guiSystem.at("infoBar").setEntryText(2, std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + " (" + std::to_string(long(this->city.getUnemployed())) + ")");
+		this->guiSystem.at("infoBar").setEntryText(4, "Tax Rate: " + this->city.getTaxPolicy());
+		this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
 	}
 	else
 	{
 		this->city.update(dt);
+		if(this->city.day != day)
+		{
+			undos->storeMemento(this->city.createMemento());
+			day = this->city.day;
+		}
 
 		/* Update the info bar at the bottom of the screen */
 		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
@@ -110,8 +121,7 @@ void GameStateEditor::handleInput()
 					else if (event.key.code == sf::Keyboard::U)
 					{
 						//undo operation
-						delete this->city.map;
-						this->city.map = beginMap->clone();
+						this->city.loadMemento(undos->retrieveMemento());
 					}
 					else if (event.key.code == sf::Keyboard::P)
 					{
@@ -362,9 +372,7 @@ void GameStateEditor::handleInput()
 				}
 				else if (event.key.code == sf::Keyboard::M)
 				{
-					// this->pauseGame();
-					delete this->city.map;
-					this->city.map = beginMap->clone();
+					
 				}
 				break;
 			}
@@ -396,7 +404,8 @@ GameStateEditor::GameStateEditor(Game* game)
 	this->gameView.setCenter(pos);
 
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
-	this->beginMap = this->city.map->clone();
+	// this->beginMap = this->city.map->clone();
+	this->city.setCaretaker(this->undos);
 	this->city.shuffleTiles();
 
     /* Create gui elements */
