@@ -2,6 +2,7 @@
  
 #include "AnimationHandler.h"
 #include "Tile.h"
+#include "CityMediator.h"
 
 
 Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
@@ -112,6 +113,17 @@ std::string tileTypeToStr(TileType type)
         case TileType::RESIDENTIAL:     return "Residential Zone";
         case TileType::COMMERCIAL:      return "Commercial Zone";
         case TileType::INDUSTRIAL:      return "Industrial Zone";
-        case TileType::LANDMARK:        return "landmark Zone";
+        case TileType::LANDMARK:        return "Landmark Zone";
+        case TileType::FIRESTATION:     return "Fire Station";
+    }
+}
+
+void Tile::setMediator(CityMediator* mediator){
+    this->mediator = mediator;
+}
+
+void Tile::notify(std::string notification){
+        if (this->mediator) {
+        this->mediator->notify(this, notification);
     }
 }

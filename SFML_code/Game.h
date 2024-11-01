@@ -17,6 +17,7 @@
 #include "IndustrialFactory.h"
 #include "LandmarkFactory.h"
 #include "RoadFactory.h"
+#include "FirestationFactory.h"
 
 
 class GameState;

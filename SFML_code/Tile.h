@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "AnimationHandler.h"
+//#include "CityMediator.h"
+class CityMediator;
 
 enum class TileType
 {
@@ -16,7 +18,8 @@ enum class TileType
     COMMERCIAL,
     INDUSTRIAL,
     LANDMARK,
-    ROAD
+    ROAD,
+    FIRESTATION
 };
 
 std::string tileTypeToStr(TileType type);
@@ -26,6 +29,11 @@ class Tile
 private:
     Tile(Tile* tile);
 public:
+
+    CityMediator* mediator;
+    void setMediator(CityMediator* mediator);
+    void notify(std::string notification);
+
     AnimationHandler animHandler;
     sf::Sprite sprite;
 

@@ -12,9 +12,12 @@
 #include "MidTax.h"
 #include "HighTax.h"
 
+class cityMediator;
+
 class City
 {
-private:
+protected:
+
     float currentTime;
     float timePerDay;
 
@@ -41,7 +44,7 @@ private:
 
 public:
     Map map;
-
+    friend class CityMediator;
     double population;
     double employable;
 
@@ -70,7 +73,7 @@ public:
         this->earnings = 0;
         this->funds = 0;
         this->currentTime = 0.0;
-        this->timePerDay = 1.0;
+        this->timePerDay = 0.1;
         this->day = 0;
         this->taxPolicy = new LowTax();
     }

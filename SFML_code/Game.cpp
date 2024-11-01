@@ -34,6 +34,7 @@ void Game::loadTiles()
     this->tileAtlas["residential"] = Factory.at("residential")->Create(texmgr.getRef("residential"), {staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim});
     this->tileAtlas["commercial"] = Factory.at("commercial")->Create(texmgr.getRef("commercial"), {staticAnim, staticAnim, staticAnim, staticAnim});
     this->tileAtlas["industrial"] = Factory.at("industrial")->Create(texmgr.getRef("industrial"), {staticAnim, staticAnim, staticAnim, staticAnim});
+    this->tileAtlas["firestation"] = Factory.at("firestation")->Create(texmgr.getRef("firestation"), {staticAnim, staticAnim, staticAnim, staticAnim});
     this->tileAtlas["landmark"] = Factory.at("landmark")->Create(texmgr.getRef("landmark"), {staticAnim, staticAnim, staticAnim, staticAnim});
     this->tileAtlas["road"] = Factory.at("road")->Create(texmgr.getRef("road"),{staticAnim, staticAnim, staticAnim, staticAnim, 
                                                                 staticAnim, staticAnim, staticAnim, staticAnim, 
@@ -52,6 +53,7 @@ void Game::loadTextures()
     texmgr.loadTexture("industrial",    "media/industrial.png");
     texmgr.loadTexture("landmark",    "media/landmarks.png");
     texmgr.loadTexture("road",          "media/road.png");
+    texmgr.loadTexture("firestation",          "media/firestation.png");
  
     texmgr.loadTexture("background",    "media/background.png");
 }
@@ -66,6 +68,7 @@ void Game::loadFactories()
     this->Factory["industrial"] = new IndustrialFactory();
     this->Factory["landmark"] = new LandmarkFactory();
     this->Factory["road"] = new RoadFactory();
+    this->Factory["firestation"] = new FirestationFactory();
 }
 
 
