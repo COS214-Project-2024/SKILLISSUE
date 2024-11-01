@@ -1,7 +1,12 @@
 #ifndef MEMENTO_H
 #define MEMENTO_H
 
+#include "Map.h"
+
+
 class Memento {
+
+friend class City;
 
 private:
 	/**
