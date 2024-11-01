@@ -108,6 +108,9 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
         case TileType::LANDMARK:
             this->tiles.push_back(tileAtlas.at("landmark")->clone());
             break;
+         case TileType::FIRESTATION:
+            this->tiles.push_back(tileAtlas.at("firestation")->clone());
+            break;
         case TileType::ROAD:
             this->tiles.push_back(tileAtlas.at("road")->clone());
             break;

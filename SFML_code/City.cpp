@@ -6,9 +6,11 @@
 #include <fstream>
 #include <sstream>
 #include <numeric>
+#include <random>
 
 #include "City.h"
 #include "Tile.h"
+#include "CityMediator.h"
 
 void City::setTaxPolicy(TaxPolicy* policy)
 {
@@ -73,6 +75,10 @@ void City::bulldoze(Tile &tile)
                 this->populationPool += this->map.tiles[pos]->population;
             }
             else if (this->map.tiles[pos]->tileType == TileType::COMMERCIAL)
+            {
+                this->employmentPool += this->map.tiles[pos]->population;
+            }
+            else if (this->map.tiles[pos]->tileType == TileType::FIRESTATION)
             {
                 this->employmentPool += this->map.tiles[pos]->population;
             }
@@ -220,7 +226,21 @@ void City::update(float dt)
         this->funds += this->earnings;
         this->earnings = 0;
     }
+
+    //set mediator
+    CityMediator* mediator = new CityMediator(this);
+    for (int pos = 0; pos < this->map.width * this->map.height; ++pos){
+        Tile *tile = this->map.tiles[pos];
+
+        if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
+            continue;
+        }
+
+        tile->setMediator(mediator);
+    }
+
     /* Run first pass of tile updates. Mostly handles pool distribution. */
+
     for (int i = 0; i < this->map.tiles.size(); ++i)
     {
         Tile *tile = this->map.tiles[this->shuffledTiles[i]];
@@ -233,7 +253,7 @@ void City::update(float dt)
 
             popTotal += tile->population;
         }
-        else if (tile->tileType == TileType::COMMERCIAL)
+        else if (tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::FIRESTATION)
         {
             /* Hire people. */
             if (rand() % 100 < 15 * (1.0 - this->commercialTax))
@@ -267,6 +287,7 @@ void City::update(float dt)
         }
         tile = NULL;
     }
+
     /* Run second pass. Mostly handles goods manufacture */
     for(int i = 0; i < this->map.tiles.size(); ++i)
     {
@@ -335,6 +356,26 @@ void City::update(float dt)
             }
         }
     }
+
+    //Random chance that a house burns down
+    std::random_device rd; // Obtain a random number from hardware
+    std::mt19937 gen(rd()); // Seed the generator
+    std::uniform_int_distribution<> distr(1, 100000); // Define the range
+    int random_number = distr(gen); // Generate a random number
+
+    random_number = day;
+    if(random_number == 400){
+        for (int i = 0; i < this->map.tiles.size(); ++i){
+            
+            Tile *tile = this->map.tiles[this->shuffledTiles[i]];
+
+            if(tile != NULL && tile->tileType == TileType::RESIDENTIAL){
+                tile->notify("fireAlert");
+            }
+        }
+    }
+     
+
     /* Adjust population pool for births and deaths. */
     this->populationPool += this->populationPool * (this->birthRate - this->deathRate);
     popTotal += this->populationPool;
@@ -358,3 +399,5 @@ void City::update(float dt)
  
     return;
 }
+
+

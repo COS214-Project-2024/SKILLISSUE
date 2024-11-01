@@ -6,12 +6,13 @@
 
 #include "Map.h"
 #include "Tile.h"
-#include "CityMediator.h"
 
 #include "TaxPolicy.h"
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
+
+class cityMediator;
 
 class City
 {

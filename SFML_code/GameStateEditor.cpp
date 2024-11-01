@@ -29,8 +29,8 @@ void GameStateEditor::update(const float dt)
 	/* Update the info bar at the bottom of the screen */
 	this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
 	this->guiSystem.at("infoBar").setEntryText(1, "$" + std::to_string(long(this->city.funds)));
-	this->guiSystem.at("infoBar").setEntryText(2, std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-	this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + " (" + std::to_string(long(this->city.getUnemployed())) + ")");
+	this->guiSystem.at("infoBar").setEntryText(2, "Population: " + std::to_string(long(this->city.population)) + "(" + std::to_string(long(this->city.getHomeless())) + ")");
+	this->guiSystem.at("infoBar").setEntryText(3, "Employable: " + std::to_string(long(this->city.employable)) + "(" + std::to_string(long(this->city.getUnemployed())) + ")");
 	this->guiSystem.at("infoBar").setEntryText(4, "Tax Rate: " + this->city.getTaxPolicy());
 	this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
 
@@ -318,6 +318,7 @@ GameStateEditor::GameStateEditor(Game* game)
 			std::make_pair("Commercial Zone $" 	+ this->game->tileAtlas["commercial"]->getCost(), "commercial"),
 			std::make_pair("Industrial Zone $" 	+ this->game->tileAtlas["industrial"]->getCost(), "industrial"),
 			std::make_pair("landmark Zone $" 	+ this->game->tileAtlas["landmark"]->getCost(), "landmark"),
+			std::make_pair("Fire Station $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
 			std::make_pair("Road $" 			+ this->game->tileAtlas["road"]->getCost(), "road")
 		}));
 

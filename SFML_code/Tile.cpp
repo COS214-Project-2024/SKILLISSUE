@@ -113,7 +113,8 @@ std::string tileTypeToStr(TileType type)
         case TileType::RESIDENTIAL:     return "Residential Zone";
         case TileType::COMMERCIAL:      return "Commercial Zone";
         case TileType::INDUSTRIAL:      return "Industrial Zone";
-        case TileType::LANDMARK:        return "landmark Zone";
+        case TileType::LANDMARK:        return "Landmark Zone";
+        case TileType::FIRESTATION:     return "Fire Station";
     }
 }
 

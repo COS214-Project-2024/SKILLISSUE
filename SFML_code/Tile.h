@@ -18,7 +18,8 @@ enum class TileType
     COMMERCIAL,
     INDUSTRIAL,
     LANDMARK,
-    ROAD
+    ROAD,
+    FIRESTATION
 };
 
 std::string tileTypeToStr(TileType type);

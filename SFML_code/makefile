@@ -17,6 +17,9 @@ $(TARGET): $(OBJ)
 run:
 	./$(TARGET)
 
+fast:
+	make -j$(nproc)
+
 clean:
 	rm -f *.o $(TARGET)
 
