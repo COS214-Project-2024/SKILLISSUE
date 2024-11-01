@@ -14,6 +14,9 @@
 
 #include "CreateAndDistributeGoods.h"
 #include "CDReceiver.h"
+
+#include "CreateAndDistributeGoods.h"
+#include "CDReceiver.h"
 #include "DReceiver.h"
 #include "DistributeResources.h"
 
