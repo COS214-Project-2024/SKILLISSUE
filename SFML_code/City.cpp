@@ -363,8 +363,8 @@ void City::update(float dt)
     std::uniform_int_distribution<> distr(1, 100000); // Define the range
     int random_number = distr(gen); // Generate a random number
 
-    random_number = day;
-    if(random_number == 400){
+    //random_number = day;
+    if(random_number == 727){
         for (int i = 0; i < this->map.tiles.size(); ++i){
             
             Tile *tile = this->map.tiles[this->shuffledTiles[i]];
