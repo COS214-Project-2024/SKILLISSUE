@@ -17,11 +17,6 @@
 #include "DReceiver.h"
 #include "DistributeResources.h"
 
-#include "CreateAndDistributeGoods.h"
-#include "CDReceiver.h"
-#include "DReceiver.h"
-#include "DistributeResources.h"
-
 class cityMediator;
 
 class City
