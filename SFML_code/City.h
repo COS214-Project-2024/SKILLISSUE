@@ -40,7 +40,7 @@ private:
     double distributePool(double &pool, Tile *tile, double rate);
 
 public:
-    Map map;
+    Map* map;
 
     double population;
     double employable;
@@ -73,11 +73,12 @@ public:
         this->timePerDay = 1.0;
         this->day = 0;
         this->taxPolicy = new LowTax();
+        this->map = new Map();
     }
 
     City(std::string cityName, int tileSize, std::map<std::string, Tile*> &tileAtlas) : City()
     {
-        this->map.tileSize = tileSize;
+        this->map->tileSize = tileSize;
         load(cityName, tileAtlas);
     }
 

@@ -64,28 +64,28 @@ void City::bulldoze(Tile &tile)
 {
     /* Replace the selected tiles on the map with the tile and
      * update populations etc accordingly */
-    for (int pos = 0; pos < this->map.width * this->map.height; ++pos)
+    for (int pos = 0; pos < this->map->width * this->map->height; ++pos)
     {
-        if (this->map.selected[pos] == 1)
+        if (this->map->selected[pos] == 1)
         {
-            if (this->map.tiles[pos]->tileType == TileType::RESIDENTIAL)
+            if (this->map->tiles[pos]->tileType == TileType::RESIDENTIAL)
             {
-                this->populationPool += this->map.tiles[pos]->population;
+                this->populationPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::COMMERCIAL)
+            else if (this->map->tiles[pos]->tileType == TileType::COMMERCIAL)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::INDUSTRIAL)
+            else if (this->map->tiles[pos]->tileType == TileType::INDUSTRIAL)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::LANDMARK)
+            else if (this->map->tiles[pos]->tileType == TileType::LANDMARK)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            delete this->map.tiles[pos];
-            this->map.tiles[pos] = tile.clone();
+            delete this->map->tiles[pos];
+            this->map->tiles[pos] = tile.clone();
         }
     }
 
@@ -94,7 +94,7 @@ void City::bulldoze(Tile &tile)
 
 void City::shuffleTiles()
 {
-    while (this->shuffledTiles.size() < this->map.tiles.size())
+    while (this->shuffledTiles.size() < this->map->tiles.size())
     {
         this->shuffledTiles.push_back(0);
     }
@@ -106,8 +106,8 @@ void City::shuffleTiles()
 
 void City::tileChanged()
 {
-    this->map.updateDirection(TileType::ROAD);
-    this->map.findConnectedRegions(
+    this->map->updateDirection(TileType::ROAD);
+    this->map->findConnectedRegions(
         {TileType::ROAD, TileType::RESIDENTIAL,
          TileType::COMMERCIAL, TileType::INDUSTRIAL},
         0);
@@ -171,7 +171,7 @@ void City::load(std::string cityName, std::map<std::string, Tile*> &tileAtlas)
 
     inputFile.close();
 
-    this->map.load(cityName + "_map.dat", width, height, tileAtlas);
+    this->map->load(cityName + "_map.dat", width, height, tileAtlas);
     tileChanged();
 
     return;
@@ -181,8 +181,8 @@ void City::save(std::string cityName)
 {
     std::ofstream outputFile(cityName + "_cfg.dat", std::ios::out);
 
-    outputFile << "width=" << this->map.width << std::endl;
-    outputFile << "height=" << this->map.height << std::endl;
+    outputFile << "width=" << this->map->width << std::endl;
+    outputFile << "height=" << this->map->height << std::endl;
     outputFile << "day=" << this->day << std::endl;
     outputFile << "populationPool=" << this->populationPool << std::endl;
     outputFile << "employmentPool=" << this->employmentPool << std::endl;
@@ -198,7 +198,7 @@ void City::save(std::string cityName)
 
     outputFile.close();
 
-    this->map.save(cityName + "_map.dat");
+    this->map->save(cityName + "_map.dat");
 
     return;
 }
@@ -221,9 +221,9 @@ void City::update(float dt)
         this->earnings = 0;
     }
     /* Run first pass of tile updates. Mostly handles pool distribution. */
-    for (int i = 0; i < this->map.tiles.size(); ++i)
+    for (int i = 0; i < this->map->tiles.size(); ++i)
     {
-        Tile *tile = this->map.tiles[this->shuffledTiles[i]];
+        Tile *tile = this->map->tiles[this->shuffledTiles[i]];
         if(tile != NULL){
 
         if (tile->tileType == TileType::RESIDENTIAL)
@@ -244,10 +244,10 @@ void City::update(float dt)
         else if (tile->tileType == TileType::INDUSTRIAL)
         {
             /* Extract resources from the ground. */
-            if (this->map.resources[i] > 0 && rand() % 100 < this->population)
+            if (this->map->resources[i] > 0 && rand() % 100 < this->population)
             {
                 ++tile->production;
-                --this->map.resources[i];
+                --this->map->resources[i];
             }
             /* Hire people. */
             if (rand() % 100 < 15 * (1.0 - this->industrialTax))
@@ -268,16 +268,16 @@ void City::update(float dt)
         tile = NULL;
     }
     /* Run second pass. Mostly handles goods manufacture */
-    for(int i = 0; i < this->map.tiles.size(); ++i)
+    for(int i = 0; i < this->map->tiles.size(); ++i)
     {
-        Tile* tile = this->map.tiles[this->shuffledTiles[i]];
+        Tile* tile = this->map->tiles[this->shuffledTiles[i]];
         if (tile != NULL)
         {
             if (tile->tileType == TileType::INDUSTRIAL)
             {
                 int receivedResources = 0;
                 /* Receive resources from smaller and connected zones */
-                for (Tile *tile2 : this->map.tiles)
+                for (Tile *tile2 : this->map->tiles)
                 {
                     if (tile2->regions[0] == tile->regions[0] && tile2->tileType == TileType::INDUSTRIAL)
                     {
@@ -297,16 +297,16 @@ void City::update(float dt)
     }
 
     /* Run third pass. Mostly handles goods distribution. */
-    for(int i = 0; i < this->map.tiles.size(); ++i)
+    for(int i = 0; i < this->map->tiles.size(); ++i)
     {
-        Tile* tile = this->map.tiles[this->shuffledTiles[i]];
+        Tile* tile = this->map->tiles[this->shuffledTiles[i]];
         if (tile != NULL)
         {
             if (tile->tileType == TileType::COMMERCIAL)
             {
                 int receivedGoods = 0;
                 double maxCustomers = 0.0;
-                for (Tile *tile2 : this->map.tiles)
+                for (Tile *tile2 : this->map->tiles)
                 {
                     if (tile2->regions[0] == tile->regions[0] &&
                         tile2->tileType == TileType::INDUSTRIAL &&
