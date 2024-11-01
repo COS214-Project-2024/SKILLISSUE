@@ -9,11 +9,10 @@ class Memento {
 
 friend class City;
 
-private:
+public:
 	double populationPool;
 	double satisfaction;
 	double employmentPool;
-public:
 	double population;
 	double employable;
 	double earnings;
