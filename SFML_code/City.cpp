@@ -227,8 +227,7 @@ void City::update(float dt)
         this->earnings = 0;
     }
 
-    //set mediator
-    CityMediator* mediator = new CityMediator(this);
+    //set mediator for each tile
     for (int pos = 0; pos < this->map.width * this->map.height; ++pos){
         Tile *tile = this->map.tiles[pos];
 
@@ -400,4 +399,6 @@ void City::update(float dt)
     return;
 }
 
-
+void City::setMediator(CityMediator* md){
+    this->mediator = md;
+}

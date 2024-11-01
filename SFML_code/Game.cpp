@@ -51,9 +51,9 @@ void Game::loadTextures()
     texmgr.loadTexture("residential",   "media/residential.png");
     texmgr.loadTexture("commercial",    "media/commercial.png");
     texmgr.loadTexture("industrial",    "media/industrial.png");
-    texmgr.loadTexture("landmark",    "media/landmarks.png");
+    texmgr.loadTexture("landmark",      "media/landmarks.png");
     texmgr.loadTexture("road",          "media/road.png");
-    texmgr.loadTexture("firestation",          "media/firestation.png");
+    texmgr.loadTexture("firestation",   "media/firestation.png");
  
     texmgr.loadTexture("background",    "media/background.png");
 }

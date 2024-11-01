@@ -1,6 +1,7 @@
 #include "CityMediator.h"
 
 #include <string>
+#include <iostream>
 #include <random>
 
 CityMediator::CityMediator(City* gameCity) : city(gameCity ){};
@@ -26,13 +27,13 @@ void CityMediator::burnHouse(Tile* tile){
     bool fireStationFound = false;
 
     for (Tile *tile2 : this->city->map.tiles){
-        if (tile2->tileType == TileType::FIRESTATION && tile2->regions[0] == tile2->regions[0]){
+        if (tile2->tileType == TileType::FIRESTATION && tile2->regions[0] == tile->regions[0]){
             fireStationFound = true;
         }
     }
     
     if(fireStationFound){return;}
-
+     std::cout << "No station" << std::endl;
     tile->tileVariant = 0;
     //okay for now, more complex logic later
 }

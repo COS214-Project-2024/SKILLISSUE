@@ -8,6 +8,8 @@
 #include "HighTax.h"
 #include <bits/basic_string.h>
 
+#include "CityMediator.h"
+
 void GameStateEditor::draw(const float dt)
 {
     this->game->window.clear(sf::Color::Black);
@@ -307,6 +309,9 @@ GameStateEditor::GameStateEditor(Game* game)
 	this->gameView.setCenter(pos);
 
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
+	CityMediator* md = new CityMediator(&city);
+	this->city.setMediator(md);
+	
 	this->city.shuffleTiles();
 
     /* Create gui elements */

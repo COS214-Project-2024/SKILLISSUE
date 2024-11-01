@@ -21,6 +21,8 @@ protected:
     float currentTime;
     float timePerDay;
 
+    CityMediator* mediator;
+
     TaxPolicy* taxPolicy;
 
     std::vector<int> shuffledTiles;
@@ -97,6 +99,8 @@ public:
 
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
+
+    void setMediator(CityMediator* md);
 };
 
 #endif /* CITY_HPP */
