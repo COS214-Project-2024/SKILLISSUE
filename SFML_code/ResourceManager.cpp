@@ -1,65 +1,36 @@
 #include "ResourceManager.h"
 
-ResourceManager::ResourceManager() {
-    resources=resources.getResources();
+int ResourceManager::getPower() {
+	// TODO - implement Proxy::getPower
+	throw "Not yet implemented";
 }
 
-int ResourceManager::getWater(int value) {
-    //Must request less than 20% of water available
-    if(value< (0.2 * resources.getWater(value))) {
-        return resources.consumeWater(value);
-    }else{ return -1;}
+int ResourceManager::getSewage() {
+	// TODO - implement Proxy::getSewage
+	throw "Not yet implemented";
 }
 
-int ResourceManager::getPower(int value) {
-    //Must request less than 40% of power available
-    if(value< (0.4 * resources.getPower(value))) {
-        return resources.consumePower(value);
-    }else{ return -1;}
-}
-
-int ResourceManager::getSewage(int value) {
-    //Must request less than 60% of power available
-    if(value< (0.6 * resources.getSewage(value))) {
-        return resources.consumeSewage(value);
-    }else{ return -1;}
-}
-
-int ResourceManager::getMaterial(int value) {
-   //Must request less than 80% of water available
-    if(value< (0.8 * resources.getWater(value))) {
-        return resources.consumeWater(value);
-    }else{ return -1;}
+int ResourceManager::getMaterial() {
+	// TODO - implement Proxy::getMaterial
+	throw "Not yet implemented";
 }
 
 void ResourceManager::setWater(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getWater(value)){
-        resources.setWater(value);
-        return;
-    }
+	// TODO - implement Proxy::setWater
+	throw "Not yet implemented";
 }
 
 void ResourceManager::setPower(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getPower(value)){
-        resources.setPower(value);
-        return;
-    }
+	// TODO - implement Proxy::setPower
+	throw "Not yet implemented";
 }
 
 void ResourceManager::setSewage(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getSewage(value)){
-        resources.setSewage(value);
-        return;
-    }
+	// TODO - implement Proxy::setSewage
+	throw "Not yet implemented";
 }
 
 void ResourceManager::setMaterial(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getMaterial(value)){
-        resources.setMaterial(value);
-        return;
-    }
+	// TODO - implement Proxy::setMaterial
+	throw "Not yet implemented";
 }
