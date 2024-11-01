@@ -19,6 +19,7 @@ class GameStateEditor : public GameState
 
     sf::View gameView;
     sf::View guiView;
+    sf::Sprite pauseSprite;
 
     int day = 0;
 
@@ -34,6 +35,7 @@ class GameStateEditor : public GameState
     Tile* currentTile;
 
     std::map<std::string, Gui> guiSystem;
+    std::map<std::string, Gui> guiPauseSystem;
 
     bool paused = false;
     void pauseGame();
