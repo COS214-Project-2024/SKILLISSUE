@@ -14,13 +14,13 @@ private:
 	static Resources* Instance;
 
 public:
-	int getWater(int value);
+	int getWater();
 
-	int getPower(int value);
+	int getPower();
 
-	int getSewage(int value);
+	int getSewage();
 
-	int getMaterial(int value);
+	int getMaterial();
 
 	void setWater(int value);
 
@@ -30,18 +30,10 @@ public:
 
 	void setMaterial(int value);
 
-    int consumeWater(int value);
-
-	int consumePower(int value);
-
-	int consumeSewage(int value);
-
-	int consumeMaterial(int value);
-
 public:
 	Resources();
 
-	static Resources getResources();
+	static Resources* getResources();
 };
 
 #endif
