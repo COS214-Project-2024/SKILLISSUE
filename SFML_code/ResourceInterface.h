@@ -5,13 +5,13 @@ class ResourceInterface {
 
 
 public:
-	virtual int getWater(int value) = 0;
+	virtual int getWater() = 0;
 
-	virtual int getPower(int value) = 0;
+	virtual int getPower() = 0;
 
-	virtual int getSewage(int value) = 0;
+	virtual int getSewage() = 0;
 
-	virtual int getMaterial(int value) = 0;
+	virtual int getMaterial() = 0;
 
 	virtual void setWater(int value) = 0;
 
