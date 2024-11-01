@@ -371,7 +371,7 @@ void City::update(float dt)
     this->earnings += this->taxPolicy->calculateTax(commercialRevenue);
     this->earnings += this->taxPolicy->calculateTax(industrialRevenue);
 
-    // Notify Memento to store the state in Caretaker at the start of each new day
+    //Notify Memento to store the state in Caretaker at the start of each new day
     // if (caretaker) 
     // {
     //     caretaker->storeMemento(createMemento());
@@ -397,8 +397,8 @@ void City::loadMemento(Memento* memento) {
         earnings = memento->earnings;
         funds = memento->funds;
         day = memento->day;
+        delete map;
         map = memento->map->clone();  // Assuming `Map` has a deep copy constructor
-
     }
 }
 void City::setCaretaker(Caretaker* caretaker) {

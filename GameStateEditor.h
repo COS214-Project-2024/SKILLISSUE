@@ -20,6 +20,8 @@ class GameStateEditor : public GameState
     sf::View gameView;
     sf::View guiView;
 
+    int day = 0;
+
 	City city;
     Caretaker* undos = new Caretaker();
 
