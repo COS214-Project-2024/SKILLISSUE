@@ -2,13 +2,19 @@
 #define RESOURCEMANAGER__H
 
 #include "ResourceInterface.h"
+#include "Resources.h"
 
 class ResourceManager : public ResourceInterface 
 {
+private:
+	Resources resources;
+
 public:
-	int getPower();
-	int getSewage();
-	int getMaterial();
+	ResourceManager();
+	int getWater(int value);
+	int getPower(int value);
+	int getSewage(int value);
+	int getMaterial(int value);
 	void setWater(int value);
 	void setPower(int value);
 	void setSewage(int value);
