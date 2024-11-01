@@ -1,5 +1,5 @@
-#ifndef GAME_STATE_START_HPP
-#define GAME_STATE_START_HPP
+#ifndef GAMESTATEPAUSED_H
+#define GAMESTATEPAUSED_H
 
 #include <SFML/Graphics.hpp>
 
@@ -9,12 +9,13 @@
 #include <string>
 
 
-class GameStateStart : public GameState
+class GameStatePaused : public GameState
 {
 private:
     sf::View view;
     std::map<std::string, Gui> guiSystem;
-    void loadgame();
+    GameState* state;
+    void resumeGame();
 
 public:
     virtual void draw(const float dt);
@@ -23,7 +24,7 @@ public:
 
     void getState();
 
-    GameStateStart(Game *game);
+    GameStatePaused(Game *game, GameState* state);
 };
 
-#endif /* GAME_STATE_START_HPP */
+#endif /* GAMESTATEPAUSED_H */

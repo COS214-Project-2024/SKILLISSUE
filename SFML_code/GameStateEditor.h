@@ -30,12 +30,16 @@ class GameStateEditor : public GameState
     Tile* currentTile;
 
     std::map<std::string, Gui> guiSystem;
+
+    void pauseGame();
     
     public:
 
     virtual void draw(const float dt);
     virtual void update(const float dt);
     virtual void handleInput();
+
+    void getState();
 
     GameStateEditor(Game* game);
 };

@@ -1,16 +1,16 @@
 #include <utility>
-#include "GameStateStart.h"
+#include "GameStatePaused.h"
 #include "GameStateEditor.h"
 #include "GameState.h"
 
 #include <SFML/Graphics.hpp>
 
-void GameStateStart::getState()
+void GameStatePaused::getState()
 {
-    std::cout << "start";
+    std::cout << "Paused";
 }
 
-void GameStateStart::draw(const float dt)
+void GameStatePaused::draw(const float dt)
 {
     this->game->window.setView(this->view);
 
@@ -21,13 +21,14 @@ void GameStateStart::draw(const float dt)
 
 }
 
-void GameStateStart::update(const float dt)
+void GameStatePaused::update(const float dt)
 {
 }
 
 
-void GameStateStart::handleInput()
+void GameStatePaused::handleInput()
 {
+    bool resumeGame = false;
     sf::Event event;
 
     sf::Vector2f mousePos = this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->view);
@@ -63,50 +64,58 @@ void GameStateStart::handleInput()
                 break;
             }
             /* Click on menu items */
-            case sf::Event::MouseButtonPressed:
-            {
-                if(event.mouseButton.button == sf::Mouse::Left)
-                {
-                    std::string msg = this->guiSystem.at("menu").activate(mousePos);
+            // case sf::Event::MouseButtonPressed:
+            // {
+            //     if(event.mouseButton.button == sf::Mouse::Left)
+            //     {
+            //         std::string msg = this->guiSystem.at("menu").activate(mousePos);
 
-                    if(msg == "load_game")
-                    {
-                        this->loadgame();
-                    }
-                }
-                break;
-            }
+            //         if(msg == "load_game")
+            //         {
+            //             this->loadgame();
+            //         }
+            //     }
+            //     break;
+            // }
             case sf::Event::KeyPressed:
             {
-                if(event.key.code == sf::Keyboard::Escape) this->game->window.close();
+                if(event.key.code == sf::Keyboard::Escape)
+                {
+                    this->game->window.close();
+                }
+                else if(event.key.code == sf::Keyboard::P)
+                {
+                    resumeGame = true;
+                }
                 break;
             }
             default: break;
         }
     }
-
-    return;
+    if(resumeGame)
+    {
+        this->resumeGame();
+    }
 }
 
-void GameStateStart::loadgame()
+void GameStatePaused::resumeGame()
 {
-    this->game->pushState(new GameStateEditor(this->game));
-
-    return;
+    this->game->popState();
 }
 
-GameStateStart::GameStateStart(Game* game)
+GameStatePaused::GameStatePaused(Game* game, GameState* s)
 {
+    this->state = s;
 	this->game = game;
 	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
 	this->view.setSize(pos);
 	pos *= 0.5f;
 	this->view.setCenter(pos);
 
-	this->guiSystem.emplace("menu", Gui(sf::Vector2f(192, 32), 4, false, game->stylesheets.at("button"),
-		{ std::make_pair("Load Game", "load_game") }));
+	this->guiSystem.emplace("menu", Gui(sf::Vector2f(355, 32), 4, false, game->stylesheets.at("button"),
+		{ std::make_pair("Press P to Resume Game", "resume_game") }));
 
 	this->guiSystem.at("menu").setPosition(pos);
-	this->guiSystem.at("menu").setOrigin(96, 32*1/2);
+	this->guiSystem.at("menu").setOrigin(155, 32*1/2);
 	this->guiSystem.at("menu").show();
 }
