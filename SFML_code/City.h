@@ -11,6 +11,7 @@
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
+#include "Memento.h"
 
 class City
 {
@@ -95,6 +96,9 @@ public:
 
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
+
+    Memento createMemento();
+	void undo(Memento memento);
 };
 
 #endif /* CITY_HPP */
