@@ -6,7 +6,6 @@
 
 #include "Map.h"
 #include "Tile.h"
-#include "CityMediator.h"
 
 #include "TaxPolicy.h"
 #include "LowTax.h"
