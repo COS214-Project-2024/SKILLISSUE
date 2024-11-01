@@ -1,7 +1,10 @@
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 
-class ResourceManager : Subject {
+#include "Subject.h"
+
+class ResourceManager : Subject 
+{
 
 private:
 	int Water;

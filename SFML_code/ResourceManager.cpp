@@ -45,7 +45,9 @@ ResourceManager::ResourceManager() {
 	throw "Not yet implemented";
 }
 
-static ResourceManager* ResourceManager::getResourceManager() {
+ResourceManager* ResourceManager::getResourceManager() {
 	// TODO - implement ResourceManager::getResourceManager
 	throw "Not yet implemented";
 }
+
+ResourceManager* ResourceManager::Instance(nullptr);
