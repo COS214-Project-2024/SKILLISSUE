@@ -14,6 +14,8 @@
 
 #include "CreateAndDistributeGoods.h"
 #include "CDReceiver.h"
+#include "DReceiver.h"
+#include "DistributeResources.h"
 
 class cityMediator;
 
@@ -42,8 +44,6 @@ protected:
      * Current world values are 0.000055 and 0.000023, respectively */
     double birthRate;
     double deathRate;
-
-    double distributePool(double &pool, Tile *tile, double rate);
 
 public:
     Map map;

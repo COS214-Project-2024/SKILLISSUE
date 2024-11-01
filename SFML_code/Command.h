@@ -4,7 +4,7 @@
 #include "Tile.h"
 #include "City.h"
 
-class Command{
+class Command {
     protected:
     
     public:

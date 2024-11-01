@@ -1,4 +1,4 @@
-#ifndef SATISFACTIONLEVEL_H
+/*#ifndef SATISFACTIONLEVEL_H
 #define SATISFACTIONLEVEL_H
 
 #include "Command.h"
@@ -12,4 +12,4 @@ class SatisfactionLevel : public Command {
 
 };
 
-#endif
+#endif*/
