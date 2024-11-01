@@ -16,6 +16,8 @@ public:
 
 	// will pop the stack and get the memento 
 	Memento* retrieveMemento();
+
+	void Caretaker::popState();
 };
 
 #endif

@@ -4,7 +4,6 @@
 #include "Map.h"
 
 
-
 class Memento {
 
 friend class City;

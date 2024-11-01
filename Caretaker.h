@@ -15,6 +15,8 @@ public:
     Memento* retrieveMemento();          // Retrieve last Memento for undoing
 
     bool hasMementos() const;       // Check if there are any Mementos available
+
+    void popState();
 };
 
 #endif // CARETAKER_H

@@ -222,20 +222,15 @@ void City::update(float dt)
     //         caretaker.storeMemento(dailyMemento);  // Store the daily Memento in Caretaker
     //         lastMementoDay = day; 
        // Notify Memento to store the state in Caretaker at the start of each new day
-    if (day != lastMementoDay && caretaker) {
-            Memento::storeInCaretaker(*this, caretaker);  // Call Memento to store itself in Caretaker
-            lastMementoDay = day;
-  
-  
-  //my tests      }
-    std::cout << "Saved Memento for Day " << day << "\n";
-    std::cout << "  Population Pool: " << getHomeless() << "\n";
-    std::cout << "  Employment Pool: " << getUnemployed() << "\n";
-    std::cout << "  Population: " << population << "\n";
-    std::cout << "  Employable: " << employable << "\n";
-    std::cout << "  Satisfaction: " << satisfaction << "\n";
-    std::cout << "  Earnings: " << earnings << "\n";
-    std::cout << "  Funds: " << funds << "\n";
+    // //my tests    
+    // std::cout << "Saved Memento for Day " << day << "\n";
+    // std::cout << "  Population Pool: " << getHomeless() << "\n";
+    // std::cout << "  Employment Pool: " << getUnemployed() << "\n";
+    // std::cout << "  Population: " << population << "\n";
+    // std::cout << "  Employable: " << employable << "\n";
+    // std::cout << "  Satisfaction: " << satisfaction << "\n";
+    // std::cout << "  Earnings: " << earnings << "\n";
+    // std::cout << "  Funds: " << funds << "\n";
     if (day % 30 == 0)
     {
         this->funds += this->earnings;
@@ -376,16 +371,23 @@ void City::update(float dt)
     this->earnings += this->taxPolicy->calculateTax(commercialRevenue);
     this->earnings += this->taxPolicy->calculateTax(industrialRevenue);
 
+    // Notify Memento to store the state in Caretaker at the start of each new day
+    // if (caretaker) 
+    // {
+    //     caretaker->storeMemento(createMemento());
+    //     lastMementoDay = day;
+    // }
+
  
     return;
 }
 
 
 Memento* City::createMemento() {
-    return new Memento(populationPool, employmentPool, population, employable, satisfaction, earnings, funds, day, *map);
+    return new Memento(populationPool, employmentPool, population, employable, satisfaction, earnings, funds, day, map->clone());
 }
 
-void City::loadMemento(const Memento* memento) {
+void City::loadMemento(Memento* memento) {
     if (memento) {
         populationPool = memento->populationPool;
         employmentPool = memento->employmentPool;
@@ -395,7 +397,8 @@ void City::loadMemento(const Memento* memento) {
         earnings = memento->earnings;
         funds = memento->funds;
         day = memento->day;
-        map = new Map(memento->map);  // Assuming `Map` has a deep copy constructor
+        map = memento->map->clone();  // Assuming `Map` has a deep copy constructor
+
     }
 }
 void City::setCaretaker(Caretaker* caretaker) {

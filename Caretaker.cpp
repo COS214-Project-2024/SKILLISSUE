@@ -1,10 +1,8 @@
 #include "Caretaker.h"
 
-Caretaker::~Caretaker() {
-    while (!mementos.empty()) {
-        delete mementos.top();
-        mementos.pop();
-    }
+Caretaker::~Caretaker() 
+{
+    while(!this->mementos.empty()) popState();
 }
 
 void Caretaker::storeMemento(Memento* memento) {
@@ -22,4 +20,12 @@ Memento* Caretaker::retrieveMemento() {
 
 bool Caretaker::hasMementos() const {
     return !mementos.empty();
+}
+
+void Caretaker::popState()
+{
+    delete this->mementos.top();
+    this->mementos.pop();
+
+    return;
 }

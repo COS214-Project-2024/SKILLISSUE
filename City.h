@@ -109,7 +109,7 @@ public:
 
     void setCaretaker(Caretaker* caretaker);       // Method to set Caretaker pointer
     Memento* createMemento();
-    void loadMemento(const Memento* memento);
+    void loadMemento(Memento* memento);
 
 };
 

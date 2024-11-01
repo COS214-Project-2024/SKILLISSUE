@@ -17,13 +17,13 @@ private:
     double earnings;
     double funds;
     int day;
-    Map map;
+    Map* map;
 
 public:
     Memento(double populationPool, double employmentPool, double population, double employable,
-            double satisfaction, double earnings, double funds, int day, const Map& map);
+            double satisfaction, double earnings, double funds, int day, Map* map);
 
-    static void storeInCaretaker(City& city, Caretaker* caretaker);  // Static function to create and store Memento
+    // static void storeInCaretaker(City& city, Caretaker* caretaker);  // Static function to create and store Memento
 };
 
 #endif // MEMENTO_H

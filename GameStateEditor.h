@@ -7,6 +7,7 @@
 #include "Map.h"
 #include "City.h"
 #include "Gui.h"
+#include "Caretaker.h"
 
 enum class ActionState { NONE, PANNING, SELECTING };
 
@@ -20,6 +21,7 @@ class GameStateEditor : public GameState
     sf::View guiView;
 
 	City city;
+    Caretaker* undos = new Caretaker();
 
 	sf::Vector2i panningAnchor;
     float zoomLevel;
