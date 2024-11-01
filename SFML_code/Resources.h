@@ -1,5 +1,5 @@
-#ifndef RESOURCEMANAGER_H
-#define RESOURCEMANAGER_H
+#ifndef RESOURCES_H
+#define RESOURCES_H
 
 #include "Subject.h"
 
@@ -11,38 +11,37 @@
  * The ResourceManager class is a singleton that provides methods to access and
  * modify different resources. It inherits from the Subject class.
  */
-class ResourceManager : Subject {
+class Resources : Subject {
 
 private:
-  int water;     ///< The amount of water resource.
-  int power;     ///< The amount of power resource.
-  int sewage;    ///< The amount of sewage resource.
-  int materials; ///< The amount of materials resource.
-  static ResourceManager
-      &Instance; ///< The singleton instance of ResourceManager.
+  int water;                  ///< The amount of water resource.
+  int power;                  ///< The amount of power resource.
+  int sewage;                 ///< The amount of sewage resource.
+  int materials;              ///< The amount of materials resource.
+  static Resources &Instance; ///< The singleton instance of ResourceManager.
 
 protected:
   /**
    * @brief Protected constructor to ensure only one instance of ResourceManager
    * is created.
    */
-  ResourceManager();
+  Resources();
 
   /**
    * @brief Copy constructor (protected and not implemented to prevent copying).
    */
-  ResourceManager(const ResourceManager &) {};
+  Resources(const Resources &) {};
 
   /**
    * @brief Assignment operator (protected and not implemented to prevent
    * copying).
    */
-  ResourceManager &operator=(const ResourceManager &) {};
+  Resources &operator=(const Resources &) {};
 
   /**
    * @brief Destructor.
    */
-  virtual ~ResourceManager() {};
+  virtual ~Resources() {};
 
 public:
   /**
@@ -121,7 +120,7 @@ public:
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
    */
-  static ResourceManager &getResourceManagerInstance();
+  static Resources &getResourceManagerInstance();
 };
 
-#endif // RESOURCEMANAGER_H
+#endif // RESOURCES_H

@@ -1,11 +1,11 @@
-#include "ResourceManager.h"
+#include "Resources.h"
 #include <gtest/gtest.h>
 
 /**
  * @brief Unit test for the getWater() and setWater() methods.
  */
-TEST(ResourceManagerTest, WaterResourceTest) {
-  ResourceManager &rm = ResourceManager::getResourceManagerInstance();
+TEST(ResourcesTest, WaterResourceTest) {
+  Resources &rm = Resources::getResourceManagerInstance();
   rm.setWater(100);
   EXPECT_EQ(rm.getWater(), 100) << "Water resource should be 100";
 
@@ -16,8 +16,8 @@ TEST(ResourceManagerTest, WaterResourceTest) {
 /**
  * @brief Unit test for the getPower() and setPower() methods.
  */
-TEST(ResourceManagerTest, PowerResourceTest) {
-  ResourceManager &rm = ResourceManager::getResourceManagerInstance();
+TEST(ResourcesTest, PowerResourceTest) {
+  Resources &rm = Resources::getResourceManagerInstance();
   rm.setPower(50);
   EXPECT_EQ(rm.getPower(), 50) << "Power resource should be 50";
 
@@ -28,8 +28,8 @@ TEST(ResourceManagerTest, PowerResourceTest) {
 /**
  * @brief Unit test for the getSewage() and setSewage() methods.
  */
-TEST(ResourceManagerTest, SewageResourceTest) {
-  ResourceManager &rm = ResourceManager::getResourceManagerInstance();
+TEST(ResourcesTest, SewageResourceTest) {
+  Resources &rm = Resources::getResourceManagerInstance();
   rm.setSewage(30);
   EXPECT_EQ(rm.getSewage(), 30) << "Sewage resource should be 30";
 
@@ -40,8 +40,8 @@ TEST(ResourceManagerTest, SewageResourceTest) {
 /**
  * @brief Unit test for the getMaterial() and setMaterial() methods.
  */
-TEST(ResourceManagerTest, MaterialResourceTest) {
-  ResourceManager &rm = ResourceManager::getResourceManagerInstance();
+TEST(ResourcesTest, MaterialResourceTest) {
+  Resources &rm = Resources::getResourceManagerInstance();
   rm.setMaterial(500);
   EXPECT_EQ(rm.getMaterial(), 500) << "Material resource should be 500";
 
