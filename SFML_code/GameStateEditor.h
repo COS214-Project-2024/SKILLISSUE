@@ -31,7 +31,10 @@ class GameStateEditor : public GameState
 
     std::map<std::string, Gui> guiSystem;
 
+    bool paused = false;
     void pauseGame();
+
+    Map* beginMap;
     
     public:
 

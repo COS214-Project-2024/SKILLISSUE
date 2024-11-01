@@ -113,7 +113,10 @@ GameStatePaused::GameStatePaused(Game* game, GameState* s)
 	this->view.setCenter(pos);
 
 	this->guiSystem.emplace("menu", Gui(sf::Vector2f(355, 32), 4, false, game->stylesheets.at("button"),
-		{ std::make_pair("Press P to Resume Game", "resume_game") }));
+		{ 
+            std::make_pair("Press P to Resume Game", "resume_game"),
+            std::make_pair("Save Game", "save_game")
+        }));
 
 	this->guiSystem.at("menu").setPosition(pos);
 	this->guiSystem.at("menu").setOrigin(155, 32*1/2);
