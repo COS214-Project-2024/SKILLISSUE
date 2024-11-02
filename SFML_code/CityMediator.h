@@ -26,7 +26,7 @@ class CityMediator{
     void getPower(Tile* tile);
     void disposeWaste(Tile* tile);
     void treatSewage(Tile* tile);
-
+    //add more later
 };
 
 #endif
