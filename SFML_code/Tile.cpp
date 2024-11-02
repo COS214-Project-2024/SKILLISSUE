@@ -127,3 +127,13 @@ void Tile::notify(std::string notification){
         this->mediator->notify(this, notification);
     }
 }
+
+void Tile::addSatisfaction(double num){
+    this->Satisfaction += num;
+}
+void Tile::removeSatisfaction(double num){
+    this->Satisfaction -= num;
+}
+double Tile::getSatisfaction(){
+    return Satisfaction;
+}

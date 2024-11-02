@@ -28,7 +28,10 @@ class Tile
 {
 private:
     Tile(Tile* tile);
+    double Satisfaction;
 public:
+
+    
 
     CityMediator* mediator;
     void setMediator(CityMediator* mediator);
@@ -74,6 +77,10 @@ public:
 
     /* Return a string containing the display cost of the tile */
     std::string getCost();
+
+    void addSatisfaction(double num);
+    void removeSatisfaction(double num);
+    double getSatisfaction();
 
     Tile* clone();
 };
