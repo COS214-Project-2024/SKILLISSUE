@@ -1,73 +1,32 @@
 #include "Resources.h"
 
-int Resources::getWater(int value) {
-	// TODO - implement ResourceManager::getWater
-	throw "Not yet implemented";
-}
+int Resources::getWater() { return water; }
 
-int Resources::getPower(int value) {
-	// TODO - implement ResourceManager::getPower
-	throw "Not yet implemented";
-}
+int Resources::getPower() { return power; }
 
-int Resources::getSewage(int value) {
-	// TODO - implement ResourceManager::getSewage
-	throw "Not yet implemented";
-}
+int Resources::getSewage() { return sewage; }
 
-int Resources::getMaterial(int value) {
-	// TODO - implement ResourceManager::getMaterial
-	throw "Not yet implemented";
-}
+int Resources::getMaterial() { return materials; }
 
-void Resources::setWater(int value) {
-	// TODO - implement ResourceManager::setWater
-	throw "Not yet implemented";
-}
+void Resources::setWater(int value) { water = value; }
 
-void Resources::setPower(int value) {
-	// TODO - implement ResourceManager::setPower
-	throw "Not yet implemented";
-}
+void Resources::setPower(int value) { power = value; }
 
-void Resources::setSewage(int value) {
-	// TODO - implement ResourceManager::setSewage
-	throw "Not yet implemented";
-}
+void Resources::setSewage(int value) { sewage = value; }
 
-void Resources::setMaterial(int value) {
-	// TODO - implement ResourceManager::setMaterial
-	throw "Not yet implemented";
-}
+void Resources::setMaterial(int value) { materials = value; }
 
-Resources::Resources() {
-	// TODO - implement ResourceManager::ResourceManager
-	throw "Not yet implemented";
-}
+void Resources::consumeWater(int value) { water -= value; }
 
-Resources Resources::getResources() {
-	// TODO - implement ResourceManager::getResourceManager
-	throw "Not yet implemented";
-}
+void Resources::consumePower(int value) { power -= value; }
 
-Resources* Resources::Instance(nullptr);
+void Resources::consumeSewage(int value) { sewage -= value; }
 
-int Resources::consumeWater(int value) {
-	// TODO - implement ResourceManager::setWater
-	throw "Not yet implemented";
-}
+void Resources::consumeMaterial(int value) { materials -= value; }
 
-int Resources::consumePower(int value) {
-	// TODO - implement ResourceManager::setPower
-	throw "Not yet implemented";
-}
+Resources::Resources() {}
 
-int Resources::consumeSewage(int value) {
-	// TODO - implement ResourceManager::setSewage
-	throw "Not yet implemented";
-}
-
-int Resources::consumeMaterial(int value) {
-	// TODO - implement ResourceManager::setMaterial
-	throw "Not yet implemented";
+Resources &Resources::getResourceManagerInstance() {
+  static Resources onlyInstance;
+  return onlyInstance;
 }

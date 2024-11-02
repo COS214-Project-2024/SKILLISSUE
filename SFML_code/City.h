@@ -11,6 +11,7 @@
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
+#include "Memento.h"
 
 #include "CreateAndDistributeGoods.h"
 #include "CDReceiver.h"
@@ -46,8 +47,9 @@ protected:
     double deathRate;
 
 public:
-    Map map;
     friend class CityMediator;
+    Map* map;
+
     double population;
     double employable;
 
@@ -79,11 +81,12 @@ public:
         this->timePerDay = 0.1;
         this->day = 0;
         this->taxPolicy = new LowTax();
+        this->map = new Map();
     }
 
     City(std::string cityName, int tileSize, std::map<std::string, Tile*> &tileAtlas) : City()
     {
-        this->map.tileSize = tileSize;
+        this->map->tileSize = tileSize;
         load(cityName, tileAtlas);
     }
 
@@ -100,6 +103,9 @@ public:
 
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
+
+    Memento createMemento();
+	void undo(Memento memento);
 };
 
 #endif /* CITY_HPP */

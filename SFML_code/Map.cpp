@@ -6,6 +6,25 @@
 
 #include "Map.h"
 #include "Tile.h"
+#include <iostream>
+
+Map* Map::clone()
+{
+    Map* temp = new Map();
+    temp->height = height;
+    temp->width = width;
+    temp->numRegions[0] = numRegions[0];
+    temp->numSelected = 0;
+
+    for (int pos = 0; pos < (this->width * this->height); ++pos)
+    {
+        temp->resources.push_back(255);
+        temp->selected.push_back(0);
+        temp->tiles.push_back(tiles[pos]->clone());
+    }
+    
+    return temp;
+}
 
 void Map::clearSelected()
 {
@@ -173,6 +192,7 @@ void Map::draw(sf::RenderWindow &window, float dt)
 
             /* Draw the tile */
             this->tiles[y * this->width + x]->draw(window, dt);
+            
         }
     }
     return;

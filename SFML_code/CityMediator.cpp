@@ -25,7 +25,7 @@ void CityMediator::burnHouse(Tile* tile){
 
     bool fireStationFound = false;
 
-    for (Tile *tile2 : this->city->map.tiles){
+    for (Tile *tile2 : this->city->map->tiles){
         if (tile2->tileType == TileType::FIRESTATION && tile2->regions[0] == tile2->regions[0]){
             fireStationFound = true;
         }

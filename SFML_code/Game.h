@@ -57,4 +57,4 @@ public:
     ~Game();
 };
 
-#endif /* GAME_HPP */
+#endif
