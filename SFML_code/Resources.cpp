@@ -26,7 +26,11 @@ void Resources::consumeMaterial(int value) { materials -= value; }
 
 Resources::Resources() {}
 
+<<<<<<< HEAD
+Resources &Resources::getResourcesInstance() {
+=======
 Resources &Resources::getResourceManagerInstance() {
+>>>>>>> dev
   static Resources onlyInstance;
   return onlyInstance;
 }

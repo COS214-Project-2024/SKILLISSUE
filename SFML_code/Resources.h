@@ -11,7 +11,7 @@
  * The ResourceManager class is a singleton that provides methods to access and
  * modify different resources. It inherits from the Subject class.
  */
-class Resources : Subject {
+class Resources {
 
 private:
   int water;                  ///< The amount of water resource.
@@ -120,7 +120,7 @@ public:
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
    */
-  static Resources &getResourceManagerInstance();
+  static Resources &getResourcesInstance();
 };
 
 #endif // RESOURCES_H
