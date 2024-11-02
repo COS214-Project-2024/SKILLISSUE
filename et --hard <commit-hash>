@@ -1,0 +1,163 @@
+[33mcommit 16ed9df048eb033a560e3f8bff363d1c5e885115[m[33m ([m[1;36mHEAD -> [m[1;32mCommand[m[33m, [m[1;31morigin/Command[m[33m)[m
+Author: Rhulani756 <rhulanimatiane756@gmail.com>
+Date:   Fri Nov 1 22:21:26 2024 +0200
+
+    Implemented the DistributeResources concrete command
+
+[33mcommit 797f2bf9729340da37d77a9be32af5e0c8690e25[m
+Author: Rhulani756 <rhulanimatiane756@gmail.com>
+Date:   Fri Nov 1 21:21:45 2024 +0200
+
+    Implemented the CreateAndDistributeGoods concreteCommand
+
+[33mcommit 605bcec3c8968bc7dae9aa090a2f1863ef64091c[m
+Merge: c31f9aa 247c27d
+Author: Rhulani756 <rhulanimatiane756@gmail.com>
+Date:   Fri Nov 1 17:15:32 2024 +0200
+
+    Merged `dev` branch into `Command` to incorporate new updates in command structure and functionality.
+    Merge branch 'dev' into Command
+
+[33mcommit 247c27d4a806de910c399495dad9138d2ed93a8d[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: DragonMage <65770411+DragonMage899@users.noreply.github.com>
+Date:   Fri Nov 1 16:36:05 2024 +0200
+
+    Update City.cpp, removed testing line
+
+[33mcommit 3a8f609906825e43fa6903322c742ce536c9fb9e[m
+Merge: 804975a 141574f
+Author: Xides7 <125684989+Xides7@users.noreply.github.com>
+Date:   Fri Nov 1 16:35:13 2024 +0200
+
+    Merge pull request #2 from COS214-Project-2024/Proxy
+    
+    Proxy
+
+[33mcommit 141574f7974927427d4b6acc478a892ec3827e61[m
+Author: Chris <christopherxides@gmail.com>
+Date:   Fri Nov 1 16:33:36 2024 +0200
+
+    final commit before merge
+
+[33mcommit cf839847507f15beeedf666c3baeb53efe149bac[m
+Author: Chris <christopherxides@gmail.com>
+Date:   Fri Nov 1 15:08:55 2024 +0200
+
+    Added to .gitignore
+
+[33mcommit 7c09207777e4a8b8803bf4b32b0513bff9f48f03[m
+Author: Chris <christopherxides@gmail.com>
+Date:   Fri Nov 1 15:06:24 2024 +0200
+
+    Added to .gitignore
+
+[33mcommit c31f9aa58cc663540554b9a416d636b08989ad68[m
+Author: Rhulani756 <rhulanimatiane756@gmail.com>
+Date:   Fri Nov 1 14:46:44 2024 +0200
+
+    added skeleton files
+
+[33mcommit 804975abd0ee1893c128ce4b009fee770490ea43[m
+Author: Chris <christopherxides@gmail.com>
+Date:   Fri Nov 1 12:31:59 2024 +0200
+
+    Added Resources ResourceManager and ResourceInterface skeletons
+
+[33mcommit 30e5370f7d92c029cde1b8af36ff71e867f2979e[m
+Merge: ad56054 786ecfb
+Author: DragonMage <65770411+DragonMage899@users.noreply.github.com>
+Date:   Fri Nov 1 10:52:55 2024 +0200
+
+    Merge pull request #1 from COS214-Project-2024/mediator
+    
+    Mediator Implementation
+
+[33mcommit 786ecfb47c37419e3abc6253b4d3b3feb1d9643a[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Fri Nov 1 02:51:37 2024 +0200
+
+    Updated uml to match main
+
+[33mcommit 0558722b20e10caae81e9842fc2c0a9d970173a0[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Fri Nov 1 02:04:58 2024 +0200
+
+    Added example for mediator usage
+
+[33mcommit 6093caf52a34aff3d60da2eebf6ceacff46c4c57[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Thu Oct 31 21:38:28 2024 +0200
+
+    fixed circular include
+
+[33mcommit 46377a8fc18a365a6300120352e4977a84feb311[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Thu Oct 31 21:09:58 2024 +0200
+
+    Updated uml with mediator and memento
+
+[33mcommit ae6a82e023dd5faedb06dbf6615fa9f0802cb4e4[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Thu Oct 31 21:04:28 2024 +0200
+
+    deleted redundant files
+
+[33mcommit dc5cd8ab37d6033ddf7f87da9e9d5c53a783c9ac[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Thu Oct 31 21:02:44 2024 +0200
+
+    Added mediator uml and implementation with small preview function
+
+[33mcommit ad56054b722f2c43d7f5dcdfe67cce6fb6b9f514[m
+Author: KENJI_MASAMUNE <salmaan.patel076@gmail.com>
+Date:   Thu Oct 31 17:05:36 2024 +0200
+
+    include path error fix
+
+[33mcommit acd81dba320dd19fe8c9b0d8fbc02450ac8d071f[m
+Author: KENJI-MASAMUNE <salmaan.patel076@gmail.com>
+Date:   Wed Oct 30 22:27:07 2024 +0200
+
+    fixed taxes
+
+[33mcommit 1e0cbd78c1114b97e8d4130653d04916ee5ca521[m
+Author: KENJI-MASAMUNE <salmaan.patel076@gmail.com>
+Date:   Mon Oct 28 17:18:23 2024 +0200
+
+    latest uml of sfml
+
+[33mcommit c660b82dd551d6375474e815014dab39a5f0ed13[m
+Author: KENJI-MASAMUNE <salmaan.patel076@gmail.com>
+Date:   Sat Oct 26 15:06:52 2024 +0200
+
+    SFML code
+
+[33mcommit 467e22ec505f00522603aeaf40a785c4d30a3486[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Sun Oct 20 18:06:54 2024 +0200
+
+    Added back SFML uml
+
+[33mcommit 624790ddf77c9a4106f5a9aeb677fa3f942fe8e8[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Sun Oct 20 18:05:40 2024 +0200
+
+    Deleted backup vpp files
+
+[33mcommit e11b2fd3c50243794ed8dacf5392ce859c099c37[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Sun Oct 20 18:04:20 2024 +0200
+
+    Added updated uml
+
+[33mcommit c67df3b7a5af06bab953cc143e12d4f29af3e640[m
+Author: DragonMage899 <justinbhana12@gmail.com>
+Date:   Sun Oct 20 17:59:21 2024 +0200
+
+    Uploaded files from old repo
+
+[33mcommit 5d82e96f6b17f5bd2f969509b3ff44afbb843578[m
+Author: Michael Horwitz <91372554+MichaelHorwitz@users.noreply.github.com>
+Date:   Mon Oct 7 11:45:52 2024 +0200
+
+    Initial commit
