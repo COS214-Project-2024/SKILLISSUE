@@ -82,8 +82,10 @@ void City::tileChanged()
 {
     this->map->updateDirection(TileType::ROAD);
     this->map->findConnectedRegions(
-        {TileType::ROAD, TileType::RESIDENTIAL,
-         TileType::COMMERCIAL, TileType::INDUSTRIAL},
+        {   TileType::ROAD, TileType::RESIDENTIAL, TileType::COMMERCIAL, 
+            TileType::INDUSTRIAL, TileType::FIRESTATION, TileType::HOSPITAL,
+            TileType::POWERPLANT, TileType::SEWAGEPLANT,TileType::WATERPLANT,
+            TileType::WASTEMANAGEMENT},
         0);
 
     return;
@@ -145,7 +147,7 @@ void City::load(std::string cityName, std::map<std::string, Tile*> &tileAtlas)
 
     inputFile.close();
 
-    this->map->load(cityName + "_map.dat", width, height, tileAtlas);
+    this->map->load(cityName + "_map->dat", width, height, tileAtlas);
     tileChanged();
 
     return;
@@ -172,7 +174,7 @@ void City::save(std::string cityName)
 
     outputFile.close();
 
-    this->map->save(cityName + "_map.dat");
+    this->map->save(cityName + "_map->dat");
 
     return;
 }
@@ -225,12 +227,14 @@ void City::update(float dt)
 
     earnings += industrialRevenue + commercialRevenue;
 
-
+    //Other Commands needs implementing 
     
+
+
     //Random chance that a house burns down
     std::random_device rd; // Obtain a random number from hardware
     std::mt19937 gen(rd()); // Seed the generator
-    std::uniform_int_distribution<> distr(1, 100000); // Define the range
+    std::uniform_int_distribution<> distr(1, 1000000); // Define the range
     int random_number = distr(gen); // Generate a random number
 
     //random_number = day;
@@ -240,12 +244,11 @@ void City::update(float dt)
             Tile *tile = this->map->tiles[this->shuffledTiles[i]];
 
             if(tile != NULL && tile->tileType == TileType::RESIDENTIAL){
-                tile->notify("fireAlert");
+                tile->notify(TileType::FIRESTATION);
             }
         }
     }
-     
-
+    
     /* Adjust population pool for births and deaths. */
     this->populationPool += this->populationPool * (this->birthRate - this->deathRate);
     popTotal += this->populationPool;
@@ -270,4 +273,6 @@ void City::update(float dt)
     return;
 }
 
-
+void City::setMediator(CityMediator* md){
+    this->mediator = md;
+}

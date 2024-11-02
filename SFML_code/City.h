@@ -27,6 +27,8 @@ protected:
     float currentTime;
     float timePerDay;
 
+    CityMediator* mediator;
+
     TaxPolicy* taxPolicy;
 
     std::vector<int> shuffledTiles;
@@ -106,6 +108,8 @@ public:
 
     Memento createMemento();
 	void undo(Memento memento);
+    
+    void setMediator(CityMediator* md);
 };
 
 #endif /* CITY_HPP */
