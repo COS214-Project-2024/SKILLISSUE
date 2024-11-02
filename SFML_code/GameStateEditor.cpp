@@ -15,6 +15,8 @@ void GameStateEditor::getState()
     std::cout << "running";
 }
 
+#include "CityMediator.h"
+
 void GameStateEditor::draw(const float dt)
 {
     this->game->window.clear(sf::Color::Black);
@@ -81,6 +83,8 @@ void GameStateEditor::update(const float dt)
 
 void GameStateEditor::handleInput()
 {
+		//Turn this the button logic into commands
+		 //button.setCommand()
 	sf::Event event;
 
     sf::Vector2f guiPos = this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->guiView);
@@ -174,18 +178,23 @@ void GameStateEditor::handleInput()
 					else
 					{
 						this->city.map->select(selectionStart, selectionEnd,
-											  {this->currentTile->tileType, TileType::FOREST,
-											   TileType::WATER, TileType::ROAD,
-											   TileType::RESIDENTIAL, TileType::COMMERCIAL,
-											   TileType::INDUSTRIAL, TileType::LANDMARK,
-											   TileType::FIRESTATION, TileType::HOSPITAL, 
-											   TileType::POWERPLANT, TileType::SEWAGEPLANT,
-											   TileType::WATERPLANT, TileType::WASTEMANAGEMENT
-											   });
-					}
+						    {
+						        this->currentTile->tileType,    TileType::FOREST,
+						        TileType::WATER,                TileType::ROAD,
+						        TileType::RESIDENTIAL,          TileType::COMMERCIAL,
+						        TileType::INDUSTRIAL,			TileType::LANDMARK,
+								TileType::FIRESTATION, 			TileType::FIRESTATION,
+								TileType::HOSPITAL, 			TileType::HOSPITAL,
+								TileType::POWERPLANT,			TileType::POWERPLANT,
+								TileType::SEWAGEPLANT,			TileType::SEWAGEPLANT,
+								TileType::WATERPLANT,			TileType::WATERPLANT,
+								TileType::WASTEMANAGEMENT,		TileType::WASTEMANAGEMENT
 
-					this->guiSystem.at("selectionCostText").setEntryText(0, "$" + std::to_string(this->currentTile->cost * this->city.map->numSelected));
-					if (this->city.funds <= this->city.map->numSelected * this->currentTile->cost)
+						    });
+				    }
+				    
+				    this->guiSystem.at("selectionCostText").setEntryText(0, "$" + std::to_string(this->currentTile->cost * this->city.map->numSelected));
+					if(this->city.funds <= this->city.map->numSelected * this->currentTile->cost)
 						this->guiSystem.at("selectionCostText").highlight(0);
 					else
 						this->guiSystem.at("selectionCostText").highlight(-1);
@@ -422,6 +431,12 @@ GameStateEditor::GameStateEditor(Game* game)
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
 	// this->beginMap = this->city.map->clone();
 	this->city.setCaretaker(this->undos);
+	this->beginMap = this->city.map->clone();
+
+	
+	CityMediator* md = new CityMediator(&city);
+	this->city.setMediator(md);
+
 	this->city.shuffleTiles();
 
     /* Create gui elements */

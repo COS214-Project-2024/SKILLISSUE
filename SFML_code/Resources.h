@@ -123,4 +123,4 @@ public:
   static Resources &getResourceManagerInstance();
 };
 
-#endif // RESOURCES_H
+#endif

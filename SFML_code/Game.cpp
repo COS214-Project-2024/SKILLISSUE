@@ -41,7 +41,6 @@ void Game::loadTiles()
     this->tileAtlas["sewageplant"] = Factory.at("sewageplant")->Create(texmgr.getRef("sewageplant"), {staticAnim, staticAnim, staticAnim});
     this->tileAtlas["waterplant"] = Factory.at("waterplant")->Create(texmgr.getRef("waterplant"), {staticAnim, staticAnim, staticAnim});
     this->tileAtlas["wastemanagement"] = Factory.at("wastemanagement")->Create(texmgr.getRef("wastemanagement"), {staticAnim, staticAnim});
-    
     this->tileAtlas["road"] = Factory.at("road")->Create(texmgr.getRef("road"),{staticAnim, staticAnim, staticAnim, staticAnim, 
                                                                 staticAnim, staticAnim, staticAnim, staticAnim, 
                                                                     staticAnim, staticAnim, staticAnim});
@@ -57,7 +56,7 @@ void Game::loadTextures()
     texmgr.loadTexture("residential",   "media/residential.png");
     texmgr.loadTexture("commercial",    "media/commercial.png");
     texmgr.loadTexture("industrial",    "media/industrial.png");
-    texmgr.loadTexture("landmark",    "media/landmarks.png");
+    texmgr.loadTexture("landmark",      "media/landmarks.png");
     texmgr.loadTexture("road",          "media/road.png");
     texmgr.loadTexture("firestation",   "media/firestation.png");
     texmgr.loadTexture("hospital",      "media/hospitals.png");
@@ -86,6 +85,7 @@ void Game::loadFactories()
     this->Factory["waterplant"] = new WaterPlantFactory();
     this->Factory["wastemanagement"] = new WasteManagementFactory();
     this->Factory["road"] = new RoadFactory();
+    this->Factory["firestation"] = new FirestationFactory();
 }
 
 
