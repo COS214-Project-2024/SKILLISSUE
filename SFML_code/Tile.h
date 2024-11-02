@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <map>
 
 #include "AnimationHandler.h"
 //#include "CityMediator.h"
@@ -19,7 +20,20 @@ enum class TileType
     INDUSTRIAL,
     LANDMARK,
     ROAD,
-    FIRESTATION
+    FIRESTATION,
+    HOSPITAL,
+    POWERPLANT,
+    SEWAGEPLANT,
+    WATERPLANT,
+    WASTEMANAGEMENT
+};
+
+enum class ResourceType
+{
+    ELECTRCITY,
+    WATER,
+    SEWAGE,
+    WASTE
 };
 
 std::string tileTypeToStr(TileType type);
@@ -28,11 +42,22 @@ class Tile
 {
 private:
     Tile(Tile* tile);
+    
+    std::map<ResourceType, TileType> resourceMapping;
+
 public:
 
     CityMediator* mediator;
     void setMediator(CityMediator* mediator);
-    void notify(std::string notification);
+    void notify(TileType notification);
+    
+    std::map<ResourceType,int> resources;
+    std::map<ResourceType,int> maxResources; //defaults to 100 each
+    void produceResource(ResourceType resource, int amount);
+    void consumeResource(ResourceType resource, int amount);
+    void setMaxResource(ResourceType resource, int amount);
+
+    int satisfaction = 0;
 
     AnimationHandler animHandler;
     sf::Sprite sprite;

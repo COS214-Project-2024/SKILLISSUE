@@ -29,6 +29,21 @@ Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &
         this->animHandler.addAnim(animation);
     }
     this->animHandler.update(0.0f);
+
+    this->resources[ResourceType::ELECTRCITY] = 0;
+    this->resources[ResourceType::WATER] = 0;
+    this->resources[ResourceType::SEWAGE] = 0;
+    this->resources[ResourceType::WASTE] = 0;
+
+    this->maxResources[ResourceType::ELECTRCITY] = 100;
+    this->maxResources[ResourceType::WATER] = 100;
+    this->maxResources[ResourceType::SEWAGE] = 100;
+    this->maxResources[ResourceType::WASTE] = 100;
+
+    this->resourceMapping[ResourceType::ELECTRCITY] = TileType::POWERPLANT;
+    this->resourceMapping[ResourceType::WATER] = TileType::WATERPLANT;
+    this->resourceMapping[ResourceType::SEWAGE] = TileType::SEWAGEPLANT;
+    this->resourceMapping[ResourceType::WASTE] = TileType::WASTEMANAGEMENT;
 }
 
 Tile::Tile(Tile* tile)
@@ -123,8 +138,36 @@ void Tile::setMediator(CityMediator* mediator){
     this->mediator = mediator;
 }
 
-void Tile::notify(std::string notification){
+void Tile::notify(TileType notification){
         if (this->mediator) {
         this->mediator->notify(this, notification);
     }
+}
+
+void Tile::produceResource(ResourceType resource, int amount){
+
+    if(maxResources[resource] == resources[resource]){
+        return;
+    }
+
+    resources[resource] += amount;
+}
+
+void Tile::consumeResource(ResourceType resource, int amount){
+
+    //Ask for more resources
+    if(resources[resource] == 0){
+        mediator->notify(this, resourceMapping[resource]);
+    } 
+
+    resources[resource] -= amount;
+}
+
+void Tile::setMaxResource(ResourceType resource, int amount){
+
+    if(resources[resource] > amount){
+        return;
+    }
+    
+    maxResources[resource] = amount;
 }
