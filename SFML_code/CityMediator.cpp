@@ -17,17 +17,17 @@ void CityMediator::notify(Tile* tile, TileType notification){
     }
 
     //Ask for Electricity
-    if(notification == TileType::POWERPLANT && tile->tileType == TileType::RESIDENTIAL){
-        getPower(tile);
-    }
+    // if(notification == TileType::POWERPLANT && tile->tileType == TileType::RESIDENTIAL){
+    //     getPower(tile);
+    // }
 
-    if(notification == TileType::WASTEMANAGEMENT && tile->tileType == TileType::COMMERCIAL){
-        getPower(tile);
-    }
+    // if(notification == TileType::WASTEMANAGEMENT && tile->tileType == TileType::COMMERCIAL){
+    //     getPower(tile);
+    // }
 
-    if(notification == TileType::SEWAGEPLANT && tile->tileType == TileType::INDUSTRIAL){
-        treatSewage(tile);
-    }
+    // if(notification == TileType::SEWAGEPLANT && tile->tileType == TileType::INDUSTRIAL){
+    //     treatSewage(tile);
+    // }
 }
 
 void CityMediator::burnHouse(Tile* tile){

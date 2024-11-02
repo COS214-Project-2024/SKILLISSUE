@@ -102,7 +102,12 @@ void Tile::update()
     if((this->tileType == TileType::RESIDENTIAL ||
         this->tileType == TileType::COMMERCIAL ||
         this->tileType == TileType::INDUSTRIAL ||
-        this->tileType == TileType::LANDMARK) ||
+        this->tileType == TileType::LANDMARK ||
+        this->tileType == TileType::HOSPITAL ||
+        this->tileType == TileType::POWERPLANT ||
+        this->tileType == TileType::SEWAGEPLANT ||
+        this->tileType == TileType::WATERPLANT ||
+        this->tileType == TileType::WASTEMANAGEMENT) ||
         this->tileType == TileType::FIRESTATION &&
         this->population == this->maxPopPerLevel * (this->tileVariant+1) &&
         this->tileVariant < this->maxLevels)
@@ -131,6 +136,11 @@ std::string tileTypeToStr(TileType type)
         case TileType::INDUSTRIAL:      return "Industrial Zone";
         case TileType::LANDMARK:        return "Landmark Zone";
         case TileType::FIRESTATION:     return "Fire Station";
+        case TileType::HOSPITAL:        return "Hospital";
+        case TileType::POWERPLANT:      return "Power Plant";
+        case TileType::SEWAGEPLANT:     return "Sewage Plant";
+        case TileType::WATERPLANT:      return "Water Plant";
+        case TileType::WASTEMANAGEMENT: return "Waste Disposal";
     }
 }
 

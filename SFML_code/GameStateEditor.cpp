@@ -89,7 +89,13 @@ void GameStateEditor::handleInput()
 						        TileType::WATER,                TileType::ROAD,
 						        TileType::RESIDENTIAL,          TileType::COMMERCIAL,
 						        TileType::INDUSTRIAL,			TileType::LANDMARK,
-								TileType::FIRESTATION, 			TileType::FIRESTATION
+								TileType::FIRESTATION, 			TileType::FIRESTATION,
+								TileType::HOSPITAL, 			TileType::HOSPITAL,
+								TileType::POWERPLANT,			TileType::POWERPLANT,
+								TileType::SEWAGEPLANT,			TileType::SEWAGEPLANT,
+								TileType::WATERPLANT,			TileType::WATERPLANT,
+								TileType::WASTEMANAGEMENT,		TileType::WASTEMANAGEMENT
+
 						    });
 				    }
 				    
@@ -325,6 +331,11 @@ GameStateEditor::GameStateEditor(Game* game)
 			std::make_pair("Industrial Zone $" 	+ this->game->tileAtlas["industrial"]->getCost(), "industrial"),
 			std::make_pair("landmark Zone $" 	+ this->game->tileAtlas["landmark"]->getCost(), "landmark"),
 			std::make_pair("Fire Station $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
+			std::make_pair("Hospital $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
+			std::make_pair("Power Plant $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
+			std::make_pair("Sewage Plant $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
+			std::make_pair("Water Plant $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
+			std::make_pair("Waste Disposal $" 	+ this->game->tileAtlas["firestation"]->getCost(), "firestation"),
 			std::make_pair("Road $" 			+ this->game->tileAtlas["road"]->getCost(), "road")
 		}));
 

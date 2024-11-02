@@ -114,8 +114,10 @@ void City::tileChanged()
 {
     this->map.updateDirection(TileType::ROAD);
     this->map.findConnectedRegions(
-        {TileType::ROAD, TileType::RESIDENTIAL,
-         TileType::COMMERCIAL, TileType::INDUSTRIAL, TileType::FIRESTATION},
+        {   TileType::ROAD, TileType::RESIDENTIAL, TileType::COMMERCIAL, 
+            TileType::INDUSTRIAL, TileType::FIRESTATION, TileType::HOSPITAL,
+            TileType::POWERPLANT, TileType::SEWAGEPLANT,TileType::WATERPLANT,
+            TileType::WASTEMANAGEMENT},
         0);
 
     return;
@@ -359,19 +361,37 @@ void City::update(float dt)
     //Random chance that a house burns down
     std::random_device rd; // Obtain a random number from hardware
     std::mt19937 gen(rd()); // Seed the generator
-    std::uniform_int_distribution<> distr(1, 100000); // Define the range
+    std::uniform_int_distribution<> distr(1, 1000000); // Define the range
     int random_number = distr(gen); // Generate a random number
 
+    //1 in a million chacne your house burns downs
     if(random_number == 727){
         for (int i = 0; i < this->map.tiles.size(); ++i){
             
             Tile *tile = this->map.tiles[this->shuffledTiles[i]];
 
             if(tile != NULL && tile->tileType == TileType::RESIDENTIAL){
-                tile->notify("fireAlert");
+                tile->notify(TileType::FIRESTATION);
             }
         }
     }
+
+    //Check Power of each tile
+    for (int i = 0; i < this->map.tiles.size(); ++i)
+    {
+        Tile *tile = this->map.tiles[this->shuffledTiles[i]];
+
+        if(tile != NULL){
+
+            if (tile->tileType == TileType::RESIDENTIAL)
+            {
+                /* Redistribute the pool and increase the population total by the tile's population */
+                this->distributePool(this->populationPool, tile, this->birthRate - this->deathRate);
+
+                popTotal += tile->population;
+            }
+            else if (tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::FIRESTATION){}
+        }
      
 
     /* Adjust population pool for births and deaths. */
