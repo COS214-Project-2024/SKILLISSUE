@@ -11,10 +11,14 @@
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
-
+#include "Memento.h"
+class Memento;      // Forward declaration
+class Caretaker;    // Forward declaration
 class City
 {
 private:
+
+ 
     float currentTime;
     float timePerDay;
 
@@ -38,9 +42,12 @@ private:
     double deathRate;
 
     double distributePool(double &pool, Tile *tile, double rate);
-
+    int lastMementoDay;
+    Caretaker* caretaker;
+    
 public:
-    Map map;
+    Map* map;
+    
 
     double population;
     double employable;
@@ -48,6 +55,7 @@ public:
     double residentialTax;
     double commercialTax;
     double industrialTax;
+    double satisfaction;
 
     /* Running total of city earnings (from tax etc) this month. */
     double earnings;
@@ -73,14 +81,16 @@ public:
         this->timePerDay = 1.0;
         this->day = 0;
         this->taxPolicy = new LowTax();
+        this->map = new Map();
+        this->satisfaction=100;
     }
 
     City(std::string cityName, int tileSize, std::map<std::string, Tile*> &tileAtlas) : City()
     {
-        this->map.tileSize = tileSize;
+        this->map->tileSize = tileSize;
         load(cityName, tileAtlas);
     }
-
+//used for momento
     void load(std::string cityName, std::map<std::string, Tile*> &tileAtlas);
     void save(std::string cityName);
 
@@ -94,6 +104,13 @@ public:
 
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
+
+    //Momento
+
+    void setCaretaker(Caretaker* caretaker);       // Method to set Caretaker pointer
+    Memento* createMemento();
+    void loadMemento(Memento* memento);
+
 };
 
 #endif /* CITY_HPP */

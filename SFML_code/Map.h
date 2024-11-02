@@ -72,6 +72,8 @@ public:
         this->tileSize = 8;
         load(filename, width, height, tileAtlas);
     }
+
+    Map* clone();
 };
 
-#endif /* MAP_HPP */
+#endif

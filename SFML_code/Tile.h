@@ -16,7 +16,13 @@ enum class TileType
     COMMERCIAL,
     INDUSTRIAL,
     LANDMARK,
-    ROAD
+    ROAD,
+    FIRESTATION,
+    HOSPITAL,
+    POWERPLANT,
+    SEWAGEPLANT,
+    WATERPLANT,
+    WASTEMANAGEMENT
 };
 
 std::string tileTypeToStr(TileType type);
