@@ -2,26 +2,28 @@
 #define MEMENTO_H
 
 #include "Map.h"
-
-
+class City;      // Forward declaration
+class Caretaker; // Forward declaration
 
 class Memento {
-
-friend class City;
+    friend class City;  // Grant `City` access to private members
 
 private:
-	double populationPool;
-	double satisfaction;
-	double employmentPool;
-public:
-	double population;
-	double employable;
-	double earnings;
-	double funds;
-	int day;
-	Map* map;
+    double populationPool;
+    double employmentPool;
+    double population;
+    double employable;
+    double satisfaction;
+    double earnings;
+    double funds;
+    int day;
+    Map* map;
 
-	Memento(double populationPool, double employmentPool, double population, double employable, double satisfaction, double earnings, double funds, int day, Map* map);
+public:
+    Memento(double populationPool, double employmentPool, double population, double employable,
+            double satisfaction, double earnings, double funds, int day, Map* map);
+
+    // static void storeInCaretaker(City& city, Caretaker* caretaker);  // Static function to create and store Memento
 };
 
-#endif
+#endif // MEMENTO_H

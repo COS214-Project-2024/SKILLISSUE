@@ -31,10 +31,11 @@ void GameStateEditor::draw(const float dt)
 
 	if(this->paused)
 	{
-		sf::Sprite sprite;
-		sprite.setTexture(game->texmgr.getRef("background"));
-		sprite.setColor(sf::Color(255,255,255,128));
-		this->game->window.draw(sprite);
+		pauseSprite.setTexture(game->texmgr.getRef("background"));
+		pauseSprite.setColor(sf::Color(255,255,255,128));
+		this->game->window.draw(pauseSprite);
+		this->game->window.setView(this->guiView);
+		for(auto gui : this->guiPauseSystem) this->game->window.draw(gui.second);
 	}
 	
 }
@@ -43,11 +44,22 @@ void GameStateEditor::update(const float dt)
 {
 	if(paused)
 	{
-
+		/* Update the info bar at the bottom of the screen */
+		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
+		this->guiSystem.at("infoBar").setEntryText(1, "$" + std::to_string(long(this->city.funds)));
+		this->guiSystem.at("infoBar").setEntryText(2, std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + " (" + std::to_string(long(this->city.getUnemployed())) + ")");
+		this->guiSystem.at("infoBar").setEntryText(4, "Tax Rate: " + this->city.getTaxPolicy());
+		this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
 	}
 	else
 	{
 		this->city.update(dt);
+		if(this->city.day != day)
+		{
+			undos->storeMemento(this->city.createMemento());
+			day = this->city.day;
+		}
 
 		/* Update the info bar at the bottom of the screen */
 		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
@@ -95,10 +107,21 @@ void GameStateEditor::handleInput()
 					this->guiSystem.at("infoBar").setDimensions(sf::Vector2f(event.size.width / this->guiSystem.at("infoBar").entries.size(), 16));
 					this->guiSystem.at("infoBar").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, event.size.height - 16), this->guiView));
 					this->guiSystem.at("infoBar").show();
+
+					sf::Vector2f pos = sf::Vector2f(event.size.width, event.size.height);
+                	pos *= 0.5f;
+                	pos = this->game->window.mapPixelToCoords(sf::Vector2i(pos), this->guiView);
+                	this->guiPauseSystem.at("GamePaused").setPosition(pos);
+					this->guiPauseSystem.at("GamePaused").show();
+					
 					this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
+					this->pauseSprite.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
 					this->game->background.setScale(
 						float(event.size.width) / float(this->game->background.getTexture()->getSize().x),
 						float(event.size.height) / float(this->game->background.getTexture()->getSize().y));
+					this->pauseSprite.setScale(
+						float(event.size.width) / float(this->pauseSprite.getTexture()->getSize().x),
+						float(event.size.height) / float(this->pauseSprite.getTexture()->getSize().y));
 					break;
 				}
 				case sf::Event::KeyPressed:
@@ -110,8 +133,7 @@ void GameStateEditor::handleInput()
 					else if (event.key.code == sf::Keyboard::U)
 					{
 						//undo operation
-						delete this->city.map;
-						this->city.map = beginMap->clone();
+						this->city.loadMemento(undos->retrieveMemento());
 					}
 					else if (event.key.code == sf::Keyboard::P)
 					{
@@ -362,9 +384,7 @@ void GameStateEditor::handleInput()
 				}
 				else if (event.key.code == sf::Keyboard::M)
 				{
-					// this->pauseGame();
-					delete this->city.map;
-					this->city.map = beginMap->clone();
+					this->pauseGame();
 				}
 				break;
 			}
@@ -396,7 +416,8 @@ GameStateEditor::GameStateEditor(Game* game)
 	this->gameView.setCenter(pos);
 
     this->city = City("city", this->game->tileSize, this->game->tileAtlas);
-	this->beginMap = this->city.map->clone();
+	// this->beginMap = this->city.map->clone();
+	this->city.setCaretaker(this->undos);
 	this->city.shuffleTiles();
 
     /* Create gui elements */
@@ -420,6 +441,9 @@ GameStateEditor::GameStateEditor(Game* game)
 
 	this->guiSystem.emplace("selectionCostText", Gui(sf::Vector2f(196, 16), 0, false, this->game->stylesheets.at("text"),
 		{ std::make_pair("", "") }));
+	
+	this->guiPauseSystem.emplace("GamePaused", Gui(sf::Vector2f(196, 16), -10, false, this->game->stylesheets.at("text"),
+		{ std::make_pair("Game Paused", "Game_Paused") }));
 
 	this->guiSystem.emplace("infoBar", Gui(sf::Vector2f(this->game->window.getSize().x / 6 , 16), 2, true, this->game->stylesheets.at("button"),
 		{ 
@@ -432,6 +456,9 @@ GameStateEditor::GameStateEditor(Game* game)
 		}));
 	this->guiSystem.at("infoBar").setPosition(sf::Vector2f(0, this->game->window.getSize().y - 16));
 	this->guiSystem.at("infoBar").show();
+
+	this->guiPauseSystem.at("GamePaused").setPosition(pos);
+	this->guiPauseSystem.at("GamePaused").setOrigin(96, 32*1/2);
 	
 	this->zoomLevel = 1.0f;
 	
