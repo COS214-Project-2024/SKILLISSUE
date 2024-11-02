@@ -1,65 +1,88 @@
 #include "ResourceManager.h"
+#include "Resources.h"
 
-ResourceManager::ResourceManager() {
-    resources=resources.getResources();
+ResourceManager::ResourceManager() {}
+
+bool ResourceManager::useWater(int value) {
+  // Must request less than 20% of water available
+  if (value < (0.2 * Resources::getResourcesInstance().getWater(value))) {
+    Resources::getResourcesInstance().consumeWater(value);
+    return true;
+  }
+  return -1;
 }
 
-int ResourceManager::getWater(int value) {
-    //Must request less than 20% of water available
-    if(value< (0.2 * resources.getWater(value))) {
-        return resources.consumeWater(value);
-    }else{ return -1;}
+bool ResourceManager::usePower(int value) {
+  // Must request less than 40% of power available
+  if (value < (0.4 * Resources::getResourcesInstance().getPower(value))) {
+    Resources::getResourcesInstance().consumePower(value);
+    return true;
+  }
+  return false;
 }
 
-int ResourceManager::getPower(int value) {
-    //Must request less than 40% of power available
-    if(value< (0.4 * resources.getPower(value))) {
-        return resources.consumePower(value);
-    }else{ return -1;}
+bool ResourceManager::useSewage(int value) {
+  // Must request less than 60% of power available
+  if (value < (0.6 * Resources::getResourcesInstance().getSewage(value))) {
+    Resources::getResourcesInstance().consumeSewage(value);
+    return true;
+  }
+  return false;
 }
 
-int ResourceManager::getSewage(int value) {
-    //Must request less than 60% of power available
-    if(value< (0.6 * resources.getSewage(value))) {
-        return resources.consumeSewage(value);
-    }else{ return -1;}
-}
-
-int ResourceManager::getMaterial(int value) {
-   //Must request less than 80% of water available
-    if(value< (0.8 * resources.getWater(value))) {
-        return resources.consumeWater(value);
-    }else{ return -1;}
+bool ResourceManager::useMaterial(int value) {
+  // Must request less than 80% of water available
+  if (value < (0.8 * Resources::getResourcesInstance().getWater())) {
+    Resources::getResourcesInstance().consumeWater(value);
+    return true;
+  }
+  return false;
 }
 
 void ResourceManager::setWater(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getWater(value)){
-        resources.setWater(value);
-        return;
-    }
+  // must set positive amount and must be greater than current amount
+  if (value > 0 and value >= Resources::getResourcesInstance().getWater()) {
+    Resources::getResourcesInstance().setWater(value);
+    return;
+  }
 }
 
 void ResourceManager::setPower(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getPower(value)){
-        resources.setPower(value);
-        return;
-    }
+  // must set positive amount and must be greater than current amount
+  if (value > 0 and value >= Resources::getResourcesInstance().getPower()) {
+    Resources::getResourcesInstance().setPower(value);
+    return;
+  }
 }
 
 void ResourceManager::setSewage(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getSewage(value)){
-        resources.setSewage(value);
-        return;
-    }
+  // must set positive amount and must be greater than current amount
+  if (value > 0 and value >= Resources::getResourcesInstance().getSewage()) {
+    Resources::getResourcesInstance().setSewage(value);
+    return;
+  }
 }
 
 void ResourceManager::setMaterial(int value) {
-    //must set positive amount and must be greater than current amount
-	if(value > 0 and value>= resources.getMaterial(value)){
-        resources.setMaterial(value);
-        return;
-    }
+  // must set positive amount and must be greater than current amount
+  if (value > 0 and value >= Resources::getResourcesInstance().getMaterial()) {
+    Resources::getResourcesInstance().setMaterial(value);
+    return;
+  }
+}
+
+int ResourceManager::getWater() {
+  return Resources::getResourcesInstance().getWater();
+}
+
+int ResourceManager::getPower() {
+  return Resources::getResourcesInstance().getPower();
+}
+
+int ResourceManager::getSewage() {
+  return Resources::getResourcesInstance().getSewage();
+}
+
+int ResourceManager::getMaterial() {
+  return Resources::getResourcesInstance().getMaterial();
 }
