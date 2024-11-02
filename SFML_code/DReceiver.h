@@ -8,7 +8,7 @@
 
 class DReceiver {
 private:
-    Map& map;
+    Map* map;
     std::vector<int>& shuffledTiles;
     double& populationPool;
     double& employmentPool;
@@ -20,7 +20,7 @@ private:
     double population;
 
 public:
-    DReceiver(Map& map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
+    DReceiver(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
               double& popTotal, double birthRate, double deathRate, double commercialTax, 
               double industrialTax, double population);
 

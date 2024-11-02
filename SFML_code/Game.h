@@ -18,6 +18,11 @@
 #include "LandmarkFactory.h"
 #include "RoadFactory.h"
 #include "FirestationFactory.h"
+#include "HospitalFactory.h"
+#include "PowerPlantFactory.h"
+#include "SewagePlantFactory.h"
+#include "WasteManagementFactory.h"
+#include "WaterPlantFactory.h"
 
 
 class GameState;
@@ -57,4 +62,4 @@ public:
     ~Game();
 };
 
-#endif /* GAME_HPP */
+#endif

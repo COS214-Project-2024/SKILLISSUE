@@ -5,7 +5,7 @@ ResourceManager::ResourceManager() {}
 
 bool ResourceManager::useWater(int value) {
   // Must request less than 20% of water available
-  if (value < (0.2 * Resources::getResourcesInstance().getWater(value))) {
+  if (value < (0.2 * Resources::getResourcesInstance().getWater())) {
     Resources::getResourcesInstance().consumeWater(value);
     return true;
   }
@@ -14,7 +14,7 @@ bool ResourceManager::useWater(int value) {
 
 bool ResourceManager::usePower(int value) {
   // Must request less than 40% of power available
-  if (value < (0.4 * Resources::getResourcesInstance().getPower(value))) {
+  if (value < (0.4 * Resources::getResourcesInstance().getPower())) {
     Resources::getResourcesInstance().consumePower(value);
     return true;
   }
@@ -23,7 +23,7 @@ bool ResourceManager::usePower(int value) {
 
 bool ResourceManager::useSewage(int value) {
   // Must request less than 60% of power available
-  if (value < (0.6 * Resources::getResourcesInstance().getSewage(value))) {
+  if (value < (0.6 * Resources::getResourcesInstance().getSewage())) {
     Resources::getResourcesInstance().consumeSewage(value);
     return true;
   }

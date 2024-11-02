@@ -3,7 +3,7 @@
 #include <cstdlib> // for rand()
 
 // Constructor implementation
-DReceiver::DReceiver(Map& map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
+DReceiver::DReceiver(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
                      double& popTotal, double birthRate, double deathRate, double commercialTax, 
                      double industrialTax, double population)
     : map(map), shuffledTiles(shuffledTiles), populationPool(populationPool), 
@@ -13,8 +13,8 @@ DReceiver::DReceiver(Map& map, std::vector<int>& shuffledTiles, double& populati
 
 // Update method implementation
 void DReceiver::update() {
-    for (int i = 0; i < map.tiles.size(); ++i) {
-        Tile *tile = map.tiles[shuffledTiles[i]];
+    for (int i = 0; i < map->tiles.size(); ++i) {
+        Tile *tile = map->tiles[shuffledTiles[i]];
         if (tile != nullptr) {
             if (tile->tileType == TileType::RESIDENTIAL) {
                 distributePool(populationPool, tile, birthRate - deathRate);
@@ -26,9 +26,9 @@ void DReceiver::update() {
                 }
             }
             else if (tile->tileType == TileType::INDUSTRIAL) {
-                if (map.resources[i] > 0 && rand() % 100 < population) {
+                if (map->resources[i] > 0 && rand() % 100 < population) {
                     ++tile->production;
-                    --map.resources[i];
+                    --map->resources[i];
                 }
                 if (rand() % 100 < 15 * (1.0 - industrialTax)) {
                     distributePool(employmentPool, tile, 0.0);

@@ -1,7 +1,7 @@
 #ifndef RESOURCES_H
 #define RESOURCES_H
 
-#include "ResourceInterface.h"
+#include "Subject.h"
 
 /**
  * @class ResourceManager

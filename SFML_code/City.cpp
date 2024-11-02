@@ -34,32 +34,32 @@ void City::bulldoze(Tile &tile)
 {
     /* Replace the selected tiles on the map with the tile and
      * update populations etc accordingly */
-    for (int pos = 0; pos < this->map.width * this->map.height; ++pos)
+    for (int pos = 0; pos < this->map->width * this->map->height; ++pos)
     {
-        if (this->map.selected[pos] == 1)
+        if (this->map->selected[pos] == 1)
         {
-            if (this->map.tiles[pos]->tileType == TileType::RESIDENTIAL)
+            if (this->map->tiles[pos]->tileType == TileType::RESIDENTIAL)
             {
-                this->populationPool += this->map.tiles[pos]->population;
+                this->populationPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::COMMERCIAL)
+            else if (this->map->tiles[pos]->tileType == TileType::COMMERCIAL)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::FIRESTATION)
+            else if (this->map->tiles[pos]->tileType == TileType::FIRESTATION)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::INDUSTRIAL)
+            else if (this->map->tiles[pos]->tileType == TileType::INDUSTRIAL)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            else if (this->map.tiles[pos]->tileType == TileType::LANDMARK)
+            else if (this->map->tiles[pos]->tileType == TileType::LANDMARK)
             {
-                this->employmentPool += this->map.tiles[pos]->population;
+                this->employmentPool += this->map->tiles[pos]->population;
             }
-            delete this->map.tiles[pos];
-            this->map.tiles[pos] = tile.clone();
+            delete this->map->tiles[pos];
+            this->map->tiles[pos] = tile.clone();
         }
     }
 
@@ -68,7 +68,7 @@ void City::bulldoze(Tile &tile)
 
 void City::shuffleTiles()
 {
-    while (this->shuffledTiles.size() < this->map.tiles.size())
+    while (this->shuffledTiles.size() < this->map->tiles.size())
     {
         this->shuffledTiles.push_back(0);
     }
@@ -80,10 +80,12 @@ void City::shuffleTiles()
 
 void City::tileChanged()
 {
-    this->map.updateDirection(TileType::ROAD);
-    this->map.findConnectedRegions(
-        {TileType::ROAD, TileType::RESIDENTIAL,
-         TileType::COMMERCIAL, TileType::INDUSTRIAL},
+    this->map->updateDirection(TileType::ROAD);
+    this->map->findConnectedRegions(
+        {   TileType::ROAD, TileType::RESIDENTIAL, TileType::COMMERCIAL, 
+            TileType::INDUSTRIAL, TileType::FIRESTATION, TileType::HOSPITAL,
+            TileType::POWERPLANT, TileType::SEWAGEPLANT,TileType::WATERPLANT,
+            TileType::WASTEMANAGEMENT},
         0);
 
     return;
@@ -145,7 +147,7 @@ void City::load(std::string cityName, std::map<std::string, Tile*> &tileAtlas)
 
     inputFile.close();
 
-    this->map.load(cityName + "_map.dat", width, height, tileAtlas);
+    this->map->load(cityName + "_map->dat", width, height, tileAtlas);
     tileChanged();
 
     return;
@@ -155,8 +157,8 @@ void City::save(std::string cityName)
 {
     std::ofstream outputFile(cityName + "_cfg.dat", std::ios::out);
 
-    outputFile << "width=" << this->map.width << std::endl;
-    outputFile << "height=" << this->map.height << std::endl;
+    outputFile << "width=" << this->map->width << std::endl;
+    outputFile << "height=" << this->map->height << std::endl;
     outputFile << "day=" << this->day << std::endl;
     outputFile << "populationPool=" << this->populationPool << std::endl;
     outputFile << "employmentPool=" << this->employmentPool << std::endl;
@@ -172,7 +174,7 @@ void City::save(std::string cityName)
 
     outputFile.close();
 
-    this->map.save(cityName + "_map.dat");
+    this->map->save(cityName + "_map->dat");
 
     return;
 }
@@ -197,8 +199,8 @@ void City::update(float dt)
 
     //set mediator
     CityMediator* mediator = new CityMediator(this);
-    for (int pos = 0; pos < this->map.width * this->map.height; ++pos){
-        Tile *tile = this->map.tiles[pos];
+    for (int pos = 0; pos < this->map->width * this->map->height; ++pos){
+        Tile *tile = this->map->tiles[pos];
 
         if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
             continue;
@@ -225,25 +227,28 @@ void City::update(float dt)
 
     earnings += industrialRevenue + commercialRevenue;
 
+    //Other Commands needs implementing 
+    
+
+
     //Random chance that a house burns down
     std::random_device rd; // Obtain a random number from hardware
     std::mt19937 gen(rd()); // Seed the generator
-    std::uniform_int_distribution<> distr(1, 100000); // Define the range
+    std::uniform_int_distribution<> distr(1, 1000000); // Define the range
     int random_number = distr(gen); // Generate a random number
 
     //random_number = day;
     if(random_number == 727){
-        for (int i = 0; i < this->map.tiles.size(); ++i){
+        for (int i = 0; i < this->map->tiles.size(); ++i){
             
-            Tile *tile = this->map.tiles[this->shuffledTiles[i]];
+            Tile *tile = this->map->tiles[this->shuffledTiles[i]];
 
             if(tile != NULL && tile->tileType == TileType::RESIDENTIAL){
-                tile->notify("fireAlert");
+                tile->notify(TileType::FIRESTATION);
             }
         }
     }
-     
-
+    
     /* Adjust population pool for births and deaths. */
     this->populationPool += this->populationPool * (this->birthRate - this->deathRate);
     popTotal += this->populationPool;
@@ -268,4 +273,6 @@ void City::update(float dt)
     return;
 }
 
-
+void City::setMediator(CityMediator* md){
+    this->mediator = md;
+}

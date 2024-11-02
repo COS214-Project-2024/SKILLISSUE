@@ -7,7 +7,7 @@
 
 class CDReceiver {
 private:
-    Map& map;
+    Map* map;
     std::vector<int>& shuffledTiles;
     double& industrialRevenue;
     double& commercialRevenue;
@@ -16,7 +16,7 @@ private:
 
 public:
     // Constructor that takes references to map, shuffledTiles, and tax/revenue variables
-    CDReceiver(Map& map, std::vector<int>& shuffledTiles, double& industrialRevenue,
+    CDReceiver(Map* map, std::vector<int>& shuffledTiles, double& industrialRevenue,
                double& commercialRevenue, double commercialTax, double industrialTax)
         : map(map), shuffledTiles(shuffledTiles), industrialRevenue(industrialRevenue),
           commercialRevenue(commercialRevenue), commercialTax(commercialTax), industrialTax(industrialTax) {}

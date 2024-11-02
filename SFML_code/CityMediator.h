@@ -19,9 +19,14 @@ class CityMediator{
 
     void setCity(City* city);
     void getCity(City city);
-    void notify(Tile* tile, std::string notification);
+    void notify(Tile* tile, TileType notification);
 
     void burnHouse(Tile* tile);
+
+    void getPower(Tile* tile);
+    void disposeWaste(Tile* tile);
+    void treatSewage(Tile* tile);
+
 };
 
 #endif
