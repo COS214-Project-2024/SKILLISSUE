@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra -std=c++11
+CFLAGS = -Wall -Wextra -std=c++23
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 TARGET = app
 SRC = $(wildcard *.cpp)
