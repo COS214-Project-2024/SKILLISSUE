@@ -6,9 +6,12 @@
 #include <fstream>
 #include <sstream>
 #include <numeric>
+#include <random>
+#include <random>
 
 #include "City.h"
 #include "Tile.h"
+#include "CityMediator.h"
 
 
 // /City::City() : day(0), lastMementoDay(-1), populationPool(0), employmentPool(0), population(0), employable(0), satisfaction(0), earnings(0), funds(0), map(nullptr), taxPolicy(nullptr) {}
@@ -29,39 +32,6 @@ std::string City::getTaxPolicy()
     }
 }
 
-double City::distributePool(double &pool, Tile *tile, double rate = 0.0)
-{
-    const static int moveRate = 4;
-
-    unsigned int maxPop = tile->maxPopPerLevel * (tile->tileVariant + 1);
-
-    /* If there is room in the zone, move up to 4 people from the
-     * pool into the zone */
-    if (pool > 0)
-    {
-        int moving = maxPop - tile->population;
-        if (moving > moveRate)
-            moving = moveRate;
-        if (pool - moving < 0)
-            moving = pool;
-        pool -= moving;
-        tile->population += moving;
-    }
-
-    /* Adjust the tile population for births and deaths */
-    tile->population += tile->population * rate;
-
-    /* Move population that cannot be sustained by the tile into
-     * the pool */
-    if (tile->population > maxPop)
-    {
-        pool += tile->population - maxPop;
-        tile->population = maxPop;
-    }
-
-    return tile->population;
-}
-
 void City::bulldoze(Tile &tile)
 {
     /* Replace the selected tiles on the map with the tile and
@@ -75,6 +45,10 @@ void City::bulldoze(Tile &tile)
                 this->populationPool += this->map->tiles[pos]->population;
             }
             else if (this->map->tiles[pos]->tileType == TileType::COMMERCIAL)
+            {
+                this->employmentPool += this->map->tiles[pos]->population;
+            }
+            else if (this->map->tiles[pos]->tileType == TileType::FIRESTATION)
             {
                 this->employmentPool += this->map->tiles[pos]->population;
             }
@@ -238,121 +212,59 @@ void City::update(float dt)
         this->funds += this->earnings;
         this->earnings = 0;
     }
+
+    //set mediator
+    CityMediator* mediator = new CityMediator(this);
+    for (int pos = 0; pos < this->map->width * this->map->height; ++pos){
+        Tile *tile = this->map->tiles[pos];
+
+        if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
+            continue;
+        }
+
+        tile->setMediator(mediator);
+    }
+
     /* Run first pass of tile updates. Mostly handles pool distribution. */
-    for (int i = 0; i < this->map->tiles.size(); ++i)
-    {
-        Tile *tile = this->map->tiles[this->shuffledTiles[i]];
-        if(tile != NULL){
+    DReceiver dReceiver(map, shuffledTiles, populationPool, employmentPool, 
+                         popTotal, birthRate, deathRate, commercialTax, 
+                         industrialTax, population);
 
-        if (tile->tileType == TileType::RESIDENTIAL)
-        {
-            /* Redistribute the pool and increase the population total by the tile's population */
-            this->distributePool(this->populationPool, tile, this->birthRate - this->deathRate);
+    // Create the DistributeResources command
+    DistributeResources distributeResourcesCmd(&dReceiver);
 
-            popTotal += tile->population;
-        }
-        else if (tile->tileType == TileType::COMMERCIAL)
-        {
-            /* Hire people. */
-            if (rand() % 100 < 15 * (1.0 - this->commercialTax))
-            {
-                this->distributePool(this->employmentPool, tile, 0.00);
-            }
-        }
-        else if (tile->tileType == TileType::INDUSTRIAL)
-        {
-            /* Extract resources from the ground. */
-            if (this->map->resources[i] > 0 && rand() % 100 < this->population)
-            {
-                ++tile->production;
-                --this->map->resources[i];
-            }
-            /* Hire people. */
-            if (rand() % 100 < 15 * (1.0 - this->industrialTax))
-            {
-                this->distributePool(this->employmentPool, tile, 0.0);
-            }
-        }
-        else if (tile->tileType == TileType::LANDMARK)
-        {
-            /* Redistribute the pool and increase the population total by the tile's population */
-            this->distributePool(this->populationPool, tile, this->birthRate - this->deathRate);
+    // Execute the command
+    distributeResourcesCmd.execute();
 
-            popTotal += tile->population;
-        }
-        
-        tile->update();
-        }
-        tile = NULL;
-    }
     /* Run second pass. Mostly handles goods manufacture */
-    for(int i = 0; i < this->map->tiles.size(); ++i)
-    {
-        Tile* tile = this->map->tiles[this->shuffledTiles[i]];
-        if (tile != NULL)
-        {
-            if (tile->tileType == TileType::INDUSTRIAL)
-            {
-                int receivedResources = 0;
-                /* Receive resources from smaller and connected zones */
-                for (Tile *tile2 : this->map->tiles)
-                {
-                    if (tile2->regions[0] == tile->regions[0] && tile2->tileType == TileType::INDUSTRIAL)
-                    {
-                        if (tile2->production > 0)
-                        {
-                            ++receivedResources;
-                            --tile2->production;
-                        }
-                        if (receivedResources >= tile->tileVariant + 1)
-                            break;
-                    }
-                }
-                /* Turn resources into goods */
-                tile->storedGoods += (receivedResources + tile->production) * (tile->tileVariant + 1);
+    CDReceiver receiver(map, shuffledTiles, industrialRevenue, commercialRevenue, commercialTax, industrialTax);
+    CreateAndDistributeGoods command(&receiver);
+    command.execute();  // Executes the command, calling CDReceiver's update
+
+    earnings += industrialRevenue + commercialRevenue;
+
+    //Other Commands needs implementing 
+    
+
+
+    //Random chance that a house burns down
+    std::random_device rd; // Obtain a random number from hardware
+    std::mt19937 gen(rd()); // Seed the generator
+    std::uniform_int_distribution<> distr(1, 1000000); // Define the range
+    int random_number = distr(gen); // Generate a random number
+
+    //random_number = day;
+    if(random_number == 727){
+        for (int i = 0; i < this->map->tiles.size(); ++i){
+            
+            Tile *tile = this->map->tiles[this->shuffledTiles[i]];
+
+            if(tile != NULL && tile->tileType == TileType::RESIDENTIAL){
+                tile->notify(TileType::FIRESTATION);
             }
         }
     }
-
-    /* Run third pass. Mostly handles goods distribution. */
-    for(int i = 0; i < this->map->tiles.size(); ++i)
-    {
-        Tile* tile = this->map->tiles[this->shuffledTiles[i]];
-        if (tile != NULL)
-        {
-            if (tile->tileType == TileType::COMMERCIAL)
-            {
-                int receivedGoods = 0;
-                double maxCustomers = 0.0;
-                for (Tile *tile2 : this->map->tiles)
-                {
-                    if (tile2->regions[0] == tile->regions[0] &&
-                        tile2->tileType == TileType::INDUSTRIAL &&
-                        tile2->storedGoods > 0)
-                    {
-                        while (tile2->storedGoods > 0 && receivedGoods != tile->tileVariant + 1)
-                        {
-                            --tile2->storedGoods;
-                            ++receivedGoods;
-                            industrialRevenue += 100 * (1.0 - industrialTax);
-                        }
-                    }
-                    else if (tile2->regions[0] == tile->regions[0] &&
-                             tile2->tileType == TileType::RESIDENTIAL)
-                    {
-                        maxCustomers += tile2->population;
-                    }
-                    if (receivedGoods == tile->tileVariant + 1)
-                        break;
-                }
-                /* Calculate the overall revenue for the tile. */
-                tile->production = (receivedGoods * 100.0 + rand() % 20) * (1.0 - this->commercialTax);
-
-                double revenue = tile->production * maxCustomers * tile->population / 100.0;
-                commercialRevenue += revenue;
-            }
-        }
-    }
+    
     /* Adjust population pool for births and deaths. */
     this->populationPool += this->populationPool * (this->birthRate - this->deathRate);
     popTotal += this->populationPool;
@@ -405,4 +317,8 @@ void City::loadMemento(Memento* memento) {
 }
 void City::setCaretaker(Caretaker* caretaker) {
     this->caretaker = caretaker;  // Set the caretaker pointer
+}
+
+void City::setMediator(CityMediator* md){
+    this->mediator = md;
 }

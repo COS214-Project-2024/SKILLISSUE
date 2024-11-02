@@ -12,15 +12,23 @@
 #include "MidTax.h"
 #include "HighTax.h"
 #include "Memento.h"
+#include "CreateAndDistributeGoods.h"
+#include "CDReceiver.h"
+#include "DReceiver.h"
+#include "DistributeResources.h"
+
 class Memento;      // Forward declaration
 class Caretaker;    // Forward declaration
+class cityMediator;
+
 class City
 {
-private:
+protected:
 
- 
     float currentTime;
     float timePerDay;
+
+    CityMediator* mediator;
 
     TaxPolicy* taxPolicy;
 
@@ -46,8 +54,8 @@ private:
     Caretaker* caretaker;
     
 public:
+    friend class CityMediator;
     Map* map;
-    
 
     double population;
     double employable;
@@ -78,7 +86,7 @@ public:
         this->earnings = 0;
         this->funds = 0;
         this->currentTime = 0.0;
-        this->timePerDay = 1.0;
+        this->timePerDay = 0.1;
         this->day = 0;
         this->taxPolicy = new LowTax();
         this->map = new Map();
@@ -105,12 +113,13 @@ public:
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
 
-    //Momento
-
+    //Memento
     void setCaretaker(Caretaker* caretaker);       // Method to set Caretaker pointer
     Memento* createMemento();
     void loadMemento(Memento* memento);
 
+	void undo(Memento memento);    
+    void setMediator(CityMediator* md);
 };
 
 #endif /* CITY_HPP */
