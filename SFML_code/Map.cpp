@@ -16,7 +16,7 @@ Map* Map::clone()
     temp->numRegions[0] = numRegions[0];
     temp->numSelected = 0;
 
-    for (int pos = 0; pos < (this->width * this->height); ++pos)
+    for (int pos = 0; pos < (int)(this->width * this->height); ++pos)
     {
         temp->resources.push_back(255);
         temp->selected.push_back(0);

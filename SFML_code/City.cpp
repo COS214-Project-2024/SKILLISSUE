@@ -37,7 +37,7 @@ void City::bulldoze(Tile &tile)
 {
     /* Replace the selected tiles on the map with the tile and
      * update populations etc accordingly */
-    for (int pos = 0; pos < (int)this->map->width * this->map->height; ++pos)
+    for (int pos = 0; pos < (int)(this->map->width * this->map->height); ++pos)
     {
         if (this->map->selected[pos] == 1)
         {

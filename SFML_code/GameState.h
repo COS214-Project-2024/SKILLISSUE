@@ -14,6 +14,7 @@ class GameState
     virtual void update(const float dt) = 0;
     virtual void handleInput() = 0;
     virtual void getState() = 0;
+    virtual ~GameState() { delete game;}
 };
 
 #endif /* GAME_STATE_HPP */
