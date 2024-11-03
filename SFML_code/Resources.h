@@ -114,6 +114,7 @@ public:
    */
   void consumeMaterial(int value);
 
+protected:
   /**
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
