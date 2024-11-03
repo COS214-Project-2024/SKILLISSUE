@@ -141,6 +141,7 @@ std::string tileTypeToStr(TileType type)
         case TileType::SEWAGEPLANT:     return "Sewage Plant";
         case TileType::WATERPLANT:      return "Water Plant";
         case TileType::WASTEMANAGEMENT: return "Waste Disposal";
+        case TileType::ROAD:            return "Road";
     }
 }
 

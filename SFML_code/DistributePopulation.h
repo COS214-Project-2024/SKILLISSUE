@@ -1,5 +1,5 @@
-#ifndef DISTRIBUTE_RESOURCES_H
-#define DISTRIBUTE_RESOURCES_H
+#ifndef DISTRIBUTE_POPULATION_H
+#define DISTRIBUTE_POPULATION_H
 
 #include "Command.h"   // Make sure to include the Command header
 #include "DReceiver.h"
@@ -24,4 +24,4 @@ public:
     void execute();  // Declaration only, implementation can be below or in .cpp
 };
 
-#endif // DISTRIBUTE_RESOURCES_H
+#endif // DISTRIBUTE_POPULATION_H
