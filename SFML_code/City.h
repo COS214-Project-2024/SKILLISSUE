@@ -113,13 +113,56 @@ public:
     void setTaxPolicy(TaxPolicy* policy);
     std::string getTaxPolicy();
 
-    //Memento
-    void setCaretaker(Caretaker* caretaker);       // Method to set Caretaker pointer
-    Memento* createMemento();
-    void loadMemento(Memento* memento);
+//Memento 
+    /**
+ * @brief Sets the caretaker for the Memento.
+ * 
+ * This function sets a pointer to a `Caretaker` object, which is responsible 
+ * for handling the Memento's lifecycle.
+ * 
+ * @param caretaker Pointer to a `Caretaker` object.
+ */
+void setCaretaker(Caretaker* caretaker);
 
-	void undo(Memento memento);    
-    void setMediator(CityMediator* md);
+/**
+ * @brief Creates a new memento representing the current state.
+ * 
+ * This function generates a `Memento` object that encapsulates the 
+ * current state, enabling the state to be restored at a later time.
+ * 
+ * @return A pointer to the newly created `Memento` object.
+ */
+Memento* createMemento();
+
+/**
+ * @brief Restores the state from a memento.
+ * 
+ * This function loads the state encapsulated in a given `Memento` object.
+ * The `Memento` should have been created by `createMemento()`.
+ * 
+ * @param memento Pointer to the `Memento` object containing the state to restore.
+ */
+void loadMemento(Memento* memento);
+
+/**
+ * @brief Undoes the current state by reverting to a previous memento.
+ * 
+ * This function takes a `Memento` object and undoes the current changes by 
+ * restoring the state from the specified `Memento`.
+ * 
+ * @param memento The `Memento` object containing the state to revert to.
+ */
+void undo(Memento memento);
+
+/**
+ * @brief Sets the mediator for the city.
+ * 
+ * This function sets a pointer to a `CityMediator` object, enabling communication 
+ * between different city components through the mediator.
+ * 
+ * @param md Pointer to a `CityMediator` object.
+ */
+void setMediator(CityMediator* md);
 };
 
 #endif /* CITY_HPP */
