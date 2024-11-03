@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.8)
 
-project ("Proxy Testing")
+project ("ResourceManager Testing")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -16,10 +16,10 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Add your test source file
-add_executable(proxyExe ProxyTestMain.cpp ../ResourceManager.cpp )
+add_executable(ResourceManagerExe ResourceManagerTestMain.cpp ../ResourceManager.cpp ../Resources.cpp)
 
 # Link the test executable with Google Test and pthread (required by GTest)
-target_link_libraries(proxyExe ${GTEST_LIBRARIES} pthread)
+target_link_libraries(ResourceManagerExe ${GTEST_LIBRARIES} pthread)
 
 # Add test
-add_test(NAME proxyExe COMMAND proxyExe)
+add_test(NAME ResourceManagerExe COMMAND ResourceManagerExe)

@@ -313,7 +313,7 @@ void City::loadMemento(Memento* memento) {
         funds = memento->funds;
         day = memento->day;
         delete map;
-        map = memento->map->clone();  // Assuming `Map` has a deep copy constructor
+        map = memento->map;  // Assuming `Map` has a deep copy constructor
     }
 }
 void City::setCaretaker(Caretaker* caretaker) {
