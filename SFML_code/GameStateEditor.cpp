@@ -38,6 +38,7 @@ void GameStateEditor::draw(const float dt)
 		this->game->window.draw(pauseSprite);
 		this->game->window.setView(this->guiView);
 		for(auto gui : this->guiPauseSystem) this->game->window.draw(gui.second);
+		this->guiPauseSystem.at("GamePaused").show();
 	}
 	
 }
