@@ -13,7 +13,7 @@ DReceiver::DReceiver(Map* map, std::vector<int>& shuffledTiles, double& populati
 
 // Update method implementation
 void DReceiver::update() {
-    for (int i = 0; i < map->tiles.size(); ++i) {
+    for (int i = 0; i < (int)map->tiles.size(); ++i) {
         Tile *tile = map->tiles[shuffledTiles[i]];
         if (tile != nullptr) {
             if (tile->tileType == TileType::RESIDENTIAL) {
