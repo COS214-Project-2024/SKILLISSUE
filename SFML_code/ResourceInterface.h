@@ -66,28 +66,28 @@ public:
      * @param value The amount of water to consume.
      * @return True if the water consumption was successful, false otherwise.
      */
-    virtual bool useWater(int value) = 0;
+    virtual bool consumeWater(int value) = 0;
 
     /**
      * @brief Consumes a specified amount of power resource.
      * @param value The amount of power to consume.
      * @return True if the power consumption was successful, false otherwise.
      */
-    virtual bool usePower(int value) = 0;
+    virtual bool consumePower(int value) = 0;
 
     /**
      * @brief Consumes a specified amount of sewage resource.
      * @param value The amount of sewage to consume.
      * @return True if the sewage consumption was successful, false otherwise.
      */
-    virtual bool useSewage(int value) = 0;
+    virtual bool consumeSewage(int value) = 0;
 
     /**
      * @brief Consumes a specified amount of material resource.
      * @param value The amount of material to consume.
      * @return True if the material consumption was successful, false otherwise.
      */
-    virtual bool useMaterial(int value) = 0;
+    virtual bool consumeMaterial(int value) = 0;
 };
 
 #endif

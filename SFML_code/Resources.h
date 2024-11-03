@@ -16,7 +16,7 @@ private:
   int power;                  ///< The amount of power resource.
   int sewage;                 ///< The amount of sewage resource.
   int materials;              ///< The amount of materials resource.
-  static Resources &Instance; ///< The singleton instance of ResourceManager.
+  static Resources *Instance; ///< The singleton instance of ResourceManager.
 
 protected:
   /**
@@ -114,12 +114,11 @@ public:
    */
   void consumeMaterial(int value);
 
-protected:
   /**
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
    */
-  static Resources &getResourcesInstance();
+  static Resources *getResourcesInstance();
 };
 
 #endif

@@ -26,7 +26,7 @@ void Resources::consumeMaterial(int value) { materials -= value; }
 
 Resources::Resources() {}
 
-Resources& Resources::getResourcesInstance() {
-  static Resources onlyInstance;
+Resources* Resources::getResourcesInstance() {
+  static Resources* onlyInstance;
   return onlyInstance;
 }
