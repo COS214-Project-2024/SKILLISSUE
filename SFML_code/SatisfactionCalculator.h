@@ -1,6 +1,7 @@
 #ifndef SASTISFACTIONCALCULATOR_H
 #define SASTISFACTIONCALCULATOR_H
-
+ 
+ #include "SCReceiver.h"
 
 class SatisfactionCalculator {
 private:
