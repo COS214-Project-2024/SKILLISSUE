@@ -10,7 +10,7 @@ bool ResourceManager::useWater(int value) {
     Resources::getResourcesInstance().consumeWater(value);
     return true;
   }
-  return -1;
+  return false;
 }
 
 bool ResourceManager::usePower(int value) {
@@ -33,8 +33,8 @@ bool ResourceManager::useSewage(int value) {
 
 bool ResourceManager::useMaterial(int value) {
   // Must request less than 80% of water available
-  if (value < (0.8 * Resources::getResourcesInstance().getWater())) {
-    Resources::getResourcesInstance().consumeWater(value);
+  if (value < (0.8 * Resources::getResourcesInstance().getMaterial())) {
+    Resources::getResourcesInstance().consumeMaterial(value);
     return true;
   }
   return false;
