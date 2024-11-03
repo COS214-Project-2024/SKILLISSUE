@@ -174,9 +174,9 @@ void Map::save(const std::string &filename)
 
 void Map::draw(sf::RenderWindow &window, float dt)
 {
-    for (int y = 0; y < this->height; ++y)
+    for (int y = 0; y < (int)this->height; ++y)
     {
-        for (int x = 0; x < this->width; ++x)
+        for (int x = 0; x < (int)this->width; ++x)
         {
             /* Set the position of the tile in the 2d world */
             sf::Vector2f pos;
@@ -200,9 +200,9 @@ void Map::draw(sf::RenderWindow &window, float dt)
 
 void Map::updateDirection(TileType tileType)
 {
-    for(int y = 0; y < this->height; ++y)
+    for(int y = 0; y < (int)this->height; ++y)
     {
-        for(int x = 0; x < this->width; ++x)
+        for(int x = 0; x < (int)this->width; ++x)
         {
             int pos = y*this->width+x;
 
@@ -215,17 +215,17 @@ void Map::updateDirection(TileType tileType)
                 adjacentTiles[0][0] = (this->tiles[(y-1)*this->width+(x-1)]->tileType == tileType);
             if(y > 0)
                 adjacentTiles[0][1] = (this->tiles[(y-1)*this->width+(x  )]->tileType == tileType);
-            if(x < this->width-1 && y > 0)
+            if(x < (int)this->width-1 && y > 0)
                 adjacentTiles[0][2] = (this->tiles[(y-1)*this->width+(x+1)]->tileType == tileType);
             if(x > 0)
                 adjacentTiles[1][0] = (this->tiles[(y  )*this->width+(x-1)]->tileType == tileType);
-            if(x < width-1)
+            if(x < (int)width-1)
                 adjacentTiles[1][2] = (this->tiles[(y  )*this->width+(x+1)]->tileType == tileType);
-            if(x > 0 && y < this->height-1)
+            if(x > 0 && y < (int)this->height-1)
                 adjacentTiles[2][0] = (this->tiles[(y+1)*this->width+(x-1)]->tileType == tileType);
-            if(y < this->height-1)
+            if(y < (int)this->height-1)
                 adjacentTiles[2][1] = (this->tiles[(y+1)*this->width+(x  )]->tileType == tileType);
-            if(x < this->width-1 && y < this->height-1)
+            if(x < (int)this->width-1 && y < (int)this->height-1)
                 adjacentTiles[2][2] = (this->tiles[(y+1)*this->width+(x+1)]->tileType == tileType);
 
             /* Change the tile variant depending on the tile position */
