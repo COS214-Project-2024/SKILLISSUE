@@ -160,7 +160,46 @@ TEST_F(ResourceManagerTest, SetPower_Fails_WhenValueIsLess) {
     EXPECT_EQ(resourceManager.getPower(), initialPower); // No change expected
 }
 
-// You can add similar tests for setSewage and setMaterial methods
+// Test setSewage method with a value greater than current sewage
+TEST_F(ResourceManagerTest, SetSewage_Succeeds_WhenValueIsGreater) {
+    int initialSewage = resourceManager.getSewage();
+    int newValue = initialSewage + 50;
+
+    resourceManager.setSewage(newValue);
+
+    EXPECT_EQ(resourceManager.getSewage(), newValue);
+}
+
+// Test setSewage method with a value less than current sewage
+TEST_F(ResourceManagerTest, SetSewage_Fails_WhenValueIsLess) {
+    int initialSewage = resourceManager.getSewage();
+    int newValue = initialSewage - 50;
+
+    resourceManager.setSewage(newValue);
+
+    EXPECT_EQ(resourceManager.getSewage(), initialSewage); // No change expected
+}
+
+// Test setMaterial method with a value greater than current material
+TEST_F(ResourceManagerTest, SetMaterial_Succeeds_WhenValueIsGreater) {
+    int initialMaterial = resourceManager.getMaterial();
+    int newValue = initialMaterial + 50;
+
+    resourceManager.setMaterial(newValue);
+
+    EXPECT_EQ(resourceManager.getMaterial(), newValue);
+}
+
+// Test setMaterial method with a value less than current material
+TEST_F(ResourceManagerTest, SetMaterial_Fails_WhenValueIsLess) {
+    int initialMaterial = resourceManager.getMaterial();
+    int newValue = initialMaterial - 50;
+
+    resourceManager.setMaterial(newValue);
+
+    EXPECT_EQ(resourceManager.getMaterial(), initialMaterial); // No change expected
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
