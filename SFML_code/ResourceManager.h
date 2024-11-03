@@ -12,21 +12,18 @@
  * It acts as an interface between client code and the Resources singleton, enforcing consumption limits.
  */
 class ResourceManager : public ResourceInterface {
-private:
-    Resources* resources;  ///< Pointer to the singleton instance of Resources.
-
 public:
     /**
      * @brief Constructs a new ResourceManager object.
      *
-     * Initializes the ResourceManager by obtaining the singleton instance of Resources.
+     * Initializes the ResourceManager 
      */
     ResourceManager();
 
     /**
      * @brief Destroys the ResourceManager object.
-     *
-     * Does not delete the Resources instance since it's a singleton.
+     * 
+     * Destructs the ResourceManager
      */
     ~ResourceManager();
 

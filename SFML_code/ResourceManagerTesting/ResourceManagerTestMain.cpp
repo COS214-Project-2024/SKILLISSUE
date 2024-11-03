@@ -4,178 +4,194 @@
 
 class ResourceManagerTest : public ::testing::Test {
 protected:
-    ResourceManager* resourceManager;
-    Resources* resources;
-
-    void SetUp() override {
-    resources = Resources::getResourcesInstance();
-
-    resourceManager = new ResourceManager();
-
-    // Initialize resources to known values before each test
-    resources->setWater(1000);
-    resources->setPower(1000);
-    resources->setSewage(1000);
-    resources->setMaterial(1000);
+    virtual void SetUp() {
+        // Initialize resources to known values before each test
+        Resources::getResourcesInstance().setWater(100);
+        Resources::getResourcesInstance().setPower(100);
+        Resources::getResourcesInstance().setSewage(100);
+        Resources::getResourcesInstance().setMaterial(100);
     }
 
-
-
-    void TearDown() override {
-        delete resourceManager;
-        // Reset resources to default values if necessary
-    }
+    ResourceManager resourceManager;
 };
 
-// Test consumeWater method for successful consumption
-TEST_F(ResourceManagerTest, ConsumeWater_Success) {
-    int initialWater = resources->getWater();
-    int value = 100; // Less than 20% of initialWater (1000 * 0.2 = 200)
-    bool result = resourceManager->consumeWater(value);
+// Test useWater method when the request is less than 20% of available water
+TEST_F(ResourceManagerTest, UseWater_Succeeds_WhenUnder20Percent) {
+    int initialWater = resourceManager.getWater();
+    int requestAmount = static_cast<int>(initialWater * 0.1); // 10% of water
+
+    bool result = resourceManager.consumeWater(requestAmount);
 
     EXPECT_TRUE(result);
-    EXPECT_EQ(resources->getWater(), initialWater - value);
+    EXPECT_EQ(resourceManager.getWater(), initialWater - requestAmount);
 }
 
-// Test consumeWater method for failed consumption due to exceeding limit
-TEST_F(ResourceManagerTest, ConsumeWater_Fail) {
-    int initialWater = resources->getWater();
-    int value = 250; // More than 20% of initialWater
-    bool result = resourceManager->consumeWater(value);
+// Test useWater method when the request exceeds 20% of available water
+TEST_F(ResourceManagerTest, UseWater_Fails_WhenOver20Percent) {
+    int initialWater = resourceManager.getWater();
+    int requestAmount = static_cast<int>(initialWater * 0.3); // 30% of water
+
+    bool result = resourceManager.consumeWater(requestAmount);
 
     EXPECT_FALSE(result);
-    EXPECT_EQ(resources->getWater(), initialWater); // Water should remain unchanged
+    EXPECT_EQ(resourceManager.getWater(), initialWater); // No change expected
 }
 
-// Test consumePower method for successful consumption
-TEST_F(ResourceManagerTest, ConsumePower_Success) {
-    int initialPower = resources->getPower();
-    int value = 300; // Less than 40% of initialPower (1000 * 0.4 = 400)
-    bool result = resourceManager->consumePower(value);
+// Test usePower method when the request is less than 40% of available power
+TEST_F(ResourceManagerTest, UsePower_Succeeds_WhenUnder40Percent) {
+    int initialPower = resourceManager.getPower();
+    int requestAmount = static_cast<int>(initialPower * 0.3); // 30% of power
+
+    bool result = resourceManager.consumePower(requestAmount);
 
     EXPECT_TRUE(result);
-    EXPECT_EQ(resources->getPower(), initialPower - value);
+    EXPECT_EQ(resourceManager.getPower(), initialPower - requestAmount);
 }
 
-// Test consumePower method for failed consumption due to exceeding limit
-TEST_F(ResourceManagerTest, ConsumePower_Fail) {
-    int initialPower = resources->getPower();
-    int value = 500; // More than 40% of initialPower
-    bool result = resourceManager->consumePower(value);
+// Test usePower method when the request exceeds 40% of available power
+TEST_F(ResourceManagerTest, UsePower_Fails_WhenOver40Percent) {
+    int initialPower = resourceManager.getPower();
+    int requestAmount = static_cast<int>(initialPower * 0.5); // 50% of power
+
+    bool result = resourceManager.consumePower(requestAmount);
 
     EXPECT_FALSE(result);
-    EXPECT_EQ(resources->getPower(), initialPower); // Power should remain unchanged
+    EXPECT_EQ(resourceManager.getPower(), initialPower); // No change expected
 }
 
-// Test consumeSewage method for successful consumption
-TEST_F(ResourceManagerTest, ConsumeSewage_Success) {
-    int initialSewage = resources->getSewage();
-    int value = 500; // Less than 60% of initialSewage (1000 * 0.6 = 600)
-    bool result = resourceManager->consumeSewage(value);
+// Test setWater method with a value greater than current water
+TEST_F(ResourceManagerTest, SetWater_Succeeds_WhenValueIsGreater) {
+    int initialWater = resourceManager.getWater();
+    int newValue = initialWater + 50;
+
+    resourceManager.setWater(newValue);
+
+    EXPECT_EQ(resourceManager.getWater(), newValue);
+}
+
+// Test setWater method with a value less than current water
+TEST_F(ResourceManagerTest, SetWater_Fails_WhenValueIsLess) {
+    int initialWater = resourceManager.getWater();
+    int newValue = initialWater - 50;
+
+    resourceManager.setWater(newValue);
+
+    EXPECT_EQ(resourceManager.getWater(), initialWater); // No change expected
+}
+
+// Test getMaterial method
+TEST_F(ResourceManagerTest, GetMaterial_ReturnsCorrectValue) {
+    int expectedMaterial = 100;
+
+    int actualMaterial = resourceManager.getMaterial();
+
+    EXPECT_EQ(actualMaterial, expectedMaterial);
+}
+
+// Test useSewage method when the request is less than 60% of available sewage
+TEST_F(ResourceManagerTest, UseSewage_Succeeds_WhenUnder60Percent) {
+    int initialSewage = resourceManager.getSewage();
+    int requestAmount = static_cast<int>(initialSewage * 0.5); // 50% of sewage
+
+    bool result = resourceManager.consumeSewage(requestAmount);
 
     EXPECT_TRUE(result);
-    EXPECT_EQ(resources->getSewage(), initialSewage - value);
+    EXPECT_EQ(resourceManager.getSewage(), initialSewage - requestAmount);
 }
 
-// Test consumeSewage method for failed consumption due to exceeding limit
-TEST_F(ResourceManagerTest, ConsumeSewage_Fail) {
-    int initialSewage = resources->getSewage();
-    int value = 700; // More than 60% of initialSewage
-    bool result = resourceManager->consumeSewage(value);
+// Test useSewage method when the request exceeds 60% of available sewage
+TEST_F(ResourceManagerTest, UseSewage_Fails_WhenOver60Percent) {
+    int initialSewage = resourceManager.getSewage();
+    int requestAmount = static_cast<int>(initialSewage * 0.7); // 70% of sewage
+
+    bool result = resourceManager.consumeSewage(requestAmount);
 
     EXPECT_FALSE(result);
-    EXPECT_EQ(resources->getSewage(), initialSewage); // Sewage should remain unchanged
+    EXPECT_EQ(resourceManager.getSewage(), initialSewage); // No change expected
 }
 
-// Test consumeMaterial method for successful consumption
-TEST_F(ResourceManagerTest, ConsumeMaterial_Success) {
-    int initialMaterial = resources->getMaterial();
-    int value = 700; // Less than 80% of initialMaterial (1000 * 0.8 = 800)
-    bool result = resourceManager->consumeMaterial(value);
+// Test useMaterial method when the request is less than 80% of available material
+TEST_F(ResourceManagerTest, UseMaterial_Succeeds_WhenUnder80Percent) {
+    int initialMaterial = resourceManager.getMaterial();
+    int requestAmount = static_cast<int>(initialMaterial * 0.7); // 70% of material
+
+    bool result = resourceManager.consumeMaterial(requestAmount);
 
     EXPECT_TRUE(result);
-    EXPECT_EQ(resources->getMaterial(), initialMaterial - value);
+    EXPECT_EQ(resourceManager.getMaterial(), initialMaterial - requestAmount);
 }
 
-// Test consumeMaterial method for failed consumption due to exceeding limit
-TEST_F(ResourceManagerTest, ConsumeMaterial_Fail) {
-    int initialMaterial = resources->getMaterial();
-    int value = 900; // More than 80% of initialMaterial
-    bool result = resourceManager->consumeMaterial(value);
+// Test useMaterial method when the request exceeds 80% of available material
+TEST_F(ResourceManagerTest, UseMaterial_Fails_WhenOver80Percent) {
+    int initialMaterial = resourceManager.getMaterial();
+    int requestAmount = static_cast<int>(initialMaterial * 0.9); // 90% of material
+
+    bool result = resourceManager.consumeMaterial(requestAmount);
 
     EXPECT_FALSE(result);
-    EXPECT_EQ(resources->getMaterial(), initialMaterial); // Material should remain unchanged
+    EXPECT_EQ(resourceManager.getMaterial(), initialMaterial); // No change expected
 }
 
-// Test setWater method for successful update
-TEST_F(ResourceManagerTest, SetWater_Success) {
-    int newWater = 1200;
-    resourceManager->setWater(newWater);
+// Test setPower method with a value greater than current power
+TEST_F(ResourceManagerTest, SetPower_Succeeds_WhenValueIsGreater) {
+    int initialPower = resourceManager.getPower();
+    int newValue = initialPower + 50;
 
-    EXPECT_EQ(resources->getWater(), newWater);
+    resourceManager.setPower(newValue);
+
+    EXPECT_EQ(resourceManager.getPower(), newValue);
 }
 
-// Test setWater method for failure due to negative value
-TEST_F(ResourceManagerTest, SetWater_Fail_NegativeValue) {
-    int initialWater = resources->getWater();
-    int newWater = -100;
-    resourceManager->setWater(newWater);
+// Test setPower method with a value less than current power
+TEST_F(ResourceManagerTest, SetPower_Fails_WhenValueIsLess) {
+    int initialPower = resourceManager.getPower();
+    int newValue = initialPower - 50;
 
-    EXPECT_EQ(resources->getWater(), initialWater); // Water should remain unchanged
+    resourceManager.setPower(newValue);
+
+    EXPECT_EQ(resourceManager.getPower(), initialPower); // No change expected
 }
 
-// Test setWater method for failure due to lower value than current
-TEST_F(ResourceManagerTest, SetWater_Fail_LowerValue) {
-    int initialWater = resources->getWater();
-    int newWater = 800; // Less than initialWater
-    resourceManager->setWater(newWater);
+// Test setSewage method with a value greater than current sewage
+TEST_F(ResourceManagerTest, SetSewage_Succeeds_WhenValueIsGreater) {
+    int initialSewage = resourceManager.getSewage();
+    int newValue = initialSewage + 50;
 
-    EXPECT_EQ(resources->getWater(), initialWater); // Water should remain unchanged
+    resourceManager.setSewage(newValue);
+
+    EXPECT_EQ(resourceManager.getSewage(), newValue);
 }
 
-// Similarly, tests for setPower
-TEST_F(ResourceManagerTest, SetPower_Success) {
-    int newPower = 1500;
-    resourceManager->setPower(newPower);
+// Test setSewage method with a value less than current sewage
+TEST_F(ResourceManagerTest, SetSewage_Fails_WhenValueIsLess) {
+    int initialSewage = resourceManager.getSewage();
+    int newValue = initialSewage - 50;
 
-    EXPECT_EQ(resources->getPower(), newPower);
+    resourceManager.setSewage(newValue);
+
+    EXPECT_EQ(resourceManager.getSewage(), initialSewage); // No change expected
 }
 
-TEST_F(ResourceManagerTest, SetPower_Fail_NegativeValue) {
-    int initialPower = resources->getPower();
-    int newPower = -200;
-    resourceManager->setPower(newPower);
+// Test setMaterial method with a value greater than current material
+TEST_F(ResourceManagerTest, SetMaterial_Succeeds_WhenValueIsGreater) {
+    int initialMaterial = resourceManager.getMaterial();
+    int newValue = initialMaterial + 50;
 
-    EXPECT_EQ(resources->getPower(), initialPower);
+    resourceManager.setMaterial(newValue);
+
+    EXPECT_EQ(resourceManager.getMaterial(), newValue);
 }
 
-TEST_F(ResourceManagerTest, SetPower_Fail_LowerValue) {
-    int initialPower = resources->getPower();
-    int newPower = 900;
-    resourceManager->setPower(newPower);
+// Test setMaterial method with a value less than current material
+TEST_F(ResourceManagerTest, SetMaterial_Fails_WhenValueIsLess) {
+    int initialMaterial = resourceManager.getMaterial();
+    int newValue = initialMaterial - 50;
 
-    EXPECT_EQ(resources->getPower(), initialPower);
+    resourceManager.setMaterial(newValue);
+
+    EXPECT_EQ(resourceManager.getMaterial(), initialMaterial); // No change expected
 }
 
-// Tests for getWater method
-TEST_F(ResourceManagerTest, GetWater) {
-    EXPECT_EQ(resourceManager->getWater(), resources->getWater());
-}
-
-// Tests for getPower method
-TEST_F(ResourceManagerTest, GetPower) {
-    EXPECT_EQ(resourceManager->getPower(), resources->getPower());
-}
-
-// Tests for getSewage method
-TEST_F(ResourceManagerTest, GetSewage) {
-    EXPECT_EQ(resourceManager->getSewage(), resources->getSewage());
-}
-
-// Tests for getMaterial method
-TEST_F(ResourceManagerTest, GetMaterial) {
-    EXPECT_EQ(resourceManager->getMaterial(), resources->getMaterial());
-}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
