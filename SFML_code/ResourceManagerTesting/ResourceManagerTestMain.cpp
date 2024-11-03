@@ -2,22 +2,14 @@
 #include "../ResourceManager.h"
 #include "../Resources.h"
 
-class TestResources : public Resources {
-public:
-    // Expose the protected getResourcesInstance() as public
-    static Resources& getInstance() {
-        return getResourcesInstance();
-    }
-};
-
 class ResourceManagerTest : public ::testing::Test {
 protected:
     virtual void SetUp() {
         // Initialize resources to known values before each test
-        TestResources::getInstance().setWater(100);
-        TestResources::getInstance().setPower(100);
-        TestResources::getInstance().setSewage(100);
-        TestResources::getInstance().setMaterial(100);
+        Resources::getResourcesInstance().setWater(100);
+        Resources::getResourcesInstance().setPower(100);
+        Resources::getResourcesInstance().setSewage(100);
+        Resources::getResourcesInstance().setMaterial(100);
     }
 
     ResourceManager resourceManager;
