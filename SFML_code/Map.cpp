@@ -45,20 +45,20 @@ void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> bla
         std::swap(start.x, end.x);
 
     /* Clamp in range */
-    if (end.x >= this->width)
-        end.x = this->width - 1;
+    if (end.x >= (int)this->width)
+        end.x = (int)this->width - 1;
     else if (end.x < 0)
         end.x = 0;
-    if (end.y >= this->height)
-        end.y = this->height - 1;
+    if (end.y >= (int)this->height)
+        end.y = (int)this->height - 1;
     else if (end.y < 0)
         end.y = 0;
-    if (start.x >= this->width)
-        start.x = this->width - 1;
+    if (start.x >= (int)this->width)
+        start.x = (int)this->width - 1;
     else if (start.x < 0)
         start.x = 0;
-    if (start.y >= this->height)
-        start.y = this->height - 1;
+    if (start.y >= (int)this->height)
+        start.y = (int)this->height - 1;
     else if (start.y < 0)
         start.y = 0;
 
@@ -95,7 +95,7 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
     this->width = width;
     this->height = height;
 
-    for (int pos = 0; pos < (this->width * this->height)-1; ++pos)
+    for (int pos = 0; pos < (int)(this->width * this->height)-1; ++pos)
     {
         this->resources.push_back(255);
         this->selected.push_back(0);
