@@ -11,7 +11,9 @@ class SatisfactionLevel : public Command
     SLReceiver* rec;
     
     public:
-    SatisfactionLevel(SLReceiver* receiverL) : rec(receiverL){satisfaction = 0;};
+    SatisfactionLevel(SLReceiver* receiverL) : rec(receiverL){satisfaction = 0;}
+
+    void setSatisfaction(double satisfactionL){ satisfaction = satisfactionL;};
     void execute() override {
         this->rec->update(satisfaction);
     };
