@@ -110,7 +110,7 @@ void Tile::update()
         this->tileType == TileType::WASTEMANAGEMENT ||
         this->tileType == TileType::FIRESTATION &&
         this->population == this->maxPopPerLevel * (this->tileVariant+1) &&
-        this->tileVariant < this->maxLevels)
+        this->tileVariant < (int)this->maxLevels)
     {
         if(rand() % int(1e4) < 1e2 / (this->tileVariant+1)) ++this->tileVariant;
     }

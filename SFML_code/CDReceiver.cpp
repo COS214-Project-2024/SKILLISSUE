@@ -3,7 +3,7 @@
 
 void CDReceiver::update() {
     // First pass: Industrial tile resource management
-    for (int i = 0; i < map->tiles.size(); ++i) {
+    for (int i = 0; i < (int)map->tiles.size(); ++i) {
         Tile* tile = map->tiles[shuffledTiles[i]];
         if (tile && tile->tileType == TileType::INDUSTRIAL) {
             int receivedResources = 0;
@@ -19,7 +19,7 @@ void CDReceiver::update() {
     }
 
     // Second pass: Commercial tile goods distribution
-    for (int i = 0; i < map->tiles.size(); ++i) {
+    for (int i = 0; i < (int)map->tiles.size(); ++i) {
         Tile* tile = map->tiles[shuffledTiles[i]];
         if (tile && tile->tileType == TileType::COMMERCIAL) {
             int receivedGoods = 0;

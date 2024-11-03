@@ -13,7 +13,7 @@ int Gui::getEntry(const sf::Vector2f mousePos)
     if (!this->visible)
         return -1;
 
-    for (int i = 0; i < this->entries.size(); ++i)
+    for (int i = 0; i < (int)this->entries.size(); ++i)
     {
         /* Translate point to use the entry's local coordinates. */
         sf::Vector2f point = mousePos;
@@ -32,7 +32,7 @@ int Gui::getEntry(const sf::Vector2f mousePos)
 
 void Gui::setEntryText(int entry, std::string text)
 {
-    if (entry >= entries.size() || entry < 0)
+    if (entry >= (int)entries.size() || entry < 0)
         return;
 
     entries[entry].text.setString(text);
@@ -107,7 +107,7 @@ void Gui::hide()
 /* Highlights an entry of the menu. */
 void Gui::highlight(const int entry)
 {
-    for (int i = 0; i < entries.size(); ++i)
+    for (int i = 0; i < (int)entries.size(); ++i)
     {
         if (i == entry)
         {

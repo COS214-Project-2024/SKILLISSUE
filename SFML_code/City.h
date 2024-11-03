@@ -15,7 +15,9 @@
 #include "CreateAndDistributeGoods.h"
 #include "CDReceiver.h"
 #include "DReceiver.h"
+// #include "SLReceiver.h"
 #include "DistributeResources.h"
+// #include "SatisfactionLevel.h"
 
 class Memento;      // Forward declaration
 class Caretaker;    // Forward declaration

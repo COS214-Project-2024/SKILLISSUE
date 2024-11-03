@@ -16,7 +16,7 @@ Map* Map::clone()
     temp->numRegions[0] = numRegions[0];
     temp->numSelected = 0;
 
-    for (int pos = 0; pos < (this->width * this->height); ++pos)
+    for (int pos = 0; pos < (int)(this->width * this->height); ++pos)
     {
         temp->resources.push_back(255);
         temp->selected.push_back(0);
@@ -45,20 +45,20 @@ void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> bla
         std::swap(start.x, end.x);
 
     /* Clamp in range */
-    if (end.x >= this->width)
-        end.x = this->width - 1;
+    if (end.x >= (int)this->width)
+        end.x = (int)this->width - 1;
     else if (end.x < 0)
         end.x = 0;
-    if (end.y >= this->height)
-        end.y = this->height - 1;
+    if (end.y >= (int)this->height)
+        end.y = (int)this->height - 1;
     else if (end.y < 0)
         end.y = 0;
-    if (start.x >= this->width)
-        start.x = this->width - 1;
+    if (start.x >= (int)this->width)
+        start.x = (int)this->width - 1;
     else if (start.x < 0)
         start.x = 0;
-    if (start.y >= this->height)
-        start.y = this->height - 1;
+    if (start.y >= (int)this->height)
+        start.y = (int)this->height - 1;
     else if (start.y < 0)
         start.y = 0;
 
@@ -95,7 +95,7 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
     this->width = width;
     this->height = height;
 
-    for (int pos = 0; pos < (this->width * this->height)-1; ++pos)
+    for (int pos = 0; pos < (int)(this->width * this->height)-1; ++pos)
     {
         this->resources.push_back(255);
         this->selected.push_back(0);
@@ -174,9 +174,9 @@ void Map::save(const std::string &filename)
 
 void Map::draw(sf::RenderWindow &window, float dt)
 {
-    for (int y = 0; y < this->height; ++y)
+    for (int y = 0; y < (int)this->height; ++y)
     {
-        for (int x = 0; x < this->width; ++x)
+        for (int x = 0; x < (int)this->width; ++x)
         {
             /* Set the position of the tile in the 2d world */
             sf::Vector2f pos;
@@ -200,9 +200,9 @@ void Map::draw(sf::RenderWindow &window, float dt)
 
 void Map::updateDirection(TileType tileType)
 {
-    for(int y = 0; y < this->height; ++y)
+    for(int y = 0; y < (int)this->height; ++y)
     {
-        for(int x = 0; x < this->width; ++x)
+        for(int x = 0; x < (int)this->width; ++x)
         {
             int pos = y*this->width+x;
 
@@ -215,17 +215,17 @@ void Map::updateDirection(TileType tileType)
                 adjacentTiles[0][0] = (this->tiles[(y-1)*this->width+(x-1)]->tileType == tileType);
             if(y > 0)
                 adjacentTiles[0][1] = (this->tiles[(y-1)*this->width+(x  )]->tileType == tileType);
-            if(x < this->width-1 && y > 0)
+            if(x < (int)this->width-1 && y > 0)
                 adjacentTiles[0][2] = (this->tiles[(y-1)*this->width+(x+1)]->tileType == tileType);
             if(x > 0)
                 adjacentTiles[1][0] = (this->tiles[(y  )*this->width+(x-1)]->tileType == tileType);
-            if(x < width-1)
+            if(x < (int)width-1)
                 adjacentTiles[1][2] = (this->tiles[(y  )*this->width+(x+1)]->tileType == tileType);
-            if(x > 0 && y < this->height-1)
+            if(x > 0 && y < (int)this->height-1)
                 adjacentTiles[2][0] = (this->tiles[(y+1)*this->width+(x-1)]->tileType == tileType);
-            if(y < this->height-1)
+            if(y < (int)this->height-1)
                 adjacentTiles[2][1] = (this->tiles[(y+1)*this->width+(x  )]->tileType == tileType);
-            if(x < this->width-1 && y < this->height-1)
+            if(x < (int)this->width-1 && y < (int)this->height-1)
                 adjacentTiles[2][2] = (this->tiles[(y+1)*this->width+(x+1)]->tileType == tileType);
 
             /* Change the tile variant depending on the tile position */
@@ -267,9 +267,9 @@ void Map::updateDirection(TileType tileType)
 void Map::depthfirstsearch(std::vector<TileType> &whitelist,
                            sf::Vector2i pos, int label, int regionType = 0)
 {
-    if (pos.x < 0 || pos.x >= this->width)
+    if (pos.x < 0 || pos.x >= (int)this->width)
         return;
-    if (pos.y < 0 || pos.y >= this->height)
+    if (pos.y < 0 || pos.y >= (int)this->height)
         return;
     if (this->tiles[pos.y * this->width + pos.x]->regions[regionType] != 0)
         return;
@@ -304,9 +304,9 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType =
         tile->regions[regionType] = 0;
     }
 
-    for (int y = 0; y < this->height; ++y)
+    for (int y = 0; y < (int)this->height; ++y)
     {
-        for (int x = 0; x < this->width; ++x)
+        for (int x = 0; x < (int)this->width; ++x)
         {
             bool found = false;
             for (auto type : whitelist)

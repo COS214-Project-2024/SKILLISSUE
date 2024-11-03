@@ -33,7 +33,7 @@ protected:
    * @brief Assignment operator (protected and not implemented to prevent
    * copying).
    */
-  Resources &operator=(const Resources &) {};
+  Resources &operator=(const Resources &) {return *this;};
 
   /**
    * @brief Destructor.
