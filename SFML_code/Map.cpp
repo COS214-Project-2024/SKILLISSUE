@@ -304,9 +304,9 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType =
         tile->regions[regionType] = 0;
     }
 
-    for (int y = 0; y < this->height; ++y)
+    for (int y = 0; y < (int)this->height; ++y)
     {
-        for (int x = 0; x < this->width; ++x)
+        for (int x = 0; x < (int)this->width; ++x)
         {
             bool found = false;
             for (auto type : whitelist)
