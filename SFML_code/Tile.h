@@ -42,14 +42,9 @@ class Tile
 {
 private:
     Tile(Tile* tile);
-    double Satisfaction;
-    
     std::map<ResourceType, TileType> resourceMapping;
 
 public:
-
-    
-
     CityMediator* mediator;
     void setMediator(CityMediator* mediator);
     void notify(TileType notification);
@@ -60,7 +55,7 @@ public:
     void consumeResource(ResourceType resource, int amount);
     void setMaxResource(ResourceType resource, int amount);
 
-    int satisfaction = 0;
+    int satisfaction;
 
     AnimationHandler animHandler;
     sf::Sprite sprite;
@@ -88,13 +83,15 @@ public:
     float production;
     /* Goods stored */
     float storedGoods;
+    /* satisfaction of building */
+    int satisfaction;
 
     /* Constructor */
     Tile() {}
     Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
          const std::vector<Animation> &animations,
          const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-         const unsigned int maxLevels);
+         const unsigned int maxLevels, const unsigned int satisfaction);
 
     void draw(sf::RenderWindow &window, float dt);
 
@@ -103,9 +100,9 @@ public:
     /* Return a string containing the display cost of the tile */
     std::string getCost();
 
-    void addSatisfaction(double num);
-    void removeSatisfaction(double num);
-    double getSatisfaction();
+    void addSatisfaction(int num);
+    void removeSatisfaction(int num);
+    int getSatisfaction();
 
     Tile* clone();
 };

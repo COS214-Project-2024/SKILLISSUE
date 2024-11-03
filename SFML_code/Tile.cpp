@@ -8,7 +8,7 @@
 Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
      const std::vector<Animation> &animations,
      const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-     const unsigned int maxLevels)
+     const unsigned int maxLevels, const unsigned int satisfaction)
 {
     this->tileType = tileType;
     this->tileVariant = 0;
@@ -44,6 +44,8 @@ Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &
     this->resourceMapping[ResourceType::WATER] = TileType::WATERPLANT;
     this->resourceMapping[ResourceType::SEWAGE] = TileType::SEWAGEPLANT;
     this->resourceMapping[ResourceType::WASTE] = TileType::WASTEMANAGEMENT;
+
+    this->satisfaction = satisfaction;
 }
 
 Tile::Tile(Tile* tile)
@@ -58,6 +60,7 @@ Tile::Tile(Tile* tile)
     this->maxLevels = tile->maxLevels;
     this->production = 0;
     this->storedGoods = 0;
+    this->satisfaction = tile->satisfaction;
 
     // this->sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
     // this->sprite.setTexture(texture);
@@ -128,6 +131,7 @@ std::string tileTypeToStr(TileType type)
     {
         default:
         case TileType::VOID:            return "Void";
+        case TileType::ROAD:           return "Road";
         case TileType::GRASS:           return "Flatten";
         case TileType::FOREST:          return "Forest";
         case TileType::WATER:           return "Water";
@@ -154,14 +158,14 @@ void Tile::notify(TileType notification){
     }
 }
 
-void Tile::addSatisfaction(double num){
-    this->Satisfaction += num;
+void Tile::addSatisfaction(int num){
+    this->satisfaction += num;
 }
-void Tile::removeSatisfaction(double num){
-    this->Satisfaction -= num;
+void Tile::removeSatisfaction(int num){
+    this->satisfaction -= num;
 }
-double Tile::getSatisfaction(){
-    return Satisfaction;
+int Tile::getSatisfaction(){
+    return satisfaction;
 }
 void Tile::produceResource(ResourceType resource, int amount){
 

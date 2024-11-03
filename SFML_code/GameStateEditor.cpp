@@ -184,12 +184,9 @@ void GameStateEditor::handleInput()
 						        TileType::WATER,                TileType::ROAD,
 						        TileType::RESIDENTIAL,          TileType::COMMERCIAL,
 						        TileType::INDUSTRIAL,			TileType::LANDMARK,
-								TileType::FIRESTATION, 			TileType::FIRESTATION,
-								TileType::HOSPITAL, 			TileType::HOSPITAL,
-								TileType::POWERPLANT,			TileType::POWERPLANT,
-								TileType::SEWAGEPLANT,			TileType::SEWAGEPLANT,
-								TileType::WATERPLANT,			TileType::WATERPLANT,
-								TileType::WASTEMANAGEMENT,		TileType::WASTEMANAGEMENT
+								TileType::FIRESTATION, 			TileType::HOSPITAL, 			
+								TileType::POWERPLANT,			TileType::SEWAGEPLANT,			
+								TileType::WATERPLANT,			TileType::WASTEMANAGEMENT
 
 						    });
 				    }
