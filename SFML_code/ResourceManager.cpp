@@ -1,16 +1,14 @@
 #include "ResourceManager.h"
 #include "Resources.h"
 
-ResourceManager::ResourceManager() {
-    resources = Resources::getResourcesInstance();
-}
+ResourceManager::ResourceManager() {}
 
-ResourceManager::~ResourceManager() {} //won't delete resources since using singleton
+ResourceManager::~ResourceManager() {} 
 
 bool ResourceManager::consumeWater(int value) {
   // Must request less than 20% of water available
-  if (value < (0.2 * resources->getWater())) {
-    resources->consumeWater(value);
+  if (value < (0.2 * Resources::getResourcesInstance().getWater())) {
+    Resources::getResourcesInstance().consumeWater(value);
     return true;
   }
   return false;
@@ -18,8 +16,8 @@ bool ResourceManager::consumeWater(int value) {
 
 bool ResourceManager::consumePower(int value) {
   // Must request less than 40% of power available
-  if (value < (0.4 * resources->getPower())) {
-    resources->consumePower(value);
+  if (value < (0.4 * Resources::getResourcesInstance().getPower())) {
+    Resources::getResourcesInstance().consumePower(value);
     return true;
   }
   return false;
@@ -27,8 +25,8 @@ bool ResourceManager::consumePower(int value) {
 
 bool ResourceManager::consumeSewage(int value) {
   // Must request less than 60% of power available
-  if (value < (0.6 * resources->getSewage())) {
-    resources->consumeSewage(value);
+  if (value < (0.6 * Resources::getResourcesInstance().getSewage())) {
+    Resources::getResourcesInstance().consumeSewage(value);
     return true;
   }
   return false;
@@ -36,8 +34,8 @@ bool ResourceManager::consumeSewage(int value) {
 
 bool ResourceManager::consumeMaterial(int value) {
   // Must request less than 80% of water available
-  if (value < (0.8 * resources->getMaterial())) {
-    resources->consumeMaterial(value);
+  if (value < (0.8 * Resources::getResourcesInstance().getMaterial())) {
+    Resources::getResourcesInstance().consumeMaterial(value);
     return true;
   }
   return false;
@@ -45,48 +43,48 @@ bool ResourceManager::consumeMaterial(int value) {
 
 void ResourceManager::setWater(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 and value >= resources->getWater()) {
-    resources->setWater(value);
+  if (value > 0 && value >= Resources::getResourcesInstance().getWater()) {
+    Resources::getResourcesInstance().setWater(value);
     return;
   }
 }
 
 void ResourceManager::setPower(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 and value >= resources->getPower()) {
-    resources->setPower(value);
+  if (value > 0 && value >= Resources::getResourcesInstance().getPower()) {
+    Resources::getResourcesInstance().setPower(value);
     return;
   }
 }
 
 void ResourceManager::setSewage(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 and value >= resources->getSewage()) {
-    resources->setSewage(value);
+  if (value > 0 && value >= Resources::getResourcesInstance().getSewage()) {
+    Resources::getResourcesInstance().setSewage(value);
     return;
   }
 }
 
 void ResourceManager::setMaterial(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 and value >= resources->getMaterial()) {
-    resources->setMaterial(value);
+  if (value > 0 && value >= Resources::getResourcesInstance().getMaterial()) {
+    Resources::getResourcesInstance().setMaterial(value);
     return;
   }
 }
 
 int ResourceManager::getWater() {
-  return resources->getWater();
+  return Resources::getResourcesInstance().getWater();
 }
 
 int ResourceManager::getPower() {
-  return resources->getPower();
+  return Resources::getResourcesInstance().getPower();
 }
 
 int ResourceManager::getSewage() {
-  return resources->getSewage();
+  return Resources::getResourcesInstance().getSewage();
 }
 
 int ResourceManager::getMaterial() {
-  return resources->getMaterial();
+  return Resources::getResourcesInstance().getMaterial();
 }
