@@ -1,7 +1,10 @@
 #include "CDReceiver.h"
 #include <cstdlib>  // for rand()
 
-void CDReceiver::update() {
+CDReceiver::CDReceiver(){}
+
+void CDReceiver::createAndDistributeGoods(Map* map, std::vector<int>& shuffledTiles, double& industrialRevenue,
+               double& commercialRevenue, double taxRate) {
     // First pass: Industrial tile resource management
     for (int i = 0; i < map->tiles.size(); ++i) {
         Tile* tile = map->tiles[shuffledTiles[i]];
@@ -29,14 +32,14 @@ void CDReceiver::update() {
                     while (tile2->storedGoods > 0 && receivedGoods != tile->tileVariant + 1) {
                         --tile2->storedGoods;
                         ++receivedGoods;
-                        industrialRevenue += 100 * (1.0 - industrialTax);
+                        industrialRevenue += 100 * (1.0 - taxRate);
                     }
                 } else if (tile2->regions[0] == tile->regions[0] && tile2->tileType == TileType::RESIDENTIAL) {
                     maxCustomers += tile2->population;
                 }
                 if (receivedGoods == tile->tileVariant + 1) break;
             }
-            tile->production = (receivedGoods * 100.0 + rand() % 20) * (1.0 - commercialTax);
+            tile->production = (receivedGoods * 100.0 + rand() % 20) * (1.0 - taxRate);
             double revenue = tile->production * maxCustomers * tile->population / 100.0;
             commercialRevenue += revenue;
         }

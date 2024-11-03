@@ -3,16 +3,11 @@
 #include <cstdlib> // for rand()
 
 // Constructor implementation
-DReceiver::DReceiver(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
-                     double& popTotal, double birthRate, double deathRate, double commercialTax, 
-                     double industrialTax, double population)
-    : map(map), shuffledTiles(shuffledTiles), populationPool(populationPool), 
-      employmentPool(employmentPool), popTotal(popTotal), birthRate(birthRate), 
-      deathRate(deathRate), commercialTax(commercialTax), industrialTax(industrialTax), 
-      population(population) {}
+DReceiver::DReceiver(){}
 
 // Update method implementation
-void DReceiver::update() {
+void DReceiver::distribute(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
+              double& popTotal, double birthRate, double deathRate, double population, double taxRate){
     for (int i = 0; i < map->tiles.size(); ++i) {
         Tile *tile = map->tiles[shuffledTiles[i]];
         if (tile != nullptr) {
@@ -21,7 +16,7 @@ void DReceiver::update() {
                 popTotal += tile->population;
             }
             else if (tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::FIRESTATION) {
-                if (rand() % 100 < 15 * (1.0 - commercialTax)) {
+                if (rand() % 100 < 50 * (1.0 - taxRate)) {
                     distributePool(employmentPool, tile, 0.00);
                 }
             }
@@ -30,7 +25,7 @@ void DReceiver::update() {
                     ++tile->production;
                     --map->resources[i];
                 }
-                if (rand() % 100 < 15 * (1.0 - industrialTax)) {
+                if (rand() % 100 < 50 * (1.0 - taxRate)) {
                     distributePool(employmentPool, tile, 0.0);
                 }
             }

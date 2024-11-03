@@ -6,12 +6,22 @@
 
 class DistributeResources : public Command {
 private:
-    DReceiver* receiver;
+    DReceiver receiver;
+    Map* map;
+    std::vector<int>& shuffledTiles;
+    double& populationPool;
+    double& employmentPool;
+    double& popTotal;
+    double birthRate;
+    double deathRate;
+    double population;
+    double taxRate;
 
 public:
-    DistributeResources(DReceiver* receiver) : receiver(receiver) {}
+    DistributeResources(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
+              double& popTotal, double birthRate, double deathRate, double population, double taxRate);
 
-    void execute() override;  // Declaration only, implementation can be below or in .cpp
+    void execute();  // Declaration only, implementation can be below or in .cpp
 };
 
 #endif // DISTRIBUTE_RESOURCES_H

@@ -14,7 +14,6 @@
 #include "CityMediator.h"
 
 
-// /City::City() : day(0), lastMementoDay(-1), populationPool(0), employmentPool(0), population(0), employable(0), satisfaction(0), earnings(0), funds(0), map(nullptr), taxPolicy(nullptr) {}
 void City::setTaxPolicy(TaxPolicy* policy)
 {
     if(taxPolicy != NULL)
@@ -193,20 +192,7 @@ void City::update(float dt)
         return;
     ++day;
     this->currentTime = 0.0;
-    //  if (day != lastMementoDay) {
-    //         Memento* dailyMemento = createMemento();
-    //         caretaker.storeMemento(dailyMemento);  // Store the daily Memento in Caretaker
-    //         lastMementoDay = day; 
-       // Notify Memento to store the state in Caretaker at the start of each new day
-    // //my tests    
-    // std::cout << "Saved Memento for Day " << day << "\n";
-    // std::cout << "  Population Pool: " << getHomeless() << "\n";
-    // std::cout << "  Employment Pool: " << getUnemployed() << "\n";
-    // std::cout << "  Population: " << population << "\n";
-    // std::cout << "  Employable: " << employable << "\n";
-    // std::cout << "  Satisfaction: " << satisfaction << "\n";
-    // std::cout << "  Earnings: " << earnings << "\n";
-    // std::cout << "  Funds: " << funds << "\n";
+
     if (day % 30 == 0)
     {
         this->funds += this->earnings;
@@ -225,25 +211,21 @@ void City::update(float dt)
         tile->setMediator(mediator);
     }
 
-    /* Run first pass of tile updates. Mostly handles pool distribution. */
-    DReceiver dReceiver(map, shuffledTiles, populationPool, employmentPool, 
-                         popTotal, birthRate, deathRate, commercialTax, 
-                         industrialTax, population);
-
-    // Create the DistributeResources command
-    DistributeResources distributeResourcesCmd(&dReceiver);
+    // Create the Distribute Population command
+    DistributeResources distributePopCmd(map, shuffledTiles, populationPool, employmentPool, 
+                         popTotal, birthRate, deathRate, population, taxPolicy->getTaxRate());
 
     // Execute the command
-    distributeResourcesCmd.execute();
+    distributePopCmd.execute();
 
-    /* Run second pass. Mostly handles goods manufacture */
-    CDReceiver receiver(map, shuffledTiles, industrialRevenue, commercialRevenue, commercialTax, industrialTax);
-    CreateAndDistributeGoods command(&receiver);
-    command.execute();  // Executes the command, calling CDReceiver's update
-
-    earnings += industrialRevenue + commercialRevenue;
+    // Create the Distribute Goods command
+    CreateAndDistributeGoods command(map, shuffledTiles, industrialRevenue, commercialRevenue, taxPolicy->getTaxRate());
+    // Executes the command, calling CDReceiver's update
+    command.execute(); 
 
     //Other Commands needs implementing 
+
+    
     
 
 
@@ -284,14 +266,6 @@ void City::update(float dt)
     this->earnings = this->taxPolicy->calculateTax((this->population - this->populationPool) * 15);
     this->earnings += this->taxPolicy->calculateTax(commercialRevenue);
     this->earnings += this->taxPolicy->calculateTax(industrialRevenue);
-
-    //Notify Memento to store the state in Caretaker at the start of each new day
-    // if (caretaker) 
-    // {
-    //     caretaker->storeMemento(createMemento());
-    //     lastMementoDay = day;
-    // }
-
  
     return;
 }

@@ -5,14 +5,19 @@
 
 class CreateAndDistributeGoods {
 private:
-    CDReceiver* receiver;
+    CDReceiver receiver;
+
+    Map* map;
+    std::vector<int>& shuffledTiles;
+    double& industrialRevenue;
+    double& commercialRevenue;
+    double taxRate;
 
 public:
-    CreateAndDistributeGoods(CDReceiver* receiver) : receiver(receiver) {}
+    CreateAndDistributeGoods(Map* map, std::vector<int>& shuffledTiles, double& industrialRevenue,
+               double& commercialRevenue, double taxRate);
 
-    void execute() {
-        receiver->update();
-    }
+    void execute();
 };
 
 #endif // CREATE_AND_DISTRIBUTE_GOODS_H

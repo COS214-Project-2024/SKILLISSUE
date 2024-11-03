@@ -7,24 +7,11 @@
 #include <vector>
 
 class DReceiver {
-private:
-    Map* map;
-    std::vector<int>& shuffledTiles;
-    double& populationPool;
-    double& employmentPool;
-    double& popTotal;
-    double birthRate;
-    double deathRate;
-    double commercialTax;
-    double industrialTax;
-    double population;
 
 public:
-    DReceiver(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
-              double& popTotal, double birthRate, double deathRate, double commercialTax, 
-              double industrialTax, double population);
-
-    void update();
+    DReceiver();
+    void distribute(Map* map, std::vector<int>& shuffledTiles, double& populationPool, double& employmentPool, 
+              double& popTotal, double birthRate, double deathRate, double population, double taxRate);
     double distributePool(double& pool, Tile* tile, double rate);
 };
 

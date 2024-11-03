@@ -86,7 +86,7 @@ public:
         this->earnings = 0;
         this->funds = 0;
         this->currentTime = 0.0;
-        this->timePerDay = 0.1;
+        this->timePerDay = 0.7;
         this->day = 0;
         this->taxPolicy = new LowTax();
         this->map = new Map();
