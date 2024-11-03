@@ -12,6 +12,7 @@ protected:
 public:
     virtual double calculateTax(double Revenue) = 0;
     virtual std::string getTaxPolicy();
+    virtual ~TaxPolicy() {}
 
 };
 
