@@ -120,7 +120,7 @@ public:
    * @brief Gets the singleton instance of ResourceManager.
    * @return A reference to the singleton ResourceManager instance.
    */
-  static Resources &getResourceManagerInstance();
+  static Resources &getResourcesInstance();
 };
 
 #endif
