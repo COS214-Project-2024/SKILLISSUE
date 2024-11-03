@@ -16,10 +16,10 @@ public:
   void setPower(int value);
   void setSewage(int value);
   void setMaterial(int value);
-	bool useWater(int value);
-	bool usePower(int value);
-	bool useSewage(int value);
-	bool useMaterial(int value);
+  bool useWater(int value);
+  bool usePower(int value);
+  bool useSewage(int value);
+  bool useMaterial(int value);
 };
 
 #endif

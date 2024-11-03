@@ -6,8 +6,8 @@ ResourceManager::~ResourceManager() {}
 
 bool ResourceManager::useWater(int value) {
   // Must request less than 20% of water available
-  if (value < (0.2 * Resources::getWater())) {
-    Resources::consumeWater(value);
+  if (value < (0.2 * Resources::getResourcesInstance().getWater())) {
+    Resources::getResourcesInstance().consumeWater(value);
     return true;
   }
   return -1;
