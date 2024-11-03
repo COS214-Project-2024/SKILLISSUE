@@ -30,13 +30,14 @@ std::string City::getTaxPolicy()
     {
         return taxPolicy->getTaxPolicy();
     }
+    return "";
 }
 
 void City::bulldoze(Tile &tile)
 {
     /* Replace the selected tiles on the map with the tile and
      * update populations etc accordingly */
-    for (int pos = 0; pos < this->map->width * this->map->height; ++pos)
+    for (int pos = 0; pos < (int)this->map->width * this->map->height; ++pos)
     {
         if (this->map->selected[pos] == 1)
         {
@@ -215,7 +216,7 @@ void City::update(float dt)
 
     //set mediator
     CityMediator* mediator = new CityMediator(this);
-    for (int pos = 0; pos < this->map->width * this->map->height; ++pos){
+    for (int pos = 0; pos < (int)this->map->width * this->map->height; ++pos){
         Tile *tile = this->map->tiles[pos];
 
         if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
@@ -255,7 +256,7 @@ void City::update(float dt)
 
     //random_number = day;
     if(random_number == 727){
-        for (int i = 0; i < this->map->tiles.size(); ++i){
+        for (int i = 0; i < (int)this->map->tiles.size(); ++i){
             
             Tile *tile = this->map->tiles[this->shuffledTiles[i]];
 
