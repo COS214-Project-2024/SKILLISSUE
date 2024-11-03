@@ -216,7 +216,7 @@ void City::update(float dt)
 
     //set mediator
     CityMediator* mediator = new CityMediator(this);
-    for (int pos = 0; pos < (int)this->map->width * this->map->height; ++pos){
+    for (int pos = 0; pos < (int)(this->map->width * this->map->height); ++pos){
         Tile *tile = this->map->tiles[pos];
 
         if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
