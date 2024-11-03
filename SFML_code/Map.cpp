@@ -267,9 +267,9 @@ void Map::updateDirection(TileType tileType)
 void Map::depthfirstsearch(std::vector<TileType> &whitelist,
                            sf::Vector2i pos, int label, int regionType = 0)
 {
-    if (pos.x < 0 || pos.x >= this->width)
+    if (pos.x < 0 || pos.x >= (int)this->width)
         return;
-    if (pos.y < 0 || pos.y >= this->height)
+    if (pos.y < 0 || pos.y >= (int)this->height)
         return;
     if (this->tiles[pos.y * this->width + pos.x]->regions[regionType] != 0)
         return;
