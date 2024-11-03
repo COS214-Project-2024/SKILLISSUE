@@ -6,126 +6,121 @@
 
 /**
  * @class ResourceManager
- * @brief Manages access to and modification of various resources.
+ * @brief Manages access and consumption of various resources.
  *
- * The ResourceManager class provides methods to access and modify resources
- * such as water, power, sewage, and material. It implements the ResourceInterface
- * and utilizes the Resources class internally to manage resource data.
- *
- * This class ensures that resource usage adheres to specified constraints.
- * For example, it restricts the amount of resource that can be consumed in a single operation.
+ * The ResourceManager class provides methods to access, modify, and consume different resources.
+ * It acts as an interface between client code and the Resources singleton, enforcing consumption limits.
  */
-class ResourceManager : public ResourceInterface, private Resources {
+class ResourceManager : public ResourceInterface {
+private:
+    Resources* resources;  ///< Pointer to the singleton instance of Resources.
+
 public:
-  /**
-   * @brief Constructs a new ResourceManager object.
-   */
-  ResourceManager();
+    /**
+     * @brief Constructs a new ResourceManager object.
+     *
+     * Initializes the ResourceManager by obtaining the singleton instance of Resources.
+     */
+    ResourceManager();
 
-  /**
-   * @brief Destructs the ResourceManager object.
-   */
-  ~ResourceManager();
+    /**
+     * @brief Destroys the ResourceManager object.
+     *
+     * Does not delete the Resources instance since it's a singleton.
+     */
+    ~ResourceManager();
 
-  /**
-   * @brief Retrieves the current amount of water resource.
-   * @return The amount of water available.
-   */
-  int getWater();
+    /**
+     * @brief Gets the current water resource level.
+     * @return The amount of water available.
+     */
+    int getWater();
 
-  /**
-   * @brief Retrieves the current amount of power resource.
-   * @return The amount of power available.
-   */
-  int getPower();
+    /**
+     * @brief Gets the current power resource level.
+     * @return The amount of power available.
+     */
+    int getPower();
 
-  /**
-   * @brief Retrieves the current amount of sewage resource.
-   * @return The amount of sewage available.
-   */
-  int getSewage();
+    /**
+     * @brief Gets the current sewage resource level.
+     * @return The amount of sewage available.
+     */
+    int getSewage();
 
-  /**
-   * @brief Retrieves the current amount of material resource.
-   * @return The amount of material available.
-   */
-  int getMaterial();
+    /**
+     * @brief Gets the current material resource level.
+     * @return The amount of materials available.
+     */
+    int getMaterial();
 
-  /**
-   * @brief Sets the water resource amount to a new value.
-   * @param value The new water amount to set.
-   *
-   * @note The new value must be positive and greater than or equal to the current water amount.
-   *       If the conditions are not met, the water amount remains unchanged.
-   */
-  void setWater(int value);
+    /**
+     * @brief Sets the water resource to a new value.
+     * @param value The new water resource amount.
+     *
+     * Sets the water resource if the value is positive and greater than or equal to the current amount.
+     */
+    void setWater(int value);
 
-  /**
-   * @brief Sets the power resource amount to a new value.
-   * @param value The new power amount to set.
-   *
-   * @note The new value must be positive and greater than or equal to the current power amount.
-   *       If the conditions are not met, the power amount remains unchanged.
-   */
-  void setPower(int value);
+    /**
+     * @brief Sets the power resource to a new value.
+     * @param value The new power resource amount.
+     *
+     * Sets the power resource if the value is positive and greater than or equal to the current amount.
+     */
+    void setPower(int value);
 
-  /**
-   * @brief Sets the sewage resource amount to a new value.
-   * @param value The new sewage amount to set.
-   *
-   * @note The new value must be positive and greater than or equal to the current sewage amount.
-   *       If the conditions are not met, the sewage amount remains unchanged.
-   */
-  void setSewage(int value);
+    /**
+     * @brief Sets the sewage resource to a new value.
+     * @param value The new sewage resource amount.
+     *
+     * Sets the sewage resource if the value is positive and greater than or equal to the current amount.
+     */
+    void setSewage(int value);
 
-  /**
-   * @brief Sets the material resource amount to a new value.
-   * @param value The new material amount to set.
-   *
-   * @note The new value must be positive and greater than or equal to the current material amount.
-   *       If the conditions are not met, the material amount remains unchanged.
-   */
-  void setMaterial(int value);
+    /**
+     * @brief Sets the material resource to a new value.
+     * @param value The new material resource amount.
+     *
+     * Sets the material resource if the value is positive and greater than or equal to the current amount.
+     */
+    void setMaterial(int value);
 
-  /**
-   * @brief Consumes a specified amount of water resource.
-   * @param value The amount of water to consume.
-   * @return True if the water consumption was successful, false otherwise.
-   *
-   * @details The amount to consume must be less than 20% of the available water.
-   *          If the condition is not met, the water amount remains unchanged and the method returns false.
-   */
-  bool useWater(int value);
+    /**
+     * @brief Consumes a specified amount of water resource.
+     * @param value The amount of water to consume.
+     * @return True if the consumption is successful; false otherwise.
+     *
+     * Allows consumption if the requested amount is less than 20% of the available water.
+     */
+    bool consumeWater(int value);
 
-  /**
-   * @brief Consumes a specified amount of power resource.
-   * @param value The amount of power to consume.
-   * @return True if the power consumption was successful, false otherwise.
-   *
-   * @details The amount to consume must be less than 40% of the available power.
-   *          If the condition is not met, the power amount remains unchanged and the method returns false.
-   */
-  bool usePower(int value);
+    /**
+     * @brief Consumes a specified amount of power resource.
+     * @param value The amount of power to consume.
+     * @return True if the consumption is successful; false otherwise.
+     *
+     * Allows consumption if the requested amount is less than 40% of the available power.
+     */
+    bool consumePower(int value);
 
-  /**
-   * @brief Consumes a specified amount of sewage resource.
-   * @param value The amount of sewage to consume.
-   * @return True if the sewage consumption was successful, false otherwise.
-   *
-   * @details The amount to consume must be less than 60% of the available sewage.
-   *          If the condition is not met, the sewage amount remains unchanged and the method returns false.
-   */
-  bool useSewage(int value);
+    /**
+     * @brief Consumes a specified amount of sewage resource.
+     * @param value The amount of sewage to consume.
+     * @return True if the consumption is successful; false otherwise.
+     *
+     * Allows consumption if the requested amount is less than 60% of the available sewage.
+     */
+    bool consumeSewage(int value);
 
-  /**
-   * @brief Consumes a specified amount of material resource.
-   * @param value The amount of material to consume.
-   * @return True if the material consumption was successful, false otherwise.
-   *
-   * @details The amount to consume must be less than 80% of the available material.
-   *          If the condition is not met, the material amount remains unchanged and the method returns false.
-   */
-  bool useMaterial(int value);
+    /**
+     * @brief Consumes a specified amount of material resource.
+     * @param value The amount of material to consume.
+     * @return True if the consumption is successful; false otherwise.
+     *
+     * Allows consumption if the requested amount is less than 80% of the available materials.
+     */
+    bool consumeMaterial(int value);
 };
 
-#endif
+#endif // RESOURCEMANAGER_H

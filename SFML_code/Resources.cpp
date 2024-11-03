@@ -1,4 +1,7 @@
 #include "Resources.h"
+#include <iostream>
+
+Resources* Resources::onlyInstance = nullptr;
 
 int Resources::getWater() { return water; }
 
@@ -26,7 +29,9 @@ void Resources::consumeMaterial(int value) { materials -= value; }
 
 Resources::Resources() {}
 
-Resources& Resources::getResourcesInstance() {
-  static Resources onlyInstance;
-  return onlyInstance;
+Resources* Resources::getResourcesInstance() {
+    if (onlyInstance == nullptr) {
+        onlyInstance = new Resources();
+    } 
+    return onlyInstance;
 }
