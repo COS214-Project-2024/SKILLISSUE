@@ -49,12 +49,12 @@ public:
     void setMediator(CityMediator* mediator);
     void notify(TileType notification);
     
-    std::map<ResourceType,int> resources;
-    std::map<ResourceType,int> maxResources; //defaults to 100 each
+    std::map<ResourceType,double> resources;
+    std::map<ResourceType,double> maxResources; //defaults to 100 each
     
-    void produceResource(ResourceType resource, int amount);
-    void consumeResource(ResourceType resource, int amount);
-    void setMaxResource(ResourceType resource, int amount);
+    void produceResource(ResourceType resource, double amount);
+    void consumeResource(ResourceType resource, double amount);
+    void setMaxResource(ResourceType resource, double amount);
 
     AnimationHandler animHandler;
     sf::Sprite sprite;
@@ -94,7 +94,7 @@ public:
     Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
          const std::vector<Animation> &animations,
          const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-         const unsigned int maxLevels, double satisfaction, int consumption, int maxProduction);
+         const unsigned int maxLevels, double satisfaction, int consumption, double maxProduction, double maxSize);
 
     void draw(sf::RenderWindow &window, float dt);
 

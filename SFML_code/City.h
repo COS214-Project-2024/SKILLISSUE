@@ -12,10 +12,12 @@
 #include "MidTax.h"
 #include "HighTax.h"
 #include "Memento.h"
+#include "CityMediator.h"
 #include "Command.h"
 #include "DistributePopulation.h"
 #include "SatisfactionCalculator.h"
 #include "CreateAndDistributeGoods.h"
+#include "DistributeResources.h"
 
 // Forward declaration
 class Memento;      

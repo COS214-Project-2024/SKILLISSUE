@@ -14,80 +14,153 @@ class ResourceInterface {
 
 public:
     /**
-     * @brief Retrieves the current amount of water resource.
-     * @return The amount of water available.
-     */
-    virtual int getWater() = 0;
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  virtual int getWater() = 0;
 
-    /**
-     * @brief Retrieves the current amount of power resource.
-     * @return The amount of power available.
-     */
-    virtual int getPower() = 0;
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  virtual int getPower() = 0;
 
-    /**
-     * @brief Retrieves the current amount of sewage resource.
-     * @return The amount of sewage available.
-     */
-    virtual int getSewage() = 0;
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  virtual int getSewage() = 0;
 
-    /**
-     * @brief Retrieves the current amount of material resource.
-     * @return The amount of material available.
-     */
-    virtual int getMaterial() = 0;
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  virtual int getWaste() = 0;
 
-    /**
-     * @brief Sets the water resource amount to a new value.
-     * @param value The new water amount to set.
-     */
-    virtual void setWater(int value) = 0;
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  virtual int getWaterConsumption() = 0;
 
-    /**
-     * @brief Sets the power resource amount to a new value.
-     * @param value The new power amount to set.
-     */
-    virtual void setPower(int value) = 0;
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  virtual int getPowerConsumption() = 0;
 
-    /**
-     * @brief Sets the sewage resource amount to a new value.
-     * @param value The new sewage amount to set.
-     */
-    virtual void setSewage(int value) = 0;
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  virtual int getSewageConsumption() = 0;
 
-    /**
-     * @brief Sets the material resource amount to a new value.
-     * @param value The new material amount to set.
-     */
-    virtual void setMaterial(int value) = 0;
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  virtual int getWasteConsumption() = 0;
 
-    /**
-     * @brief Consumes a specified amount of water resource.
-     * @param value The amount of water to consume.
-     * @return True if the water consumption was successful, false otherwise.
-     */
-    virtual bool consumeWater(int value) = 0;
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  virtual double getWaterUsage() = 0;
 
-    /**
-     * @brief Consumes a specified amount of power resource.
-     * @param value The amount of power to consume.
-     * @return True if the power consumption was successful, false otherwise.
-     */
-    virtual bool consumePower(int value) = 0;
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  virtual double getPowerUsage() = 0;
 
-    /**
-     * @brief Consumes a specified amount of sewage resource.
-     * @param value The amount of sewage to consume.
-     * @return True if the sewage consumption was successful, false otherwise.
-     */
-    virtual bool consumeSewage(int value) = 0;
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  virtual double getSewageUsage() = 0;
 
-    /**
-     * @brief Consumes a specified amount of material resource.
-     * @param value The amount of material to consume.
-     * @return True if the material consumption was successful, false otherwise.
-     */
-    virtual bool consumeMaterial(int value) = 0;
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  virtual double getWasteUsage() = 0;
+
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  virtual void setWater(int value) = 0;
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  virtual void setPower(int value) = 0;
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  virtual void setSewage(int value) = 0;
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  virtual void setWaste(int value) = 0;
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  virtual void setWaterConsumption(int value) = 0;
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  virtual void setPowerConsumption(int value) = 0;
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  virtual void setSewageConsumption(int value) = 0;
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  virtual void setWasteConsumption(int value) = 0;
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  virtual void setWaterUsage(double value) = 0;
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  virtual void setPowerUsage(double value) = 0;
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  virtual void setSewageUsage(double value) = 0;
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  virtual void setWasteUsage(double value) = 0;
+
+  /**
+   * @brief Decreases water resource by a specified amount.
+   * @param value The amount to decrease the water resource by.
+   */
 };
 
 #endif

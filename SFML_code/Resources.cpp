@@ -2,29 +2,54 @@
 #include <iostream>
 
 
-int Resources::getWater() { return water; }
+int Resources::getWater() { return waterProduced; }
 
-int Resources::getPower() { return power; }
+int Resources::getPower() { return powerProduced; }
 
-int Resources::getSewage() { return sewage; }
+int Resources::getSewage() { return sewageProduced; }
 
-int Resources::getMaterial() { return materials; }
+int Resources::getWaste() { return wasteProduced; }
 
-void Resources::setWater(int value) { water = value; }
+int Resources::getWaterConsumption() { return waterConsumption; }
 
-void Resources::setPower(int value) { power = value; }
+int Resources::getPowerConsumption() { return powerConsumption; }
 
-void Resources::setSewage(int value) { sewage = value; }
+int Resources::getSewageConsumption() { return sewageConsumption; }
 
-void Resources::setMaterial(int value) { materials = value; }
+int Resources::getWasteConsumption() { return wasteConsumption; }
 
-void Resources::consumeWater(int value) { water -= value; }
+double Resources::getWaterUsage() { return waterUsage; }
 
-void Resources::consumePower(int value) { power -= value; }
+double Resources::getPowerUsage() { return powerUsage; }
 
-void Resources::consumeSewage(int value) { sewage -= value; }
+double Resources::getSewageUsage() { return sewageUsage; }
 
-void Resources::consumeMaterial(int value) { materials -= value; }
+double Resources::getWasteUsage() { return wasteUsage; }
+
+void Resources::setWater(int value) { waterProduced = value; }
+
+void Resources::setPower(int value) { powerProduced = value; }
+
+void Resources::setSewage(int value) { sewageProduced = value; }
+
+void Resources::setWaste(int value) { wasteProduced = value; }
+
+void Resources::setWaterConsumption(int value) { waterConsumption = value; }
+
+void Resources::setPowerConsumption(int value) { powerConsumption = value; }
+
+void Resources::setSewageConsumption(int value) { sewageConsumption = value; }
+
+void Resources::setWasteConsumption(int value) { wasteConsumption = value; }
+
+void Resources::setWaterUsage(double value) { waterUsage = value; }
+
+void Resources::setPowerUsage(double value) { powerUsage = value; }
+
+void Resources::setSewageUsage(double value) { sewageUsage = value; }
+
+void Resources::setWasteUsage(double value) { wasteUsage = value; }
+
 
 Resources::Resources() {}
 

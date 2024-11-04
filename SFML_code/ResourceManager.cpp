@@ -5,45 +5,10 @@ ResourceManager::ResourceManager() {}
 
 ResourceManager::~ResourceManager() {} 
 
-bool ResourceManager::consumeWater(int value) {
-  // Must request less than 20% of water available
-  if (value < (0.2 * Resources::getResourcesInstance().getWater())) {
-    Resources::getResourcesInstance().consumeWater(value);
-    return true;
-  }
-  return false;
-}
-
-bool ResourceManager::consumePower(int value) {
-  // Must request less than 40% of power available
-  if (value < (0.4 * Resources::getResourcesInstance().getPower())) {
-    Resources::getResourcesInstance().consumePower(value);
-    return true;
-  }
-  return false;
-}
-
-bool ResourceManager::consumeSewage(int value) {
-  // Must request less than 60% of power available
-  if (value < (0.6 * Resources::getResourcesInstance().getSewage())) {
-    Resources::getResourcesInstance().consumeSewage(value);
-    return true;
-  }
-  return false;
-}
-
-bool ResourceManager::consumeMaterial(int value) {
-  // Must request less than 80% of water available
-  if (value < (0.8 * Resources::getResourcesInstance().getMaterial())) {
-    Resources::getResourcesInstance().consumeMaterial(value);
-    return true;
-  }
-  return false;
-}
 
 void ResourceManager::setWater(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 && value >= Resources::getResourcesInstance().getWater()) {
+  if (value >= 0) {
     Resources::getResourcesInstance().setWater(value);
     return;
   }
@@ -51,7 +16,7 @@ void ResourceManager::setWater(int value) {
 
 void ResourceManager::setPower(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 && value >= Resources::getResourcesInstance().getPower()) {
+  if (value >= 0) {
     Resources::getResourcesInstance().setPower(value);
     return;
   }
@@ -59,16 +24,80 @@ void ResourceManager::setPower(int value) {
 
 void ResourceManager::setSewage(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 && value >= Resources::getResourcesInstance().getSewage()) {
+  if (value >= 0) {
     Resources::getResourcesInstance().setSewage(value);
     return;
   }
 }
 
-void ResourceManager::setMaterial(int value) {
+void ResourceManager::setWaste(int value) {
   // must set positive amount and must be greater than current amount
-  if (value > 0 && value >= Resources::getResourcesInstance().getMaterial()) {
-    Resources::getResourcesInstance().setMaterial(value);
+  if (value >= 0) {
+    Resources::getResourcesInstance().setWaste(value);
+    return;
+  }
+}
+
+void ResourceManager::setWaterConsumption(int value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setWaterConsumption(value);
+    return;
+  }
+}
+
+void ResourceManager::setPowerConsumption(int value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setPowerConsumption(value);
+    return;
+  }
+}
+
+void ResourceManager::setSewageConsumption(int value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setSewageConsumption(value);
+    return;
+  }
+}
+
+void ResourceManager::setWasteConsumption(int value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setWasteConsumption(value);
+    return;
+  }
+}
+
+void ResourceManager::setWaterUsage(double value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setWaterUsage(value);
+    return;
+  }
+}
+
+void ResourceManager::setPowerUsage(double value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setPowerUsage(value);
+    return;
+  }
+}
+
+void ResourceManager::setSewageUsage(double value) {
+  // must set positive amount and must be greater than current amount
+  if (value >= 0) {
+    Resources::getResourcesInstance().setSewageUsage(value);
+    return;
+  }
+}
+
+void ResourceManager::setWasteUsage(double value) {
+  // must set positive amount 
+  if (value >= 0) {
+    Resources::getResourcesInstance().setWasteUsage(value);
     return;
   }
 }
@@ -85,6 +114,38 @@ int ResourceManager::getSewage() {
   return Resources::getResourcesInstance().getSewage();
 }
 
-int ResourceManager::getMaterial() {
-  return Resources::getResourcesInstance().getMaterial();
+int ResourceManager::getWaste() {
+  return Resources::getResourcesInstance().getWaste();
+}
+
+int ResourceManager::getWaterConsumption() {
+  return Resources::getResourcesInstance().getWaterConsumption();
+}
+
+int ResourceManager::getPowerConsumption() {
+  return Resources::getResourcesInstance().getPowerConsumption();
+}
+
+int ResourceManager::getSewageConsumption() {
+  return Resources::getResourcesInstance().getSewageConsumption();
+}
+
+int ResourceManager::getWasteConsumption() {
+  return Resources::getResourcesInstance().getWasteConsumption();
+}
+
+double ResourceManager::getWaterUsage() {
+  return Resources::getResourcesInstance().getWaterUsage();
+}
+
+double ResourceManager::getPowerUsage() {
+  return Resources::getResourcesInstance().getPowerUsage();
+}
+
+double ResourceManager::getSewageUsage() {
+  return Resources::getResourcesInstance().getSewageUsage();
+}
+
+double ResourceManager::getWasteUsage() {
+  return Resources::getResourcesInstance().getWasteUsage();
 }

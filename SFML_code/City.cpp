@@ -193,14 +193,10 @@ void City::update(float dt)
     }
 
     //set mediator
-    CityMediator* mediator = new CityMediator(this);
-    for (int pos = 0; pos < this->map->width * this->map->height; ++pos){
-        Tile *tile = this->map->tiles[pos];
+    mediator = new CityMediator(this);
 
-        if(tile->tileType == TileType::VOID || tile->tileType == TileType::GRASS || tile->tileType == TileType::WATER){
-            continue;
-        }
-
+    for (int i = 0; i < map->tiles.size(); ++i) {
+        Tile* tile = map->tiles[i];
         tile->setMediator(mediator);
     }
 
@@ -219,10 +215,8 @@ void City::update(float dt)
     SatisfactionCalculator sCalc(map,  getTaxPolicy(), population, satisfaction);
     sCalc.execute();
 
-    // std::cout << satisfaction << "\n";
-
-    
-    
+    DistributeResources DR(map, shuffledTiles);
+    DR.execute();
 
 
     //Random chance that a house burns down

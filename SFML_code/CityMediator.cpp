@@ -11,25 +11,27 @@ CityMediator::CityMediator(){}
 void CityMediator::notify(Tile* tile, TileType notification){
 
 
-    //Check if house is connected to a firestation
-    if(notification == TileType::FIRESTATION && tile->tileType == TileType::RESIDENTIAL){
+    if(notification == TileType::FIRESTATION && tile->tileType == TileType::RESIDENTIAL)//Check if house is connected to a firestation
+    {
         burnHouse(tile);
     }
-    //Ask for Electricity
-    else if(notification == TileType::POWERPLANT && tile->tileType == TileType::RESIDENTIAL)
+    else if(notification == TileType::POWERPLANT)//Ask for Electricity
     {
         getPower(tile);
     }
     //Ask for Electricity
-    else if(notification == TileType::POWERPLANT && tile->tileType == TileType::RESIDENTIAL){
+    else if(notification == TileType::WATERPLANT)
+    {
         getWater(tile);
     }
     //Ask for Electricity
-    else if(notification == TileType::SEWAGEPLANT && tile->tileType == TileType::INDUSTRIAL){
+    else if(notification == TileType::SEWAGEPLANT)
+    {
         treatSewage(tile);
     }
     //Ask for Electricity
-    else if(notification == TileType::WASTEMANAGEMENT && tile->tileType == TileType::COMMERCIAL){
+    else if(notification == TileType::WASTEMANAGEMENT)
+    {
         disposeWaste(tile);
     }
 

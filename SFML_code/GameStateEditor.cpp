@@ -7,6 +7,7 @@
 #include "LowTax.h"
 #include "MidTax.h"
 #include "HighTax.h"
+#include "ResourceManager.h"
 #include <bits/basic_string.h>
 #include <iostream>
 
@@ -57,10 +58,18 @@ void GameStateEditor::update(const float dt)
 
 		/* Update the resource stats at the top left of the screen */
 		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(long(this->city.satisfaction)) + "%");
-		this->guiSystem.at("resourceStats").setEntryText(1, "Power" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(2, "Water" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(3, "Sewage" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(4, "Waste" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(1, "Power Production: " + std::to_string(proxy.getPower()));
+		this->guiSystem.at("resourceStats").setEntryText(2, "Power Consumption: " + std::to_string(proxy.getPowerConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(3, "Power Usage: " + std::to_string(long(proxy.getPowerUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(4, "Water Production: " + std::to_string(proxy.getWater()));
+		this->guiSystem.at("resourceStats").setEntryText(5, "Water Consumption: " + std::to_string(proxy.getWaterConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(6, "Water Usage: " + std::to_string(long(proxy.getWaterUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(7, "Sewage Production: " + std::to_string(proxy.getSewage()));
+		this->guiSystem.at("resourceStats").setEntryText(8, "Sewage Consumption: " + std::to_string(proxy.getSewageConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(9, "Sewage Usage: " + std::to_string(long(proxy.getSewageUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(10, "Waste limit: " + std::to_string(proxy.getWaste()));
+		this->guiSystem.at("resourceStats").setEntryText(11, "Waste production: " + std::to_string(proxy.getWaste()));
+		this->guiSystem.at("resourceStats").setEntryText(12, "Waste recycled: " + std::to_string(long(proxy.getWasteUsage())) + "%");
 	}
 	else
 	{
@@ -81,10 +90,18 @@ void GameStateEditor::update(const float dt)
 
 		/* Update the resource stats at the top left of the screen */
 		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(long(this->city.satisfaction)) + "%");
-		this->guiSystem.at("resourceStats").setEntryText(1, "Power: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(2, "Water: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(3, "Sewage: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
-		this->guiSystem.at("resourceStats").setEntryText(4, "Waste: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(1, "Power Production: " + std::to_string(proxy.getPower()));
+		this->guiSystem.at("resourceStats").setEntryText(2, "Power Consumption: " + std::to_string(proxy.getPowerConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(3, "Power Usage: " + std::to_string(long(proxy.getPowerUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(4, "Water Production: " + std::to_string(proxy.getWater()));
+		this->guiSystem.at("resourceStats").setEntryText(5, "Water Consumption: " + std::to_string(proxy.getWaterConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(6, "Water Usage: " + std::to_string(long(proxy.getWaterUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(7, "Sewage Production: " + std::to_string(proxy.getSewage()));
+		this->guiSystem.at("resourceStats").setEntryText(8, "Sewage Consumption: " + std::to_string(proxy.getSewageConsumption()));
+		this->guiSystem.at("resourceStats").setEntryText(9, "Sewage Usage: " + std::to_string(long(proxy.getSewageUsage())) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(10, "Waste limit: " + std::to_string(proxy.getWaste()));
+		this->guiSystem.at("resourceStats").setEntryText(11, "Waste production: " + std::to_string(proxy.getWaste()));
+		this->guiSystem.at("resourceStats").setEntryText(12, "Waste recycled: " + std::to_string(long(proxy.getWasteUsage())) + "%");
 
 		/* Highlight entries of the right click context menu */
 		this->guiSystem.at("rightClickMenu").highlight(this->guiSystem.at("rightClickMenu").getEntry(this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->guiView)));
@@ -127,7 +144,7 @@ void GameStateEditor::handleInput()
 					this->guiSystem.at("infoBar").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, event.size.height - 16), this->guiView));
 					this->guiSystem.at("infoBar").show();
 
-					this->guiSystem.at("resourceStats").setDimensions(sf::Vector2f(196, 16));
+					this->guiSystem.at("resourceStats").setDimensions(sf::Vector2f(225, 16));
 					this->guiSystem.at("resourceStats").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
 					this->guiSystem.at("resourceStats").show();
 
@@ -508,9 +525,17 @@ GameStateEditor::GameStateEditor(Game* game)
 		{ 
 			std::make_pair("satisfaction", "satisfaction"),
 			std::make_pair("power", "power"),
+			std::make_pair("powerconsumed", "powerconsumed"),
+			std::make_pair("powerUsed", "powerUsed"),
 			std::make_pair("water", "water"),
+			std::make_pair("waterConsumed", "waterConsumed"),
+			std::make_pair("waterUsed", "waterUsed"),
 			std::make_pair("sewage", "sewage"),
+			std::make_pair("sewageConsumed", "sewageConsumed"),
+			std::make_pair("sewageUsed", "sewageUsed"),
 			std::make_pair("waste", "waste"),
+			std::make_pair("wasteConsumed", "wasteConsumed"),
+			std::make_pair("wasteUsed", "wasteUsed")
 		}));
 	this->guiSystem.at("resourceStats").setPosition(sf::Vector2f(0, 0));
 	this->guiSystem.at("resourceStats").show();

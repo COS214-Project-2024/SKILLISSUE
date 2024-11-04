@@ -12,10 +12,18 @@
 class Resources {
 
 private:
-  int water;                  ///< The amount of water resource.
-  int power;                  ///< The amount of power resource.
-  int sewage;                 ///< The amount of sewage resource.
-  int materials;              ///< The amount of materials resource.
+  int waterProduced = 0;                 ///< The amount of water resource.
+  int powerProduced = 0;                 ///< The amount of power resource.
+  int sewageProduced = 0;                ///< The amount of sewage resource.
+  int wasteProduced = 0;                 ///< The amount of materials resource.
+  int waterConsumption = 0;              ///< The amount of water resource.
+  int powerConsumption = 0;              ///< The amount of power resource.
+  int sewageConsumption = 0;             ///< The amount of sewage resource.
+  int wasteConsumption = 0;              ///< The amount of materials resource.
+  double waterUsage = 0;
+  double powerUsage = 0;
+  double sewageUsage = 0;
+  double wasteUsage = 0;
 
 protected:
   /**
@@ -63,7 +71,56 @@ public:
    * @brief Gets the amount of materials resource.
    * @return The current materials resource level.
    */
-  int getMaterial();
+  int getWaste();
+
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  int getWaterConsumption();
+
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  int getPowerConsumption();
+
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  int getSewageConsumption();
+
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  int getWasteConsumption();
+
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  double getWaterUsage();
+
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  double getPowerUsage();
+
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  double getSewageUsage();
+
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  double getWasteUsage();
+
 
   /**
    * @brief Sets the amount of water resource.
@@ -87,7 +144,55 @@ public:
    * @brief Sets the amount of materials resource.
    * @param value The new value for the materials resource.
    */
-  void setMaterial(int value);
+  void setWaste(int value);
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWaterConsumption(int value);
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPowerConsumption(int value);
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewageConsumption(int value);
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setWasteConsumption(int value);
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWaterUsage(double value);
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPowerUsage(double value);
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewageUsage(double value);
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setWasteUsage(double value);
 
   /**
    * @brief Decreases water resource by a specified amount.
@@ -111,7 +216,7 @@ public:
    * @brief Decreases materials resource by a specified amount.
    * @param value The amount to decrease the materials resource by.
    */
-  void consumeMaterial(int value);
+  void consumeWaste(int value);
 
   /**
    * @brief Gets the singleton instance of Resources.

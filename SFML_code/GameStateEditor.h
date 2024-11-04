@@ -8,6 +8,7 @@
 #include "City.h"
 #include "Gui.h"
 #include "Caretaker.h"
+#include "ResourceManager.h"
 
 enum class ActionState { NONE, PANNING, SELECTING };
 
@@ -25,6 +26,7 @@ class GameStateEditor : public GameState
 
 	City city;
     Caretaker* undos = new Caretaker();
+    ResourceManager proxy;
 
 	sf::Vector2i panningAnchor;
     float zoomLevel;

@@ -12,6 +12,9 @@
 class DRReceiver {
 
 public:
+
+    ResourceManager proxy;
+
     DRReceiver();
     void Distribute(Map* map, std::vector<int>& shuffledTiles);
 };

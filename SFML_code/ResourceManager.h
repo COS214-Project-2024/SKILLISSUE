@@ -28,96 +28,178 @@ public:
     ~ResourceManager();
 
     /**
-     * @brief Gets the current water resource level.
-     * @return The amount of water available.
-     */
-    int getWater();
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  int getWater();
 
-    /**
-     * @brief Gets the current power resource level.
-     * @return The amount of power available.
-     */
-    int getPower();
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  int getPower();
 
-    /**
-     * @brief Gets the current sewage resource level.
-     * @return The amount of sewage available.
-     */
-    int getSewage();
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  int getSewage();
 
-    /**
-     * @brief Gets the current material resource level.
-     * @return The amount of materials available.
-     */
-    int getMaterial();
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  int getWaste();
 
-    /**
-     * @brief Sets the water resource to a new value.
-     * @param value The new water resource amount.
-     *
-     * Sets the water resource if the value is positive and greater than or equal to the current amount.
-     */
-    void setWater(int value);
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  int getWaterConsumption();
 
-    /**
-     * @brief Sets the power resource to a new value.
-     * @param value The new power resource amount.
-     *
-     * Sets the power resource if the value is positive and greater than or equal to the current amount.
-     */
-    void setPower(int value);
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  int getPowerConsumption();
 
-    /**
-     * @brief Sets the sewage resource to a new value.
-     * @param value The new sewage resource amount.
-     *
-     * Sets the sewage resource if the value is positive and greater than or equal to the current amount.
-     */
-    void setSewage(int value);
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  int getSewageConsumption();
 
-    /**
-     * @brief Sets the material resource to a new value.
-     * @param value The new material resource amount.
-     *
-     * Sets the material resource if the value is positive and greater than or equal to the current amount.
-     */
-    void setMaterial(int value);
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  int getWasteConsumption();
 
-    /**
-     * @brief Consumes a specified amount of water resource.
-     * @param value The amount of water to consume.
-     * @return True if the consumption is successful; false otherwise.
-     *
-     * Allows consumption if the requested amount is less than 20% of the available water.
-     */
-    bool consumeWater(int value);
+  /**
+   * @brief Gets the amount of water resource.
+   * @return The current water resource level.
+   */
+  double getWaterUsage();
 
-    /**
-     * @brief Consumes a specified amount of power resource.
-     * @param value The amount of power to consume.
-     * @return True if the consumption is successful; false otherwise.
-     *
-     * Allows consumption if the requested amount is less than 40% of the available power.
-     */
-    bool consumePower(int value);
+  /**
+   * @brief Gets the amount of power resource.
+   * @return The current power resource level.
+   */
+  double getPowerUsage();
 
-    /**
-     * @brief Consumes a specified amount of sewage resource.
-     * @param value The amount of sewage to consume.
-     * @return True if the consumption is successful; false otherwise.
-     *
-     * Allows consumption if the requested amount is less than 60% of the available sewage.
-     */
-    bool consumeSewage(int value);
+  /**
+   * @brief Gets the amount of sewage resource.
+   * @return The current sewage resource level.
+   */
+  double getSewageUsage();
 
-    /**
-     * @brief Consumes a specified amount of material resource.
-     * @param value The amount of material to consume.
-     * @return True if the consumption is successful; false otherwise.
-     *
-     * Allows consumption if the requested amount is less than 80% of the available materials.
-     */
-    bool consumeMaterial(int value);
+  /**
+   * @brief Gets the amount of materials resource.
+   * @return The current materials resource level.
+   */
+  double getWasteUsage();
+
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWater(int value);
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPower(int value);
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewage(int value);
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setWaste(int value);
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWaterConsumption(int value);
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPowerConsumption(int value);
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewageConsumption(int value);
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setWasteConsumption(int value);
+
+  /**
+   * @brief Sets the amount of water resource.
+   * @param value The new value for the water resource.
+   */
+  void setWaterUsage(double value);
+
+  /**
+   * @brief Sets the amount of power resource.
+   * @param value The new value for the power resource.
+   */
+  void setPowerUsage(double value);
+
+  /**
+   * @brief Sets the amount of sewage resource.
+   * @param value The new value for the sewage resource.
+   */
+  void setSewageUsage(double value);
+
+  /**
+   * @brief Sets the amount of materials resource.
+   * @param value The new value for the materials resource.
+   */
+  void setWasteUsage(double value);
+
+  /**
+   * @brief Decreases water resource by a specified amount.
+   * @param value The amount to decrease the water resource by.
+   */
+  void consumeWater(int value);
+
+  /**
+   * @brief Decreases power resource by a specified amount.
+   * @param value The amount to decrease the power resource by.
+   */
+  void consumePower(int value);
+
+  /**
+   * @brief Decreases sewage resource by a specified amount.
+   * @param value The amount to decrease the sewage resource by.
+   */
+  void consumeSewage(int value);
+
+  /**
+   * @brief Decreases materials resource by a specified amount.
+   * @param value The amount to decrease the materials resource by.
+   */
+  void consumeWaste(int value);
+
+  /**
+   * @brief Gets the singleton instance of Resources.
+   * @return A reference to the singleton Resources instance.
+   */
 };
 
 #endif // RESOURCEMANAGER_H
