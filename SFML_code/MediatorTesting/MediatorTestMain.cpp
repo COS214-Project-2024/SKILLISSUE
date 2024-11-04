@@ -24,6 +24,11 @@ Tile* createTile(TileType type, int region = 0, int consumption = 10) {
     tile->resources[ResourceType::WATER] = 100;
     tile->resources[ResourceType::SEWAGE] = 100;
     tile->resources[ResourceType::WASTE] = 100;
+
+    tile->maxResources[ResourceType::ELECTRICITY] = 100;
+    tile->maxResources[ResourceType::WATER] = 100;
+    tile->maxResources[ResourceType::SEWAGE] = 100;
+    tile->maxResources[ResourceType::WASTE] = 100;
     return tile;
 }
 
@@ -75,6 +80,8 @@ TEST_F(CityMediatorTest, NotifyFireStation_BurnHouseIfNoFireStation) {
 // Test getPower function via notify
 TEST_F(CityMediatorTest, NotifyPowerPlant_GetPowerIfConnected) {
     powerPlantTile->resources[ResourceType::ELECTRICITY] = 50; // Enough electricity for consumption
+    residentialTile->resources[ResourceType::ELECTRICITY] = 0;
+
     mediator->notify(residentialTile, TileType::POWERPLANT);
     EXPECT_EQ(residentialTile->resources[ResourceType::ELECTRICITY], residentialTile->consumption);
 }
@@ -82,22 +89,26 @@ TEST_F(CityMediatorTest, NotifyPowerPlant_GetPowerIfConnected) {
 // Test getWater function via notify
 TEST_F(CityMediatorTest, NotifyWaterPlant_GetWaterIfConnected) {
     waterPlantTile->resources[ResourceType::WATER] = 50; // Enough water for consumption
+    residentialTile->resources[ResourceType::WATER] = 0;
+
     mediator->notify(residentialTile, TileType::WATERPLANT);
     EXPECT_EQ(residentialTile->resources[ResourceType::WATER], residentialTile->consumption);
 }
 
 // Test disposeWaste function via notify
 TEST_F(CityMediatorTest, NotifyWasteManagement_DisposeWasteIfConnected) {
-    wasteManagementTile->resources[ResourceType::WASTE] = 50; // Enough waste capacity for consumption
+    residentialTile->resources[ResourceType::WASTE] = 10; // needs to dispose of 10 == consumoption
+    wasteManagementTile->resources[ResourceType::WASTE] = 0; //can take more waste
     mediator->notify(residentialTile, TileType::WASTEMANAGEMENT);
-    EXPECT_EQ(residentialTile->resources[ResourceType::WASTE], residentialTile->consumption);
+    EXPECT_EQ(residentialTile->resources[ResourceType::WASTE], 0);
 }
 
 // Test treatSewage function via notify
 TEST_F(CityMediatorTest, NotifySewagePlant_TreatSewageIfConnected) {
-    sewagePlantTile->resources[ResourceType::SEWAGE] = 50; // Enough sewage treatment capacity
-    mediator->notify(sewagePlantTile, TileType::SEWAGEPLANT);
-    EXPECT_EQ(sewagePlantTile->resources[ResourceType::SEWAGE], sewagePlantTile->consumption);
+    residentialTile->resources[ResourceType::SEWAGE] = 10;
+    sewagePlantTile->resources[ResourceType::SEWAGE] = 0; // Enough sewage treatment capacity
+    mediator->notify(residentialTile, TileType::SEWAGEPLANT);
+    EXPECT_EQ(residentialTile->resources[ResourceType::SEWAGE], 0);
 }
 
 int main(int argc, char **argv) {

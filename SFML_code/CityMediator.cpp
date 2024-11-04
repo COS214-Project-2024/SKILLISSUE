@@ -10,7 +10,6 @@ CityMediator::CityMediator(){}
 
 void CityMediator::notify(Tile* tile, TileType notification){
 
-
     //Check if house is connected to a firestation
     if(notification == TileType::FIRESTATION && tile->tileType == TileType::RESIDENTIAL){
         burnHouse(tile);
@@ -21,8 +20,16 @@ void CityMediator::notify(Tile* tile, TileType notification){
         getPower(tile);
     }
     //Ask for Electricity
-    else if(notification == TileType::POWERPLANT && tile->tileType == TileType::RESIDENTIAL){
+    else if(notification == TileType::WATERPLANT && tile->tileType == TileType::RESIDENTIAL){
         getWater(tile);
+    }
+    //Ask for Electricity
+    else if(notification == TileType::SEWAGEPLANT && tile->tileType == TileType::RESIDENTIAL){
+        treatSewage(tile);
+    }
+    //Ask for Electricity
+    else if(notification == TileType::WASTEMANAGEMENT && tile->tileType == TileType::RESIDENTIAL){
+        disposeWaste(tile);
     }
     //Ask for Electricity
     else if(notification == TileType::SEWAGEPLANT && tile->tileType == TileType::INDUSTRIAL){
@@ -30,6 +37,7 @@ void CityMediator::notify(Tile* tile, TileType notification){
     }
     //Ask for Electricity
     else if(notification == TileType::WASTEMANAGEMENT && tile->tileType == TileType::COMMERCIAL){
+        
         disposeWaste(tile);
     }
 
@@ -94,12 +102,11 @@ void CityMediator::disposeWaste(Tile* tile){
     for(Tile *tile2 : this->city->map->tiles){
         if (tile2->tileType == TileType::WASTEMANAGEMENT && tile2->regions[0] == tile->regions[0]){
 
-            //current - max > 10, then store max
-            if(tile2->resources[ResourceType::WASTE] >= tile->consumption){
-                tile2->consumeResource(ResourceType::WASTE, tile->consumption);
-                tile->produceResource(ResourceType::WASTE, tile->consumption);
+            //move waste from tile to waste disposal if enough space
+            if(tile2->maxResources[ResourceType::WASTE] - tile2->resources[ResourceType::WASTE] >= tile->consumption){
+                tile->consumeResource(ResourceType::WASTE, tile->consumption);
+                tile2->produceResource(ResourceType::WASTE, tile->consumption);
                 return; //House Serviced return
-                //Will continue looking for other powerstation if it's not serviced
             }
         }
     }
@@ -107,14 +114,14 @@ void CityMediator::disposeWaste(Tile* tile){
 }
 
 void CityMediator::treatSewage(Tile* tile){
+    std::cout << "DISPOSING SEWAGE STARTED!";
     for(Tile *tile2 : this->city->map->tiles){
         if (tile2->tileType == TileType::SEWAGEPLANT && tile2->regions[0] == tile->regions[0]){
             //current-max
-            if(tile2->resources[ResourceType::SEWAGE] >= tile->consumption){
-                tile2->consumeResource(ResourceType::SEWAGE, tile->consumption);
-                tile->produceResource(ResourceType::SEWAGE, tile->consumption);
+            if(tile2->maxResources[ResourceType::SEWAGE] - tile2->resources[ResourceType::SEWAGE] >= tile->consumption){
+                tile->consumeResource(ResourceType::SEWAGE, tile->consumption);
+                tile2->produceResource(ResourceType::SEWAGE, tile->consumption);
                 return; //House Serviced return
-                //Will continue looking for other powerstation if it's not serviced
             }
         }
     }
