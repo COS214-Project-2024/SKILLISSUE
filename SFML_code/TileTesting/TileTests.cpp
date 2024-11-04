@@ -32,6 +32,9 @@ TEST_F(TileTest, SatisfactionManagement)
 }
 
 // Test: Producing Resources
+/**
+ * @brief Test to verify resource production functions work as intended
+ */
 TEST_F(TileTest, ProduceResource)
 {
     tile->produceResource(ResourceType::ELECTRICITY, 50);
