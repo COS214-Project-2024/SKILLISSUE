@@ -56,7 +56,7 @@ void GameStateEditor::update(const float dt)
 		this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
 
 		/* Update the resource stats at the top left of the screen */
-		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(this->city.satisfaction) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(long(this->city.satisfaction)) + "%");
 		this->guiSystem.at("resourceStats").setEntryText(1, "Power" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
 		this->guiSystem.at("resourceStats").setEntryText(2, "Water" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
 		this->guiSystem.at("resourceStats").setEntryText(3, "Sewage" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");

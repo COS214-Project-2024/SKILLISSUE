@@ -82,14 +82,14 @@ public:
     /* Goods stored */
     float storedGoods;
     /* satisfaction of building */
-    int satisfaction;
+    double satisfaction;
 
     /* Constructor */
     Tile() {}
     Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
          const std::vector<Animation> &animations,
          const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-         const unsigned int maxLevels, const unsigned int satisfaction);
+         const unsigned int maxLevels, double satisfaction);
 
     void draw(sf::RenderWindow &window, float dt);
 
@@ -98,9 +98,9 @@ public:
     /* Return a string containing the display cost of the tile */
     std::string getCost();
 
-    void addSatisfaction(int num);
-    void removeSatisfaction(int num);
-    int getSatisfaction();
+    void addSatisfaction(double num);
+    void removeSatisfaction(double num);
+    double getSatisfaction();
 
     Tile* clone();
 };

@@ -8,7 +8,7 @@
 Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
      const std::vector<Animation> &animations,
      const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-     const unsigned int maxLevels, const unsigned int satisfaction)
+     const unsigned int maxLevels, double satisfaction)
 {
     this->tileType = tileType;
     this->tileVariant = 0;
@@ -62,14 +62,8 @@ Tile::Tile(Tile* tile)
     this->storedGoods = 0;
     this->satisfaction = tile->satisfaction;
 
-    // this->sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
-    // this->sprite.setTexture(texture);
     this->sprite = tile->sprite;
-    // this->animHandler.frameSize = sf::IntRect(0, 0, tileSize * 2, tileSize * height);
-    // for (auto animation : animations)
-    // {
-    //     this->animHandler.addAnim(animation);
-    // }
+    
     this->animHandler.frameSize = tile->animHandler.frameSize;
     this->animHandler = tile->animHandler;
     this->animHandler.update(0.0f);
@@ -102,18 +96,22 @@ void Tile::update()
     /* If the population is at the maximum value for the tile,
      * there is a small chance that the tile will increase its
      * building stage */
-    if( this->tileType == TileType::RESIDENTIAL ||
+    if((this->tileType == TileType::RESIDENTIAL ||
         this->tileType == TileType::COMMERCIAL ||
         this->tileType == TileType::INDUSTRIAL ||
         this->tileType == TileType::LANDMARK ||
         this->tileType == TileType::HOSPITAL ||
-        this->tileType == TileType::POWERPLANT ||
-        this->tileType == TileType::SEWAGEPLANT ||
-        this->tileType == TileType::WATERPLANT ||
-        this->tileType == TileType::WASTEMANAGEMENT ||
-        this->tileType == TileType::FIRESTATION &&
+        this->tileType == TileType::FIRESTATION) &&
         this->population == this->maxPopPerLevel * (this->tileVariant+1) &&
         this->tileVariant < this->maxLevels)
+    {
+        if(rand() % int(1e4) < 1e2 / (this->tileVariant+1)) ++this->tileVariant;
+    }
+    else if((this->tileType == TileType::POWERPLANT ||
+            this->tileType == TileType::SEWAGEPLANT ||
+            this->tileType == TileType::WATERPLANT ||
+            this->tileType == TileType::WASTEMANAGEMENT) &&
+            this->tileVariant < this->maxLevels)
     {
         if(rand() % int(1e4) < 1e2 / (this->tileVariant+1)) ++this->tileVariant;
     }
@@ -158,13 +156,13 @@ void Tile::notify(TileType notification){
     }
 }
 
-void Tile::addSatisfaction(int num){
+void Tile::addSatisfaction(double num){
     this->satisfaction += num;
 }
-void Tile::removeSatisfaction(int num){
+void Tile::removeSatisfaction(double num){
     this->satisfaction -= num;
 }
-int Tile::getSatisfaction(){
+double Tile::getSatisfaction(){
     return satisfaction;
 }
 void Tile::produceResource(ResourceType resource, int amount){

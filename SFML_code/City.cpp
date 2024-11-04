@@ -29,6 +29,7 @@ std::string City::getTaxPolicy()
     {
         return taxPolicy->getTaxPolicy();
     }
+    else return "null";
 }
 
 void City::bulldoze(Tile &tile)
@@ -173,7 +174,6 @@ void City::save(std::string cityName)
 
 void City::update(float dt)
 {
-    satisfaction = 0;
     double popTotal = 0;
     double commercialRevenue = 0;
     double industrialRevenue = 0;
@@ -183,6 +183,7 @@ void City::update(float dt)
     if (this->currentTime < this->timePerDay)
         return;
     ++day;
+    satisfaction = 0;
     this->currentTime = 0.0;
 
     if (day % 30 == 0)
@@ -215,8 +216,10 @@ void City::update(float dt)
     // Executes the command, calling CDReceiver's update
     command.execute(); 
 
-    SatisfactionCalculator sCalc(map,  taxPolicy->getTaxPolicy(), population, satisfaction);
+    SatisfactionCalculator sCalc(map,  getTaxPolicy(), population, satisfaction);
     sCalc.execute();
+
+    // std::cout << satisfaction << "\n";
 
     
     

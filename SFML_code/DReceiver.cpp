@@ -15,7 +15,8 @@ void DReceiver::distribute(Map* map, std::vector<int>& shuffledTiles, double& po
                 distributePool(populationPool, tile, birthRate - deathRate);
                 popTotal += tile->population;
             }
-            else if (tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::FIRESTATION) {
+            else if (tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::FIRESTATION || tile->tileType == TileType::FIRESTATION ||
+                     tile->tileType == TileType::HOSPITAL) {
                 if (rand() % 100 < 50 * (1.0 - taxRate)) {
                     distributePool(employmentPool, tile, 0.00);
                 }
