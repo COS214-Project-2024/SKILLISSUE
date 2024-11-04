@@ -10,10 +10,9 @@ private:
 
     Map* map;
     std::vector<int>& shuffledTiles;
-    CityMediator* mediator;
 
 public:
-    DistributeResources(Map* map, std::vector<int>& shuffledTiles, CityMediator* mediator);
+    DistributeResources(Map* map, std::vector<int>& shuffledTiles);
     void execute();
 };
 

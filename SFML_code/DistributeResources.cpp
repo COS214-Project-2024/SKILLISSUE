@@ -1,10 +1,10 @@
 #include "DistributeResources.h"
 
-DistributeResources::DistributeResources(Map* map, std::vector<int>& shuffledTiles, CityMediator* mediator)
-    : map(map), shuffledTiles(shuffledTiles), mediator(mediator)
+DistributeResources::DistributeResources(Map* map, std::vector<int>& shuffledTiles)
+    : map(map), shuffledTiles(shuffledTiles)
 {}
     
 void DistributeResources::execute()
 {
-    receiver.Distribute(map,shuffledTiles, mediator);
+    receiver.Distribute(map,shuffledTiles);
 }
