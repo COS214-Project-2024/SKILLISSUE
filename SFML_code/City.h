@@ -12,10 +12,10 @@
 #include "MidTax.h"
 #include "HighTax.h"
 #include "Memento.h"
+#include "Command.h"
+#include "DistributePopulation.h"
+#include "SatisfactionCalculator.h"
 #include "CreateAndDistributeGoods.h"
-#include "CDReceiver.h"
-#include "DReceiver.h"
-#include "DistributeResources.h"
 
 class Memento;      // Forward declaration
 class Caretaker;    // Forward declaration
@@ -59,10 +59,6 @@ public:
 
     double population;
     double employable;
-
-    double residentialTax;
-    double commercialTax;
-    double industrialTax;
     double satisfaction;
 
     /* Running total of city earnings (from tax etc) this month. */
@@ -80,9 +76,6 @@ public:
         this->population = populationPool;
         this->employmentPool = 0;
         this->employable = employmentPool;
-        this->residentialTax = 0.05;
-        this->commercialTax = 0.05;
-        this->industrialTax = 0.05;
         this->earnings = 0;
         this->funds = 0;
         this->currentTime = 0.0;
@@ -90,7 +83,7 @@ public:
         this->day = 0;
         this->taxPolicy = new LowTax();
         this->map = new Map();
-        this->satisfaction=100;
+        this->satisfaction=0;
     }
 
     City(std::string cityName, int tileSize, std::map<std::string, Tile*> &tileAtlas) : City()

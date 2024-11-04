@@ -54,6 +54,13 @@ void GameStateEditor::update(const float dt)
 		this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + " (" + std::to_string(long(this->city.getUnemployed())) + ")");
 		this->guiSystem.at("infoBar").setEntryText(4, "Tax Rate: " + this->city.getTaxPolicy());
 		this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
+
+		/* Update the resource stats at the top left of the screen */
+		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(this->city.satisfaction) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(1, "Power" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(2, "Water" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(3, "Sewage" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(4, "Waste" + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
 	}
 	else
 	{
@@ -71,6 +78,13 @@ void GameStateEditor::update(const float dt)
 		this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + " (" + std::to_string(long(this->city.getUnemployed())) + ")");
 		this->guiSystem.at("infoBar").setEntryText(4, "Tax Rate: " + this->city.getTaxPolicy());
 		this->guiSystem.at("infoBar").setEntryText(5, tileTypeToStr(currentTile->tileType));
+
+		/* Update the resource stats at the top left of the screen */
+		this->guiSystem.at("resourceStats").setEntryText(0, "Satisfaction: " + std::to_string(long(this->city.satisfaction)) + "%");
+		this->guiSystem.at("resourceStats").setEntryText(1, "Power: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(2, "Water: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(3, "Sewage: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
+		this->guiSystem.at("resourceStats").setEntryText(4, "Waste: " + std::to_string(long(this->city.population)) + " (" + std::to_string(long(this->city.getHomeless())) + ")");
 
 		/* Highlight entries of the right click context menu */
 		this->guiSystem.at("rightClickMenu").highlight(this->guiSystem.at("rightClickMenu").getEntry(this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->guiView)));
@@ -112,6 +126,10 @@ void GameStateEditor::handleInput()
 					this->guiSystem.at("infoBar").setDimensions(sf::Vector2f(event.size.width / this->guiSystem.at("infoBar").entries.size(), 16));
 					this->guiSystem.at("infoBar").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, event.size.height - 16), this->guiView));
 					this->guiSystem.at("infoBar").show();
+
+					this->guiSystem.at("resourceStats").setDimensions(sf::Vector2f(196, 16));
+					this->guiSystem.at("resourceStats").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
+					this->guiSystem.at("resourceStats").show();
 
 					sf::Vector2f pos = sf::Vector2f(event.size.width, event.size.height);
                 	pos *= 0.5f;
@@ -347,9 +365,15 @@ void GameStateEditor::handleInput()
 				gameView.setSize(event.size.width, event.size.height);
 				gameView.zoom(zoomLevel);
 				guiView.setSize(event.size.width, event.size.height);
+
 				this->guiSystem.at("infoBar").setDimensions(sf::Vector2f(event.size.width / this->guiSystem.at("infoBar").entries.size(), 16));
 				this->guiSystem.at("infoBar").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, event.size.height - 16), this->guiView));
 				this->guiSystem.at("infoBar").show();
+
+				this->guiSystem.at("resourceStats").setDimensions(sf::Vector2f(196, 16));
+				this->guiSystem.at("resourceStats").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
+				this->guiSystem.at("resourceStats").show();
+
 				this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0), this->guiView));
 				this->game->background.setScale(
 					float(event.size.width) / float(this->game->background.getTexture()->getSize().x),
@@ -479,6 +503,17 @@ GameStateEditor::GameStateEditor(Game* game)
 		}));
 	this->guiSystem.at("infoBar").setPosition(sf::Vector2f(0, this->game->window.getSize().y - 16));
 	this->guiSystem.at("infoBar").show();
+
+	this->guiSystem.emplace("resourceStats", Gui(sf::Vector2f(196 , 16), 2, false, this->game->stylesheets.at("button"),
+		{ 
+			std::make_pair("satisfaction", "satisfaction"),
+			std::make_pair("power", "power"),
+			std::make_pair("water", "water"),
+			std::make_pair("sewage", "sewage"),
+			std::make_pair("waste", "waste"),
+		}));
+	this->guiSystem.at("resourceStats").setPosition(sf::Vector2f(0, 0));
+	this->guiSystem.at("resourceStats").show();
 
 	this->guiPauseSystem.at("GamePaused").setPosition(pos);
 	this->guiPauseSystem.at("GamePaused").setOrigin(96, 32*1/2);

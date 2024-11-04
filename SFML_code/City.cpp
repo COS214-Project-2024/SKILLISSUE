@@ -128,12 +128,6 @@ void City::load(std::string cityName, std::map<std::string, Tile*> &tileAtlas)
                     this->birthRate = std::stod(value);
                 else if (key == "deathRate")
                     this->deathRate = std::stod(value);
-                else if (key == "residentialTax")
-                    this->residentialTax = std::stod(value);
-                else if (key == "commercialTax")
-                    this->commercialTax = std::stod(value);
-                else if (key == "industrialTax")
-                    this->industrialTax = std::stod(value);
                 else if (key == "funds")
                     this->funds = std::stod(value);
                 else if (key == "earnings")
@@ -167,9 +161,6 @@ void City::save(std::string cityName)
     outputFile << "employable=" << this->employable << std::endl;
     outputFile << "birthRate=" << this->birthRate << std::endl;
     outputFile << "deathRate=" << this->deathRate << std::endl;
-    outputFile << "residentialTax=" << this->residentialTax << std::endl;
-    outputFile << "commercialTax=" << this->commercialTax << std::endl;
-    outputFile << "industrialTax=" << this->industrialTax << std::endl;
     outputFile << "funds=" << this->funds << std::endl;
     outputFile << "earnings=" << this->earnings << std::endl;
 
@@ -182,6 +173,7 @@ void City::save(std::string cityName)
 
 void City::update(float dt)
 {
+    satisfaction = 0;
     double popTotal = 0;
     double commercialRevenue = 0;
     double industrialRevenue = 0;
@@ -212,7 +204,7 @@ void City::update(float dt)
     }
 
     // Create the Distribute Population command
-    DistributeResources distributePopCmd(map, shuffledTiles, populationPool, employmentPool, 
+    DistributePopulation distributePopCmd(map, shuffledTiles, populationPool, employmentPool, 
                          popTotal, birthRate, deathRate, population, taxPolicy->getTaxRate());
 
     // Execute the command
@@ -223,7 +215,8 @@ void City::update(float dt)
     // Executes the command, calling CDReceiver's update
     command.execute(); 
 
-    //Other Commands needs implementing 
+    SatisfactionCalculator sCalc(map,  taxPolicy->getTaxPolicy(), population, satisfaction);
+    sCalc.execute();
 
     
     

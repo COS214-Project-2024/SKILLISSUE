@@ -1,17 +1,15 @@
-#ifndef SD_RECEIVER_H
-#define SD_RECEIVER_H
+#ifndef SC_RECEIVER_H
+#define SC_RECEIVER_H
 
 #include "Map.h"
 #include "Tile.h"
 #include <vector>
 
-class SCReceiver {
-
+class SCReceiver 
+{
 public:
-    
     SCReceiver();
-
-    void Calculate(Map* map, std::vector<int>& shuffledTiles,std::string taxtype);
+    void Calculate(Map* map, std::string taxtype, double population, double& satisfaction);
 
 };
 

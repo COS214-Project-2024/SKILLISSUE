@@ -55,8 +55,6 @@ public:
     void consumeResource(ResourceType resource, int amount);
     void setMaxResource(ResourceType resource, int amount);
 
-    int satisfaction;
-
     AnimationHandler animHandler;
     sf::Sprite sprite;
 

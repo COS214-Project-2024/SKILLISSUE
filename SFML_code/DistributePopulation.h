@@ -1,10 +1,11 @@
-#ifndef DISTRIBUTE_POPULATION_H
-#define DISTRIBUTE_POPULATION_H
+#ifndef DISTRIBUTEPOPULATION_H
+#define DISTRIBUTEPOPULATION_H
 
 #include "Command.h"   // Make sure to include the Command header
 #include "DReceiver.h"
 
-class DistributePopulation : public Command {
+class DistributePopulation : public Command 
+{
 private:
     DReceiver receiver;
     Map* map;
