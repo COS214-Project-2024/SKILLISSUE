@@ -43,20 +43,6 @@ class CityMediator{
     CityMediator(City* city);
 
     /**
-     * @brief Assigns a city to the mediator.
-     * 
-     * @param city Pointer to the City object to be managed by this mediator.
-     */
-    void setCity(City* city);
-
-    /**
-     * @brief Retrieves a copy of the current city.
-     * 
-     * @param city Reference to the City object to populate with the current city data.
-     */
-    void getCity(City city);
-
-    /**
      * @brief Notifies the mediator of a change in a specific tile.
      * 
      * This function processes notifications from tiles, adjusting city services or
