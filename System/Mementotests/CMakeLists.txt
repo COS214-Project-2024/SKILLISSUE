@@ -33,7 +33,14 @@ add_executable(MementoTestExe
     ../TaxPolicy.cpp
     ../Tile.cpp
     ../AnimationHandler.cpp
-    ../CDReceiver.cpp 
+    ../CDReceiver.cpp
+    ../DRReceiver.cpp
+    ../ResourceManager.cpp
+    ../DistributePopulation.cpp
+    ../SatisfactionCalculator.cpp
+    ../CreateAndDistributeGoods.cpp
+    ../Resources.cpp
+    ../SCReceiver.cpp
 )
 
 # Link the executable with Google Test, pthread, and SFML libraries
