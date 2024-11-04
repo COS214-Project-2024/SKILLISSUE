@@ -2,7 +2,7 @@
 #define CARETAKER_H
 
 #include "Memento.h"
-#include <stack>
+#include <deque>
 
 /**
  * @brief The Caretaker class is responsible for managing Memento objects,
@@ -10,13 +10,14 @@
  */
 class Caretaker {
 private:
-    std::stack<Memento*> mementos;  ///< Stack to store Memento objects for undo functionality
+    std::deque<Memento*> mementos;  ///< Stack to store Memento objects for undo functionality
 
 public:
     /**
      * @brief Destructor to clean up Mementos.
      * Releases all stored Mementos to prevent memory leaks.
      */
+    Caretaker();
     ~Caretaker();
 
     /**
