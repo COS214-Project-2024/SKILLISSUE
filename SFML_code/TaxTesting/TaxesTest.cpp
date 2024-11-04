@@ -6,6 +6,9 @@
 const double TOLERANCE = 1e-4; // used to account for floating point errors
 
 // Tests for low tax
+/**
+ * @brief Test to verify that low tax taxes the correct amount (5%)
+ */
 TEST(LowTaxTest, CalculateTax)
 {
     LowTax taxPolicy;
@@ -14,12 +17,18 @@ TEST(LowTaxTest, CalculateTax)
     EXPECT_NEAR(taxPolicy.calculateTax(revenue), expected, TOLERANCE);
 }
 
+/**
+ * @brief Test to verify the getter of tax rate for low tax
+ */
 TEST(LowTaxTest, GetTaxRate)
 {
     LowTax taxPolicy;
     EXPECT_NEAR(taxPolicy.getTaxRate(), 0.05, TOLERANCE);
 }
 
+/**
+ * @brief Test to verify the getter of tax policy for low tax
+ */
 TEST(LowTaxTest, GetTaxPolicy)
 {
     LowTax taxPolicy;
