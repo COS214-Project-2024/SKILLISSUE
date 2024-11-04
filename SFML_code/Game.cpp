@@ -7,7 +7,7 @@
 void Game::loadFonts()
 {
     sf::Font font;
-    font.loadFromFile("../Data/font.ttf");
+    font.loadFromFile("../Data/media/font.ttf");
     this->fonts["main_font"] = font;
 
     return;
@@ -50,23 +50,23 @@ void Game::loadTiles()
 
 void Game::loadTextures()
 {
-    texmgr.loadTexture("grass",         "../Data/grass.png");
-    texmgr.loadTexture("forest",        "../Data/forest.png");
-    texmgr.loadTexture("water",         "../Data/water.png");
-    texmgr.loadTexture("residential",   "../Data/residential.png");
-    texmgr.loadTexture("commercial",    "../Data/commercial.png");
-    texmgr.loadTexture("industrial",    "../Data/industrial.png");
-    texmgr.loadTexture("landmark",      "../Data/landmarks.png");
-    texmgr.loadTexture("road",          "../Data/road.png");
-    texmgr.loadTexture("firestation",   "../Data/firestation.png");
-    texmgr.loadTexture("hospital",      "../Data/hospitals.png");
-    texmgr.loadTexture("powerplant",    "../Data/powerplants.png");    
-    texmgr.loadTexture("sewageplant",   "../Data/sewageplants.png");
-    texmgr.loadTexture("powerplant",    "../Data/powerplants.png");
-    texmgr.loadTexture("wastemanagement","../Data/wastemanagement.png");
-    texmgr.loadTexture("waterplant","../Data/waterplants.png");
+    texmgr.loadTexture("grass",         "../Data/media/grass.png");
+    texmgr.loadTexture("forest",        "../Data/media/forest.png");
+    texmgr.loadTexture("water",         "../Data/media/water.png");
+    texmgr.loadTexture("residential",   "../Data/media/residential.png");
+    texmgr.loadTexture("commercial",    "../Data/media/commercial.png");
+    texmgr.loadTexture("industrial",    "../Data/media/industrial.png");
+    texmgr.loadTexture("landmark",      "../Data/media/landmarks.png");
+    texmgr.loadTexture("road",          "../Data/media/road.png");
+    texmgr.loadTexture("firestation",   "../Data/media/firestation.png");
+    texmgr.loadTexture("hospital",      "../Data/media/hospitals.png");
+    texmgr.loadTexture("powerplant",    "../Data/media/powerplants.png");    
+    texmgr.loadTexture("sewageplant",   "../Data/media/sewageplants.png");
+    texmgr.loadTexture("powerplant",    "../Data/media/powerplants.png");
+    texmgr.loadTexture("wastemanagement","../Data/media/wastemanagement.png");
+    texmgr.loadTexture("waterplant","../Data/media/waterplants.png");
  
-    texmgr.loadTexture("background",    "../Data/background.png");
+    texmgr.loadTexture("background",    "../Data/media/background.png");
 }
 
 void Game::loadFactories()
