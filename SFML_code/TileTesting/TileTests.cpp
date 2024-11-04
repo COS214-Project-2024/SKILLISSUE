@@ -46,6 +46,9 @@ TEST_F(TileTest, ProduceResource)
 }
 
 // Test: Setting Max Resources
+/**
+ * @brief Test to verify max resource setter functions work as intended
+ */
 TEST_F(TileTest, SetMaxResource)
 {
     tile->setMaxResource(ResourceType::ELECTRICITY, 80);
@@ -61,6 +64,9 @@ TEST_F(TileTest, SetMaxResource)
 TEST_F(TileTest, GetCost) { EXPECT_EQ(tile->getCost(), "100"); }
 
 // Test: Cloning
+/**
+ * @brief Test to verify cloning functions work as intended
+ */
 TEST_F(TileTest, Clone)
 {
     Tile* clone = tile->clone();
