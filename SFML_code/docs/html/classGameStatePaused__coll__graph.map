@@ -1,6 +1,0 @@
-<map id="GameStatePaused" name="GameStatePaused">
-<area shape="rect" id="node1" title="Represents the paused state of the game." alt="" coords="5,273,147,300"/>
-<area shape="rect" id="node2" href="$classGameState.html" title="Abstract base class representing a state in the game." alt="" coords="29,184,123,211"/>
-<area shape="rect" id="node3" href="$classGame.html" title="Manages the main game loop, state stack, and resources." alt="" coords="45,95,107,121"/>
-<area shape="rect" id="node4" href="$classTextureManager.html" title="Manages loading and retrieving textures for use in the simulation." alt="" coords="13,5,139,32"/>
-</map>

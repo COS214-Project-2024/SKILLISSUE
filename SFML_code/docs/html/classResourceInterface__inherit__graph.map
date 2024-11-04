@@ -1,4 +1,0 @@
-<map id="ResourceInterface" name="ResourceInterface">
-<area shape="rect" id="node1" title="An abstract interface for resource management operations." alt="" coords="5,5,145,32"/>
-<area shape="rect" id="node2" href="$classResourceManager.html" title="Manages access and consumption of various resources." alt="" coords="6,80,145,107"/>
-</map>

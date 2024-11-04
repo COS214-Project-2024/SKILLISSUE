@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCommand.html" title="Abstract base class for implementing commands in a command pattern." alt="" coords="5,81,95,108"/>
-<area shape="rect" id="node2" href="$classCreateAndDistributeGoods.html" title="Command for creating and distributing goods across the map." alt="" coords="143,5,337,32"/>
-<area shape="rect" id="node3" href="$classDistributePopulation.html" title="Command for distributing population across the map." alt="" coords="163,56,317,83"/>
-<area shape="rect" id="node4" href="$classDistributeResources.html" title="Command for distributing resources across the map." alt="" coords="163,107,317,133"/>
-<area shape="rect" id="node5" href="$classSatisfactionCalculator.html" title="Command class responsible for calculating the satisfaction level of the population." alt="" coords="157,157,323,184"/>
-</map>

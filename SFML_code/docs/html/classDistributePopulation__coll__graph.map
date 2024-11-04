@@ -1,6 +1,0 @@
-<map id="DistributePopulation" name="DistributePopulation">
-<area shape="rect" id="node1" title="Command for distributing population across the map." alt="" coords="67,95,222,121"/>
-<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for implementing commands in a command pattern." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node3" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="119,5,170,32"/>
-<area shape="rect" id="node4" href="$classDReceiver.html" title="Handles population distribution within the map." alt="" coords="195,5,284,32"/>
-</map>

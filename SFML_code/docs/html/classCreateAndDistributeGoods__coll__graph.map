@@ -1,6 +1,0 @@
-<map id="CreateAndDistributeGoods" name="CreateAndDistributeGoods">
-<area shape="rect" id="node1" title="Command for creating and distributing goods across the map." alt="" coords="47,95,242,121"/>
-<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for implementing commands in a command pattern." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node3" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="119,5,170,32"/>
-<area shape="rect" id="node4" href="$classCDReceiver.html" title="Handles the creation and distribution of goods across a map, using tax and revenue calculations." alt="" coords="194,5,293,32"/>
-</map>

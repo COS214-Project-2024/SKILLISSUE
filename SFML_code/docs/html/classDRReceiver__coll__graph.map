@@ -1,5 +1,0 @@
-<map id="DRReceiver" name="DRReceiver">
-<area shape="rect" id="node1" title="Handles the distribution of resources across the map." alt="" coords="26,171,125,197"/>
-<area shape="rect" id="node2" href="$classResourceManager.html" title="Manages access and consumption of various resources." alt="" coords="6,81,145,108"/>
-<area shape="rect" id="node3" href="$classResourceInterface.html" title="An abstract interface for resource management operations." alt="" coords="5,5,145,32"/>
-</map>

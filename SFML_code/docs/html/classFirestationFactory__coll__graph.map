@@ -1,4 +1,0 @@
-<map id="FirestationFactory" name="FirestationFactory">
-<area shape="rect" id="node1" title="Factory class for creating Firestation tiles." alt="" coords="5,80,144,107"/>
-<area shape="rect" id="node2" href="$classTileFactory.html" title="Abstract base factory class for creating Tile objects." alt="" coords="28,5,121,32"/>
-</map>
