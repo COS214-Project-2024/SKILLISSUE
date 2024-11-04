@@ -1,7 +1,0 @@
-<map id="CityMediator" name="CityMediator">
-<area shape="rect" id="node1" title="Acts as a mediator for coordinating actions within the city." alt="" coords="5,5,112,32"/>
-<area shape="rect" id="node2" href="$classCity.html" title="Represents a city with its population, tax policies, and economic properties." alt="" coords="172,95,220,121"/>
-<area shape="rect" id="node3" href="$classTaxPolicy.html" title="Abstract base class for tax policy implementations." alt="" coords="155,5,237,32"/>
-<area shape="rect" id="node4" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="267,5,317,32"/>
-<area shape="rect" id="node5" href="$classCaretaker.html" title="The Caretaker class is responsible for managing Memento objects, allowing state saving and restoratio..." alt="" coords="341,5,427,32"/>
-</map>

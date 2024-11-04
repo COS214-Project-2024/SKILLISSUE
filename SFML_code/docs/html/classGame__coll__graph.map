@@ -1,4 +1,0 @@
-<map id="Game" name="Game">
-<area shape="rect" id="node1" title="Manages the main game loop, state stack, and resources." alt="" coords="38,95,99,121"/>
-<area shape="rect" id="node2" href="$classTextureManager.html" title="Manages loading and retrieving textures for use in the simulation." alt="" coords="5,5,132,32"/>
-</map>

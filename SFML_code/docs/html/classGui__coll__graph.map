@@ -1,6 +1,0 @@
-<map id="Gui" name="Gui">
-<area shape="rect" id="node1" title="Represents a graphical user interface (GUI) element for menus and interactive lists." alt="" coords="193,95,237,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="164,5,267,32"/>
-<area shape="rect" id="node4" href="$classGuiStyle.html" title="Represents the visual styling for GUI elements." alt="" coords="291,5,369,32"/>
-</map>

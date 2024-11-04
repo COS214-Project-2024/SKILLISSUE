@@ -1,4 +1,0 @@
-<map id="WaterPlant" name="WaterPlant">
-<area shape="rect" id="node1" title="Represents a water treatment plant tile in the simulation." alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node2" href="$classTile.html" title="Base class representing a single tile in the simulation." alt="" coords="29,5,75,32"/>
-</map>

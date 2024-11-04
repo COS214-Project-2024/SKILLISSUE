@@ -1,4 +1,0 @@
-<map id="Road" name="Road">
-<area shape="rect" id="node1" title="Represents a road tile in the simulation." alt="" coords="5,80,60,107"/>
-<area shape="rect" id="node2" href="$classTile.html" title="Base class representing a single tile in the simulation." alt="" coords="9,5,56,32"/>
-</map>
