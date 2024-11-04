@@ -4,10 +4,10 @@
 DRReceiver::DRReceiver()
 {}
 
-void DRReceiver::Distribute(Map* map, std::vector<int>& shuffledTiles)
+void DRReceiver::Distribute(Map* map)
 {
     for (int i = 0; i < map->tiles.size(); ++i) {
-        Tile* tile = map->tiles[shuffledTiles[i]];
+        Tile* tile = map->tiles[i];
         if (tile && tile->tileType == TileType::POWERPLANT)
         {
             tile->produceResource(ResourceType::ELECTRICITY, tile->maxProduction);
@@ -27,13 +27,13 @@ void DRReceiver::Distribute(Map* map, std::vector<int>& shuffledTiles)
     }
 
     for (int i = 0; i < map->tiles.size(); ++i) {
-        Tile* tile = map->tiles[shuffledTiles[i]];
+        Tile* tile = map->tiles[i];
         if (tile && (tile->tileType == TileType::INDUSTRIAL || tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::RESIDENTIAL ||
                     tile->tileType == TileType::FIRESTATION || tile->tileType == TileType::HOSPITAL || tile->tileType == TileType::LANDMARK)) {
             if(tile->resources[ResourceType::ELECTRICITY] <= 0)
             {
                 tile->notify(TileType::POWERPLANT);
-                std::cout << tile->resources[ResourceType::ELECTRICITY] << '\n';
+                // std::cout << tile->resources[ResourceType::ELECTRICITY] << '\n';
             }
             if(tile->resources[ResourceType::WATER] <= 0)
             {
@@ -66,7 +66,7 @@ void DRReceiver::Distribute(Map* map, std::vector<int>& shuffledTiles)
     double wasteUsed = 0;
 
     for (int i = 0; i < map->tiles.size(); ++i) {
-        Tile* tile = map->tiles[shuffledTiles[i]];
+        Tile* tile = map->tiles[i];
         if (tile && (tile->tileType == TileType::INDUSTRIAL || tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::RESIDENTIAL ||
                     tile->tileType == TileType::FIRESTATION || tile->tileType == TileType::HOSPITAL || tile->tileType == TileType::LANDMARK)) 
         {
@@ -108,10 +108,41 @@ void DRReceiver::Distribute(Map* map, std::vector<int>& shuffledTiles)
     proxy.setSewageConsumption(sewageConsumed);
     proxy.setWasteConsumption(wasteConsumed);
 
-    proxy.setPowerUsage((powerUsed/powerProduced)*100.0);
-    proxy.setWaterUsage((waterUsed/waterProduced)*100.0);
-    proxy.setSewageUsage((sewageUsed/sewageProduced)*100.0);
-    proxy.setWasteUsage((wasteUsed/wasteProduced)*100.0);
+    if(powerProduced == 0)
+    {
+        proxy.setPowerUsage(0);
+    }
+    else
+    {
+        proxy.setPowerUsage((powerUsed/powerProduced)*100.0);
+    }
+
+    if(waterProduced == 0)
+    {
+        proxy.setWaterUsage(0);
+    }
+    else
+    {
+        proxy.setWaterUsage((waterUsed/waterProduced)*100.0);
+    }
+
+    if(sewageProduced == 0)
+    {
+        proxy.setSewageUsage(0);
+    }
+    else
+    {
+        proxy.setSewageUsage((sewageUsed/sewageProduced)*100.0);
+    }
+
+    if(wasteProduced == 0)
+    {
+        proxy.setWasteUsage(0);
+    }
+    else
+    {
+        proxy.setWasteUsage((wasteUsed/wasteProduced)*100.0);
+    }
 
     // std::cout << powerUsed << '\n';
     // std::cout << (powerUsed/powerProduced)*100.0 << '\n';
@@ -119,7 +150,7 @@ void DRReceiver::Distribute(Map* map, std::vector<int>& shuffledTiles)
 
 
     for (int i = 0; i < map->tiles.size(); ++i) {
-        Tile* tile = map->tiles[shuffledTiles[i]];
+        Tile* tile = map->tiles[i];
         if (tile && (tile->tileType == TileType::INDUSTRIAL || tile->tileType == TileType::COMMERCIAL || tile->tileType == TileType::RESIDENTIAL ||
                     tile->tileType == TileType::FIRESTATION || tile->tileType == TileType::HOSPITAL || tile->tileType == TileType::LANDMARK)) {
             tile->consumeResource(ResourceType::ELECTRICITY, tile->consumption);

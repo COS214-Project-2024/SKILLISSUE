@@ -16,7 +16,7 @@ public:
     ResourceManager proxy;
 
     DRReceiver();
-    void Distribute(Map* map, std::vector<int>& shuffledTiles);
+    void Distribute(Map* map);
 };
 
 #endif // D_RECEIVER_H

@@ -72,7 +72,7 @@ void ResourceManager::setWasteConsumption(int value) {
 
 void ResourceManager::setWaterUsage(double value) {
   // must set positive amount and must be greater than current amount
-  if (value >= 0) {
+  if (value >= 0 && value <=100) {
     Resources::getResourcesInstance().setWaterUsage(value);
     return;
   }
@@ -80,7 +80,7 @@ void ResourceManager::setWaterUsage(double value) {
 
 void ResourceManager::setPowerUsage(double value) {
   // must set positive amount and must be greater than current amount
-  if (value >= 0) {
+  if (value >= 0 && value <=100) {
     Resources::getResourcesInstance().setPowerUsage(value);
     return;
   }
@@ -88,7 +88,7 @@ void ResourceManager::setPowerUsage(double value) {
 
 void ResourceManager::setSewageUsage(double value) {
   // must set positive amount and must be greater than current amount
-  if (value >= 0) {
+  if (value >= 0 && value <=100) {
     Resources::getResourcesInstance().setSewageUsage(value);
     return;
   }
@@ -96,7 +96,7 @@ void ResourceManager::setSewageUsage(double value) {
 
 void ResourceManager::setWasteUsage(double value) {
   // must set positive amount 
-  if (value >= 0) {
+  if (value >= 0 && value <=100) {
     Resources::getResourcesInstance().setWasteUsage(value);
     return;
   }

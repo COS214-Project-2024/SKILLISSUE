@@ -11,7 +11,7 @@ void SCReceiver::Calculate(Map* map, std::string taxtype, double population, dou
         satisfaction += tile->getSatisfaction();
     }
 
-    satisfaction = (satisfaction/(population*10.0))*100.0;
+    satisfaction = (satisfaction/(population*25.0))*100.0;
     if(taxtype == "low")
     {
         satisfaction *= 0.95;
@@ -23,6 +23,11 @@ void SCReceiver::Calculate(Map* map, std::string taxtype, double population, dou
     else if(taxtype == "high")
     {
         satisfaction *= 0.70;
+    }
+
+    if(satisfaction > 100)
+    {
+        satisfaction = 100;
     }
 
 }

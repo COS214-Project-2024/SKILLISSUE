@@ -215,7 +215,7 @@ void City::update(float dt)
     SatisfactionCalculator sCalc(map,  getTaxPolicy(), population, satisfaction);
     sCalc.execute();
 
-    DistributeResources DR(map, shuffledTiles);
+    DistributeResources DR(map);
     DR.execute();
 
 

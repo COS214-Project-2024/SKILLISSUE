@@ -8,6 +8,7 @@
 #include "MidTax.h"
 #include "HighTax.h"
 #include "ResourceManager.h"
+#include "DistributeResources.h"
 #include <bits/basic_string.h>
 #include <iostream>
 
@@ -48,6 +49,10 @@ void GameStateEditor::update(const float dt)
 {
 	if(paused)
 	{
+		DistributeResources DR(this->city.map);
+    	DR.execute();
+
+
 		/* Update the info bar at the bottom of the screen */
 		this->guiSystem.at("infoBar").setEntryText(0, "Day: " + std::to_string(this->city.day));
 		this->guiSystem.at("infoBar").setEntryText(1, "$" + std::to_string(long(this->city.funds)));

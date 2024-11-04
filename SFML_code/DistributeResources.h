@@ -9,10 +9,9 @@ private:
     DRReceiver receiver;
 
     Map* map;
-    std::vector<int>& shuffledTiles;
 
 public:
-    DistributeResources(Map* map, std::vector<int>& shuffledTiles);
+    DistributeResources(Map* map);
     void execute();
 };
 
