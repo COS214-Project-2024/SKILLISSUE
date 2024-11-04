@@ -30,7 +30,7 @@ enum class TileType
 
 enum class ResourceType
 {
-    ELECTRCITY,
+    ELECTRICITY,
     WATER,
     SEWAGE,
     WASTE
@@ -51,6 +51,7 @@ public:
     
     std::map<ResourceType,int> resources;
     std::map<ResourceType,int> maxResources; //defaults to 100 each
+    
     void produceResource(ResourceType resource, int amount);
     void consumeResource(ResourceType resource, int amount);
     void setMaxResource(ResourceType resource, int amount);
@@ -84,12 +85,16 @@ public:
     /* satisfaction of building */
     double satisfaction;
 
+    int consumption;
+
+    int maxProduction;
+
     /* Constructor */
     Tile() {}
     Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
          const std::vector<Animation> &animations,
          const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-         const unsigned int maxLevels, double satisfaction);
+         const unsigned int maxLevels, double satisfaction, int consumption, int maxProduction);
 
     void draw(sf::RenderWindow &window, float dt);
 

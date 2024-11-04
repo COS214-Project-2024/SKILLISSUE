@@ -8,7 +8,7 @@
 Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &texture,
      const std::vector<Animation> &animations,
      const TileType tileType, const unsigned int cost, const unsigned int maxPopPerLevel,
-     const unsigned int maxLevels, double satisfaction)
+     const unsigned int maxLevels, double satisfaction, int consumption, int maxProduction)
 {
     this->tileType = tileType;
     this->tileVariant = 0;
@@ -30,17 +30,20 @@ Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &
     }
     this->animHandler.update(0.0f);
 
-    this->resources[ResourceType::ELECTRCITY] = 0;
+    this->resources[ResourceType::ELECTRICITY] = 0;
     this->resources[ResourceType::WATER] = 0;
     this->resources[ResourceType::SEWAGE] = 0;
     this->resources[ResourceType::WASTE] = 0;
 
-    this->maxResources[ResourceType::ELECTRCITY] = 100;
-    this->maxResources[ResourceType::WATER] = 100;
-    this->maxResources[ResourceType::SEWAGE] = 100;
-    this->maxResources[ResourceType::WASTE] = 100;
+    this->maxResources[ResourceType::ELECTRICITY] = maxProduction;
+    this->maxResources[ResourceType::WATER] = maxProduction;
+    this->maxResources[ResourceType::SEWAGE] = maxProduction;
+    this->maxResources[ResourceType::WASTE] = maxProduction;
 
-    this->resourceMapping[ResourceType::ELECTRCITY] = TileType::POWERPLANT;
+    this->consumption = consumption;
+    this->maxProduction = maxProduction;
+
+    this->resourceMapping[ResourceType::ELECTRICITY] = TileType::POWERPLANT;
     this->resourceMapping[ResourceType::WATER] = TileType::WATERPLANT;
     this->resourceMapping[ResourceType::SEWAGE] = TileType::SEWAGEPLANT;
     this->resourceMapping[ResourceType::WASTE] = TileType::WASTEMANAGEMENT;
@@ -67,6 +70,25 @@ Tile::Tile(Tile* tile)
     this->animHandler.frameSize = tile->animHandler.frameSize;
     this->animHandler = tile->animHandler;
     this->animHandler.update(0.0f);
+
+    this->resources[ResourceType::ELECTRICITY] = 0;
+    this->resources[ResourceType::WATER] = 0;
+    this->resources[ResourceType::SEWAGE] = 0;
+    this->resources[ResourceType::WASTE] = 0;
+
+    this->maxResources[ResourceType::ELECTRICITY] = tile->maxProduction;
+    this->maxResources[ResourceType::WATER] = tile->maxProduction;
+    this->maxResources[ResourceType::SEWAGE] = tile->maxProduction;
+    this->maxResources[ResourceType::WASTE] = tile->maxProduction;
+
+    this->consumption = tile->consumption;
+    this->maxProduction = tile->maxProduction;
+
+    this->resourceMapping[ResourceType::ELECTRICITY] = TileType::POWERPLANT;
+    this->resourceMapping[ResourceType::WATER] = TileType::WATERPLANT;
+    this->resourceMapping[ResourceType::SEWAGE] = TileType::SEWAGEPLANT;
+    this->resourceMapping[ResourceType::WASTE] = TileType::WASTEMANAGEMENT;
+
 }
 
 Tile* Tile::clone()
@@ -167,11 +189,13 @@ double Tile::getSatisfaction(){
 }
 void Tile::produceResource(ResourceType resource, int amount){
 
-    if(maxResources[resource] == resources[resource]){
-        return;
+    if(maxResources[resource] - resources[resource] < amount){
+        resources[resource] += maxResources[resource] - resources[resource];
     }
-
-    resources[resource] += amount;
+    else 
+    {
+        resources[resource] += amount;
+    }
 }
 
 void Tile::consumeResource(ResourceType resource, int amount){
@@ -179,6 +203,7 @@ void Tile::consumeResource(ResourceType resource, int amount){
     //Ask for more resources
     if(resources[resource] == 0){
         mediator->notify(this, resourceMapping[resource]);
+        return;
     } 
 
     resources[resource] -= amount;
