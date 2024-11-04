@@ -19,6 +19,9 @@ protected:
 };
 
 // Test: Satisfaction Methods
+/**
+ * @brief Test to verify satisfaction functions work as intended
+ */
 TEST_F(TileTest, SatisfactionManagement)
 {
     tile->addSatisfaction(10.0);
