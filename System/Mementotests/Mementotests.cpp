@@ -1,6 +1,13 @@
 #include <gtest/gtest.h>
-#include "Memento.h"
-#include "Map.h"
+#include "../Memento.h"
+#include "../Map.h"
+#include "../DRReceiver.h"
+#include "../ResourceManager.h"
+#include "../DistributePopulation.h"
+#include "../SatisfactionCalculator.h"
+#include "../CreateAndDistributeGoods.h"
+#include "../Resources.h"
+#include "../SCReceiver.h"
 
 /**
  * @brief Test to verify Memento class member initialization and getters.
