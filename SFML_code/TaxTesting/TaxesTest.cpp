@@ -37,7 +37,7 @@ TEST(LowTaxTest, GetTaxPolicy)
 
 // Tests for mid tax
 /**
- * @brief Test to verify that mid tax taxes the correct amount (5%)
+ * @brief Test to verify that mid tax taxes the correct amount (10%)
  */
 TEST(MidTaxTest, CalculateTax)
 {
@@ -66,6 +66,9 @@ TEST(MidTaxTest, GetTaxPolicy)
 }
 
 // Tests for high tax
+/**
+ * @brief Test to verify that high tax taxes the correct amount (25%)
+ */
 TEST(HighTaxTest, CalculateTax)
 {
     HighTax taxPolicy;
@@ -74,12 +77,18 @@ TEST(HighTaxTest, CalculateTax)
     EXPECT_NEAR(taxPolicy.calculateTax(revenue), expectedTax, TOLERANCE);
 }
 
+/**
+ * @brief Test to verify the getter of tax rate for high tax
+ */
 TEST(HighTaxTest, GetTaxRate)
 {
     HighTax taxPolicy;
     EXPECT_NEAR(taxPolicy.getTaxRate(), 0.25, TOLERANCE);
 }
 
+/**
+ * @brief Test to verify the getter of tax policy for high tax
+ */
 TEST(HighTaxTest, GetTaxPolicy)
 {
     HighTax taxPolicy;
