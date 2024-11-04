@@ -1,0 +1,243 @@
+\hypertarget{classMemento}{}\doxysection{Memento Class Reference}
+\label{classMemento}\index{Memento@{Memento}}
+
+
+The \mbox{\hyperlink{classMemento}{Memento}} class stores the state of a \mbox{\hyperlink{classCity}{City}}, allowing it to be saved and restored.  
+
+
+
+
+{\ttfamily \#include $<$Memento.\+h$>$}
+
+
+
+Collaboration diagram for Memento\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=143pt]{classMemento__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMemento_a5594faf1372c3e48d64c49a5df00baf7}{Memento}} (double \mbox{\hyperlink{classMemento_a528643cec1ff461b5d8091c59cf70dd3}{population\+Pool}}, double \mbox{\hyperlink{classMemento_a483402819111ff2a78b1e00cef90f946}{employment\+Pool}}, double \mbox{\hyperlink{classMemento_a9355d4c04555536c045668ecc34f4f22}{population}}, double \mbox{\hyperlink{classMemento_ae3eb939c7587721f20b5fa1dfdf4c94d}{employable}}, double \mbox{\hyperlink{classMemento_abdb169ef7315a75562517a16c2dae62c}{satisfaction}}, double \mbox{\hyperlink{classMemento_a6badff9a4c47dcda2770750f747900eb}{earnings}}, double \mbox{\hyperlink{classMemento_adeb8054b2d985dd1f762db8432ababfd}{funds}}, int \mbox{\hyperlink{classMemento_aa9862357e7d4f724e1caa3a09a66dfae}{day}}, \mbox{\hyperlink{classMap}{Map}} $\ast$\mbox{\hyperlink{classMemento_aa7f291b9f22b4f4362b65bd804cabc31}{map}}=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMemento}{Memento}} class. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_a9a2a7fc5427269b75935becef5379427}{get\+Population\+Pool}} () const
+\begin{DoxyCompactList}\small\item\em Gets the population pool of the city. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_aa9bb4bd70d0f7e3868bb3647c101f209}{get\+Employment\+Pool}} () const
+\begin{DoxyCompactList}\small\item\em Gets the employment pool of the city. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_adf87454e956e594bb440dc1afbfea781}{get\+Population}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current population count of the city. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_a763a3d2751acbd3fa03f672d80566489}{get\+Employable}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of employable citizens in the city. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_abc957d2697f3942c785f03704861b173}{get\+Satisfaction}} () const
+\begin{DoxyCompactList}\small\item\em Gets the satisfaction level of the city\textquotesingle{}s citizens. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_aced8d6b10fbfa4cc7c97668abc6b0bcc}{get\+Earnings}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current earnings of the city. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMemento_a73346e1d046a2428daa7cae43fd31a4b}{get\+Funds}} () const
+\begin{DoxyCompactList}\small\item\em Gets the available funds of the city. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMemento_ad5d56d169c95d5790e8e6d4d6f0e37b1}{get\+Day}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current day in the simulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classMemento_a6c8ec6db4e5f36fc62e609d3ce115056}{get\+Map}} () const
+\begin{DoxyCompactList}\small\item\em Gets the map of the city. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMemento_a528643cec1ff461b5d8091c59cf70dd3}\label{classMemento_a528643cec1ff461b5d8091c59cf70dd3}} 
+double \mbox{\hyperlink{classMemento_a528643cec1ff461b5d8091c59cf70dd3}{population\+Pool}}
+\begin{DoxyCompactList}\small\item\em Holds the current population pool of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_a483402819111ff2a78b1e00cef90f946}\label{classMemento_a483402819111ff2a78b1e00cef90f946}} 
+double \mbox{\hyperlink{classMemento_a483402819111ff2a78b1e00cef90f946}{employment\+Pool}}
+\begin{DoxyCompactList}\small\item\em Holds the current employment pool of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_a9355d4c04555536c045668ecc34f4f22}\label{classMemento_a9355d4c04555536c045668ecc34f4f22}} 
+double \mbox{\hyperlink{classMemento_a9355d4c04555536c045668ecc34f4f22}{population}}
+\begin{DoxyCompactList}\small\item\em Current population count of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_ae3eb939c7587721f20b5fa1dfdf4c94d}\label{classMemento_ae3eb939c7587721f20b5fa1dfdf4c94d}} 
+double \mbox{\hyperlink{classMemento_ae3eb939c7587721f20b5fa1dfdf4c94d}{employable}}
+\begin{DoxyCompactList}\small\item\em Number of employable citizens in the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_abdb169ef7315a75562517a16c2dae62c}\label{classMemento_abdb169ef7315a75562517a16c2dae62c}} 
+double \mbox{\hyperlink{classMemento_abdb169ef7315a75562517a16c2dae62c}{satisfaction}}
+\begin{DoxyCompactList}\small\item\em Represents the satisfaction level of the city\textquotesingle{}s citizens. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_a6badff9a4c47dcda2770750f747900eb}\label{classMemento_a6badff9a4c47dcda2770750f747900eb}} 
+double \mbox{\hyperlink{classMemento_a6badff9a4c47dcda2770750f747900eb}{earnings}}
+\begin{DoxyCompactList}\small\item\em Current earnings of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_adeb8054b2d985dd1f762db8432ababfd}\label{classMemento_adeb8054b2d985dd1f762db8432ababfd}} 
+double \mbox{\hyperlink{classMemento_adeb8054b2d985dd1f762db8432ababfd}{funds}}
+\begin{DoxyCompactList}\small\item\em Total available funds of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_aa9862357e7d4f724e1caa3a09a66dfae}\label{classMemento_aa9862357e7d4f724e1caa3a09a66dfae}} 
+int \mbox{\hyperlink{classMemento_aa9862357e7d4f724e1caa3a09a66dfae}{day}}
+\begin{DoxyCompactList}\small\item\em Current simulation day. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMemento_aa7f291b9f22b4f4362b65bd804cabc31}\label{classMemento_aa7f291b9f22b4f4362b65bd804cabc31}} 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classMemento_aa7f291b9f22b4f4362b65bd804cabc31}{map}}
+\begin{DoxyCompactList}\small\item\em Pointer to the \mbox{\hyperlink{classMap}{Map}} object representing the city\textquotesingle{}s structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMemento_ae846dbcb201d2ebc3d90775e9b90d1fe}\label{classMemento_ae846dbcb201d2ebc3d90775e9b90d1fe}} 
+class \mbox{\hyperlink{classMemento_ae846dbcb201d2ebc3d90775e9b90d1fe}{City}}
+\begin{DoxyCompactList}\small\item\em Grant \mbox{\hyperlink{classCity}{City}} access to private members for state manipulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classMemento}{Memento}} class stores the state of a \mbox{\hyperlink{classCity}{City}}, allowing it to be saved and restored. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMemento_a5594faf1372c3e48d64c49a5df00baf7}\label{classMemento_a5594faf1372c3e48d64c49a5df00baf7}} 
+\index{Memento@{Memento}!Memento@{Memento}}
+\index{Memento@{Memento}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{Memento()}{Memento()}}
+{\footnotesize\ttfamily Memento\+::\+Memento (\begin{DoxyParamCaption}\item[{double}]{population\+Pool,  }\item[{double}]{employment\+Pool,  }\item[{double}]{population,  }\item[{double}]{employable,  }\item[{double}]{satisfaction,  }\item[{double}]{earnings,  }\item[{double}]{funds,  }\item[{int}]{day,  }\item[{\mbox{\hyperlink{classMap}{Map}} $\ast$}]{map = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classMemento}{Memento}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em population\+Pool} & Current population pool. \\
+\hline
+{\em employment\+Pool} & Current employment pool. \\
+\hline
+{\em population} & Current population count. \\
+\hline
+{\em employable} & Number of employable citizens. \\
+\hline
+{\em satisfaction} & Satisfaction level of the citizens. \\
+\hline
+{\em earnings} & Current earnings of the city. \\
+\hline
+{\em funds} & Available funds of the city. \\
+\hline
+{\em day} & Current day in the simulation. \\
+\hline
+{\em map} & Pointer to the \mbox{\hyperlink{classMap}{Map}} object representing the city\textquotesingle{}s structure. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMemento_ad5d56d169c95d5790e8e6d4d6f0e37b1}\label{classMemento_ad5d56d169c95d5790e8e6d4d6f0e37b1}} 
+\index{Memento@{Memento}!getDay@{getDay}}
+\index{getDay@{getDay}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getDay()}{getDay()}}
+{\footnotesize\ttfamily int Memento\+::get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current day in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+The day. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_aced8d6b10fbfa4cc7c97668abc6b0bcc}\label{classMemento_aced8d6b10fbfa4cc7c97668abc6b0bcc}} 
+\index{Memento@{Memento}!getEarnings@{getEarnings}}
+\index{getEarnings@{getEarnings}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getEarnings()}{getEarnings()}}
+{\footnotesize\ttfamily double Memento\+::get\+Earnings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current earnings of the city. 
+
+\begin{DoxyReturn}{Returns}
+The earnings. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_a763a3d2751acbd3fa03f672d80566489}\label{classMemento_a763a3d2751acbd3fa03f672d80566489}} 
+\index{Memento@{Memento}!getEmployable@{getEmployable}}
+\index{getEmployable@{getEmployable}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getEmployable()}{getEmployable()}}
+{\footnotesize\ttfamily double Memento\+::get\+Employable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of employable citizens in the city. 
+
+\begin{DoxyReturn}{Returns}
+The number of employable citizens. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_aa9bb4bd70d0f7e3868bb3647c101f209}\label{classMemento_aa9bb4bd70d0f7e3868bb3647c101f209}} 
+\index{Memento@{Memento}!getEmploymentPool@{getEmploymentPool}}
+\index{getEmploymentPool@{getEmploymentPool}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getEmploymentPool()}{getEmploymentPool()}}
+{\footnotesize\ttfamily double Memento\+::get\+Employment\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the employment pool of the city. 
+
+\begin{DoxyReturn}{Returns}
+The employment pool. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_a73346e1d046a2428daa7cae43fd31a4b}\label{classMemento_a73346e1d046a2428daa7cae43fd31a4b}} 
+\index{Memento@{Memento}!getFunds@{getFunds}}
+\index{getFunds@{getFunds}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getFunds()}{getFunds()}}
+{\footnotesize\ttfamily double Memento\+::get\+Funds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the available funds of the city. 
+
+\begin{DoxyReturn}{Returns}
+The available funds. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_a6c8ec6db4e5f36fc62e609d3ce115056}\label{classMemento_a6c8ec6db4e5f36fc62e609d3ce115056}} 
+\index{Memento@{Memento}!getMap@{getMap}}
+\index{getMap@{getMap}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getMap()}{getMap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMap}{Map}}$\ast$ Memento\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the map of the city. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the \mbox{\hyperlink{classMap}{Map}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_adf87454e956e594bb440dc1afbfea781}\label{classMemento_adf87454e956e594bb440dc1afbfea781}} 
+\index{Memento@{Memento}!getPopulation@{getPopulation}}
+\index{getPopulation@{getPopulation}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getPopulation()}{getPopulation()}}
+{\footnotesize\ttfamily double Memento\+::get\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current population count of the city. 
+
+\begin{DoxyReturn}{Returns}
+The population count. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_a9a2a7fc5427269b75935becef5379427}\label{classMemento_a9a2a7fc5427269b75935becef5379427}} 
+\index{Memento@{Memento}!getPopulationPool@{getPopulationPool}}
+\index{getPopulationPool@{getPopulationPool}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getPopulationPool()}{getPopulationPool()}}
+{\footnotesize\ttfamily double Memento\+::get\+Population\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the population pool of the city. 
+
+\begin{DoxyReturn}{Returns}
+The population pool. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMemento_abc957d2697f3942c785f03704861b173}\label{classMemento_abc957d2697f3942c785f03704861b173}} 
+\index{Memento@{Memento}!getSatisfaction@{getSatisfaction}}
+\index{getSatisfaction@{getSatisfaction}!Memento@{Memento}}
+\doxysubsubsection{\texorpdfstring{getSatisfaction()}{getSatisfaction()}}
+{\footnotesize\ttfamily double Memento\+::get\+Satisfaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the satisfaction level of the city\textquotesingle{}s citizens. 
+
+\begin{DoxyReturn}{Returns}
+The satisfaction level. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Memento.\+h\item 
+Memento.\+cpp\end{DoxyCompactItemize}

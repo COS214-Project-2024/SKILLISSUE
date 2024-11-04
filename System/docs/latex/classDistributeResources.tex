@@ -1,0 +1,96 @@
+\hypertarget{classDistributeResources}{}\doxysection{Distribute\+Resources Class Reference}
+\label{classDistributeResources}\index{DistributeResources@{DistributeResources}}
+
+
+\mbox{\hyperlink{classCommand}{Command}} for distributing resources across the map.  
+
+
+
+
+{\ttfamily \#include $<$Distribute\+Resources.\+h$>$}
+
+
+
+Inheritance diagram for Distribute\+Resources\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classDistributeResources__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Distribute\+Resources\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{classDistributeResources__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDistributeResources_a3f068f0a7148289284bc2c86ba1a7af5}{Distribute\+Resources}} (\mbox{\hyperlink{classMap}{Map}} $\ast$\mbox{\hyperlink{classDistributeResources_a83804ea3b7d08277565a4296463a2fa3}{map}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classDistributeResources}{Distribute\+Resources}} command with a specified map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDistributeResources_a03e7278874daa952d1b2023c133a6748}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the resource distribution command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDistributeResources_a3b61b883fec687bdc6575fd4da61ba81}\label{classDistributeResources_a3b61b883fec687bdc6575fd4da61ba81}} 
+\mbox{\hyperlink{classDRReceiver}{DRReceiver}} \mbox{\hyperlink{classDistributeResources_a3b61b883fec687bdc6575fd4da61ba81}{receiver}}
+\begin{DoxyCompactList}\small\item\em Receiver responsible for handling resource distribution logic. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDistributeResources_a83804ea3b7d08277565a4296463a2fa3}\label{classDistributeResources_a83804ea3b7d08277565a4296463a2fa3}} 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classDistributeResources_a83804ea3b7d08277565a4296463a2fa3}{map}}
+\begin{DoxyCompactList}\small\item\em Pointer to the map where resources are distributed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classCommand}{Command}} for distributing resources across the map. 
+
+The \mbox{\hyperlink{classDistributeResources}{Distribute\+Resources}} class is responsible for managing the distribution of resources by interacting with a \mbox{\hyperlink{classDRReceiver}{DRReceiver}} and updating the map as needed. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDistributeResources_a3f068f0a7148289284bc2c86ba1a7af5}\label{classDistributeResources_a3f068f0a7148289284bc2c86ba1a7af5}} 
+\index{DistributeResources@{DistributeResources}!DistributeResources@{DistributeResources}}
+\index{DistributeResources@{DistributeResources}!DistributeResources@{DistributeResources}}
+\doxysubsubsection{\texorpdfstring{DistributeResources()}{DistributeResources()}}
+{\footnotesize\ttfamily Distribute\+Resources\+::\+Distribute\+Resources (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMap}{Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classDistributeResources}{Distribute\+Resources}} command with a specified map. 
+
+Initializes a command for resource distribution, specifying the map to which resources will be distributed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & Pointer to the \mbox{\hyperlink{classMap}{Map}} object where resources will be distributed. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDistributeResources_a03e7278874daa952d1b2023c133a6748}\label{classDistributeResources_a03e7278874daa952d1b2023c133a6748}} 
+\index{DistributeResources@{DistributeResources}!execute@{execute}}
+\index{execute@{execute}!DistributeResources@{DistributeResources}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Distribute\+Resources\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the resource distribution command. 
+
+This method uses the receiver to distribute resources across the specified map, interacting with each tile as necessary. 
+
+Implements \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Distribute\+Resources.\+h\item 
+Distribute\+Resources.\+cpp\end{DoxyCompactItemize}

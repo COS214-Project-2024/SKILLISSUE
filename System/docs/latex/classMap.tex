@@ -1,0 +1,250 @@
+\hypertarget{classMap}{}\doxysection{Map Class Reference}
+\label{classMap}\index{Map@{Map}}
+
+
+Represents a map composed of tiles within the simulation.  
+
+
+
+
+{\ttfamily \#include $<$Map.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMap_a427f0540e20c5350ea86ca19876823f8}\label{classMap_a427f0540e20c5350ea86ca19876823f8}} 
+void \mbox{\hyperlink{classMap_a427f0540e20c5350ea86ca19876823f8}{select}} (sf\+::\+Vector2i start, sf\+::\+Vector2i end, std\+::vector$<$ Tile\+Type $>$ blacklist)
+\begin{DoxyCompactList}\small\item\em Array representing the number of regions by type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_ac5d4406c74a7c7260eacb6a687c6ea52}{clear\+Selected}} ()
+\begin{DoxyCompactList}\small\item\em Selects tiles within specified bounds that are not in the blacklist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_a24edf15b277a4dd4086fba448bc36454}{load}} (const std\+::string \&filename, unsigned int \mbox{\hyperlink{classMap_aa510a987349c68df39475a3a217bd733}{width}}, unsigned int \mbox{\hyperlink{classMap_a39bb864cb5e1d1e609396a2f3559602e}{height}}, std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&tile\+Atlas)
+\begin{DoxyCompactList}\small\item\em Loads the map from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_abc8d896b302f52efa0ee84140a8aa086}{save}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Saves the current map state to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_a7592f5a84825f8bf13d6b534b60a37b6}{draw}} (sf\+::\+Render\+Window \&window, float dt)
+\begin{DoxyCompactList}\small\item\em Draws the map onto the specified window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_aca5261c7c0e4f265d0f28c36584a83cc}{find\+Connected\+Regions}} (std\+::vector$<$ Tile\+Type $>$ whitelist, int type)
+\begin{DoxyCompactList}\small\item\em Checks if two positions in the map are connected through specified tile types. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMap_a2037741e32161397018bbbf243601709}{update\+Direction}} (Tile\+Type tile\+Type)
+\begin{DoxyCompactList}\small\item\em Updates the direction of directional tiles to ensure correct orientation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a0f5ad0fd4563497b4214038cbca8b582}\label{classMap_a0f5ad0fd4563497b4214038cbca8b582}} 
+\mbox{\hyperlink{classMap_a0f5ad0fd4563497b4214038cbca8b582}{Map}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor that initializes a blank map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMap_a65373773fb8f16f9d23ef887f99590f0}{Map}} (const std\+::string \&filename, unsigned int \mbox{\hyperlink{classMap_aa510a987349c68df39475a3a217bd733}{width}}, unsigned int \mbox{\hyperlink{classMap_a39bb864cb5e1d1e609396a2f3559602e}{height}}, std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&tile\+Atlas)
+\begin{DoxyCompactList}\small\item\em Constructor that loads a map from a specified file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classMap_a8bb31908bbbff3f84b17bc57d5f6e06a}{clone}} ()
+\begin{DoxyCompactList}\small\item\em Creates a clone of the current map object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMap_aa510a987349c68df39475a3a217bd733}\label{classMap_aa510a987349c68df39475a3a217bd733}} 
+unsigned int \mbox{\hyperlink{classMap_aa510a987349c68df39475a3a217bd733}{width}}
+\begin{DoxyCompactList}\small\item\em Width of the map in tiles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a39bb864cb5e1d1e609396a2f3559602e}\label{classMap_a39bb864cb5e1d1e609396a2f3559602e}} 
+unsigned int \mbox{\hyperlink{classMap_a39bb864cb5e1d1e609396a2f3559602e}{height}}
+\begin{DoxyCompactList}\small\item\em Height of the map in tiles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_aed046be00bb2ea81ada68185c7e44063}\label{classMap_aed046be00bb2ea81ada68185c7e44063}} 
+std\+::vector$<$ \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \mbox{\hyperlink{classMap_aed046be00bb2ea81ada68185c7e44063}{tiles}}
+\begin{DoxyCompactList}\small\item\em Vector of pointers to all tiles on the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a01af6639790f20ad9dcd4a4c79e4ab2e}\label{classMap_a01af6639790f20ad9dcd4a4c79e4ab2e}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classMap_a01af6639790f20ad9dcd4a4c79e4ab2e}{resources}}
+\begin{DoxyCompactList}\small\item\em Vector representing resource levels on each tile. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_ae6d8e7d8b38db743499cc83f5516c327}\label{classMap_ae6d8e7d8b38db743499cc83f5516c327}} 
+unsigned int \mbox{\hyperlink{classMap_ae6d8e7d8b38db743499cc83f5516c327}{tile\+Size}}
+\begin{DoxyCompactList}\small\item\em Size of each tile in pixels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a930a67a003913e4e10fb395683ea37fe}\label{classMap_a930a67a003913e4e10fb395683ea37fe}} 
+std\+::vector$<$ char $>$ \mbox{\hyperlink{classMap_a930a67a003913e4e10fb395683ea37fe}{selected}}
+\begin{DoxyCompactList}\small\item\em Selection status for tiles\+: 0 = Deselected, 1 = Selected, 2 = Invalid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a83d18cd47631c25f89781cca60afa019}\label{classMap_a83d18cd47631c25f89781cca60afa019}} 
+unsigned int \mbox{\hyperlink{classMap_a83d18cd47631c25f89781cca60afa019}{num\+Selected}}
+\begin{DoxyCompactList}\small\item\em Number of tiles currently selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMap_a24f83c29415931c9277caebee5383835}\label{classMap_a24f83c29415931c9277caebee5383835}} 
+unsigned int \mbox{\hyperlink{classMap_a24f83c29415931c9277caebee5383835}{num\+Regions}} \mbox{[}1\mbox{]}
+\begin{DoxyCompactList}\small\item\em Deselects all tiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMap_abf75d196f46b2372d906747c2e1b1059}{depthfirstsearch}} (std\+::vector$<$ Tile\+Type $>$ \&whitelist, sf\+::\+Vector2i pos, int label, int type)
+\begin{DoxyCompactList}\small\item\em Depth-\/first search helper function for region identification. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a map composed of tiles within the simulation. 
+
+The \mbox{\hyperlink{classMap}{Map}} class manages the grid of tiles, supports selection, drawing, loading, and saving, and performs operations to manage connectivity and direction of various tiles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMap_a65373773fb8f16f9d23ef887f99590f0}\label{classMap_a65373773fb8f16f9d23ef887f99590f0}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{Map()}{Map()}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{unsigned int}]{width,  }\item[{unsigned int}]{height,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&}]{tile\+Atlas }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that loads a map from a specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The file path from which to load the map. \\
+\hline
+{\em width} & Width of the map in tiles. \\
+\hline
+{\em height} & Height of the map in tiles. \\
+\hline
+{\em tile\+Atlas} & A map of tile names to \mbox{\hyperlink{classTile}{Tile}} objects used to populate the map. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMap_ac5d4406c74a7c7260eacb6a687c6ea52}\label{classMap_ac5d4406c74a7c7260eacb6a687c6ea52}} 
+\index{Map@{Map}!clearSelected@{clearSelected}}
+\index{clearSelected@{clearSelected}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{clearSelected()}{clearSelected()}}
+{\footnotesize\ttfamily void Map\+::clear\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Selects tiles within specified bounds that are not in the blacklist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting position of the selection. \\
+\hline
+{\em end} & Ending position of the selection. \\
+\hline
+{\em blacklist} & Vector of tile types to exclude from selection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_a8bb31908bbbff3f84b17bc57d5f6e06a}\label{classMap_a8bb31908bbbff3f84b17bc57d5f6e06a}} 
+\index{Map@{Map}!clone@{clone}}
+\index{clone@{clone}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMap}{Map}} $\ast$ Map\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a clone of the current map object. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly cloned \mbox{\hyperlink{classMap}{Map}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMap_abf75d196f46b2372d906747c2e1b1059}\label{classMap_abf75d196f46b2372d906747c2e1b1059}} 
+\index{Map@{Map}!depthfirstsearch@{depthfirstsearch}}
+\index{depthfirstsearch@{depthfirstsearch}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{depthfirstsearch()}{depthfirstsearch()}}
+{\footnotesize\ttfamily void Map\+::depthfirstsearch (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Tile\+Type $>$ \&}]{whitelist,  }\item[{sf\+::\+Vector2i}]{pos,  }\item[{int}]{label,  }\item[{int}]{type = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Depth-\/first search helper function for region identification. 
+
+This function performs a depth-\/first search to label connected regions of tiles that match types in the whitelist, assisting in connectivity checks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em whitelist} & A vector of tile types that can be traversed. \\
+\hline
+{\em pos} & The starting position of the search. \\
+\hline
+{\em label} & The label assigned to the connected region. \\
+\hline
+{\em type} & The type of region being searched. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_a7592f5a84825f8bf13d6b534b60a37b6}\label{classMap_a7592f5a84825f8bf13d6b534b60a37b6}} 
+\index{Map@{Map}!draw@{draw}}
+\index{draw@{draw}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Map\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+Draws the map onto the specified window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window where the map is rendered. \\
+\hline
+{\em dt} & Delta time for frame-\/based updates. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_aca5261c7c0e4f265d0f28c36584a83cc}\label{classMap_aca5261c7c0e4f265d0f28c36584a83cc}} 
+\index{Map@{Map}!findConnectedRegions@{findConnectedRegions}}
+\index{findConnectedRegions@{findConnectedRegions}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{findConnectedRegions()}{findConnectedRegions()}}
+{\footnotesize\ttfamily void Map\+::find\+Connected\+Regions (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Tile\+Type $>$}]{whitelist,  }\item[{int}]{type = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Checks if two positions in the map are connected through specified tile types. 
+
+Finds and labels connected regions based on traversable tile types in the whitelist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em whitelist} & Vector of tile types that can be traversed. \\
+\hline
+{\em type} & The type of connection being checked. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_a24edf15b277a4dd4086fba448bc36454}\label{classMap_a24edf15b277a4dd4086fba448bc36454}} 
+\index{Map@{Map}!load@{load}}
+\index{load@{load}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void Map\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{unsigned int}]{width,  }\item[{unsigned int}]{height,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&}]{tile\+Atlas }\end{DoxyParamCaption})}
+
+
+
+Loads the map from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The file path from which to load the map. \\
+\hline
+{\em width} & Width of the map in tiles. \\
+\hline
+{\em height} & Height of the map in tiles. \\
+\hline
+{\em tile\+Atlas} & A map of tile names to \mbox{\hyperlink{classTile}{Tile}} objects used to populate the map. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_abc8d896b302f52efa0ee84140a8aa086}\label{classMap_abc8d896b302f52efa0ee84140a8aa086}} 
+\index{Map@{Map}!save@{save}}
+\index{save@{save}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void Map\+::save (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Saves the current map state to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The file path where the map will be saved. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMap_a2037741e32161397018bbbf243601709}\label{classMap_a2037741e32161397018bbbf243601709}} 
+\index{Map@{Map}!updateDirection@{updateDirection}}
+\index{updateDirection@{updateDirection}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{updateDirection()}{updateDirection()}}
+{\footnotesize\ttfamily void Map\+::update\+Direction (\begin{DoxyParamCaption}\item[{Tile\+Type}]{tile\+Type }\end{DoxyParamCaption})}
+
+
+
+Updates the direction of directional tiles to ensure correct orientation. 
+
+This method is used to orient tiles such as roads, rivers, or power lines based on neighboring tiles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Type} & The tile type for which to update direction. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Map.\+h\item 
+Map.\+cpp\end{DoxyCompactItemize}

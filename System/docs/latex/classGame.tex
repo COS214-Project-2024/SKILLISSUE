@@ -1,0 +1,225 @@
+\hypertarget{classGame}{}\doxysection{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+
+
+Manages the main game loop, state stack, and resources.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+
+
+Collaboration diagram for Game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classGame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGame_a5898f1edb6e3bc1700b2ffb1943bc609}{push\+State}} (\mbox{\hyperlink{classGameState}{Game\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Adds a new game state to the stack. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_a4b33dd67adef59bebadba8a234282c88}\label{classGame_a4b33dd67adef59bebadba8a234282c88}} 
+void \mbox{\hyperlink{classGame_a4b33dd67adef59bebadba8a234282c88}{pop\+State}} ()
+\begin{DoxyCompactList}\small\item\em Removes the current game state from the stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_a8683b16995200bd11d95efc372e6722a}{change\+State}} (\mbox{\hyperlink{classGameState}{Game\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Replaces the current game state with a new one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGameState}{Game\+State}} $\ast$ \mbox{\hyperlink{classGame_a6cdc6cb374ab8e7d8ac9b280284b3793}{peek\+State}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current game state without removing it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_aede5f46c8c7bbbaf8459eeec397a11e7}{game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em The main game loop. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGame_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Constructs the \mbox{\hyperlink{classGame}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGame_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classGame}{Game}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame_afb615f4fb6621cd14769c14716f4b0a5}\label{classGame_afb615f4fb6621cd14769c14716f4b0a5}} 
+std\+::stack$<$ \mbox{\hyperlink{classGameState}{Game\+State}} $\ast$ $>$ \mbox{\hyperlink{classGame_afb615f4fb6621cd14769c14716f4b0a5}{states}}
+\begin{DoxyCompactList}\small\item\em Stack that holds the game states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_a223de215aeb661cd423ac145756cc730}\label{classGame_a223de215aeb661cd423ac145756cc730}} 
+sf\+::\+Render\+Window \mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}
+\begin{DoxyCompactList}\small\item\em SFML Render\+Window object for displaying the game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_ae3d9fee3cfa41498b4d50e15f47a2bed}\label{classGame_ae3d9fee3cfa41498b4d50e15f47a2bed}} 
+\mbox{\hyperlink{classTextureManager}{Texture\+Manager}} \mbox{\hyperlink{classGame_ae3d9fee3cfa41498b4d50e15f47a2bed}{texmgr}}
+\begin{DoxyCompactList}\small\item\em Texture manager responsible for managing game textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_a57ba11192994ff8f9e4c4031cb363f6f}\label{classGame_a57ba11192994ff8f9e4c4031cb363f6f}} 
+sf\+::\+Sprite \mbox{\hyperlink{classGame_a57ba11192994ff8f9e4c4031cb363f6f}{background}}
+\begin{DoxyCompactList}\small\item\em Background sprite displayed in the game window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_aa3ac6ef1969d5a8449abc8da83427b4f}\label{classGame_aa3ac6ef1969d5a8449abc8da83427b4f}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \mbox{\hyperlink{classGame_aa3ac6ef1969d5a8449abc8da83427b4f}{tile\+Atlas}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMap}{Map}} containing tile prototypes accessible by name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_aa492114af7c80bd89766e32060bed1dd}\label{classGame_aa492114af7c80bd89766e32060bed1dd}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classGuiStyle}{Gui\+Style}} $>$ \mbox{\hyperlink{classGame_aa492114af7c80bd89766e32060bed1dd}{stylesheets}}
+\begin{DoxyCompactList}\small\item\em Stylesheets for different GUI styles used in the game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_a43b66c79009cb0d9cbf0a4c5c39222f8}\label{classGame_a43b66c79009cb0d9cbf0a4c5c39222f8}} 
+std\+::map$<$ std\+::string, sf\+::\+Font $>$ \mbox{\hyperlink{classGame_a43b66c79009cb0d9cbf0a4c5c39222f8}{fonts}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMap}{Map}} of fonts accessible by name for GUI text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGame_a19d0a63df6d3584704d2f03efebc543b}\label{classGame_a19d0a63df6d3584704d2f03efebc543b}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classTileFactory}{Tile\+Factory}} $\ast$ $>$ \mbox{\hyperlink{classGame_a19d0a63df6d3584704d2f03efebc543b}{Factory}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMap}{Map}} of tile factories, each responsible for creating a specific tile type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame_ad964e31f26a823b9fb382b068c5dcdad}\label{classGame_ad964e31f26a823b9fb382b068c5dcdad}} 
+static const int \mbox{\hyperlink{classGame_ad964e31f26a823b9fb382b068c5dcdad}{tile\+Size}} = 8
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTile}{Tile}} size used in the game, set to 8 pixels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGame_ac3ffa65a566c0cd5e286182d92e67646}{load\+Textures}} ()
+\begin{DoxyCompactList}\small\item\em Loads textures into the texture manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_aedc609d591ef9dc375745773a63edf20}{load\+Tiles}} ()
+\begin{DoxyCompactList}\small\item\em Initializes tile objects in the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_aa3a18d0bcece31df9cda2f75b5c79b67}{load\+Stylesheets}} ()
+\begin{DoxyCompactList}\small\item\em Loads stylesheets for GUI elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_a70c1a1d03664079d021091c39bca63dc}{load\+Fonts}} ()
+\begin{DoxyCompactList}\small\item\em Loads font resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_a3026df653e29c36dec277d0f47048b7d}{load\+Factories}} ()
+\begin{DoxyCompactList}\small\item\em Initializes factory instances for various tile types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the main game loop, state stack, and resources. 
+
+The \mbox{\hyperlink{classGame}{Game}} class initializes and manages the game window, resources like textures and tiles, game states, and factories for tile creation. It provides methods to control game states, load assets, and run the main game loop. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGame_ad59df6562a58a614fda24622d3715b65}\label{classGame_ad59df6562a58a614fda24622d3715b65}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs the \mbox{\hyperlink{classGame}{Game}} object. 
+
+Initializes the game by setting up the window and loading necessary resources. \mbox{\Hypertarget{classGame_ae3d112ca6e0e55150d2fdbc704474530}\label{classGame_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \mbox{\hyperlink{classGame}{Game}} object. 
+
+Cleans up resources and handles any necessary cleanup upon game shutdown. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGame_a8683b16995200bd11d95efc372e6722a}\label{classGame_a8683b16995200bd11d95efc372e6722a}} 
+\index{Game@{Game}!changeState@{changeState}}
+\index{changeState@{changeState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{changeState()}{changeState()}}
+{\footnotesize\ttfamily void Game\+::change\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGameState}{Game\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Replaces the current game state with a new one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the \mbox{\hyperlink{classGameState}{Game\+State}} object to be set as the new state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGame_aede5f46c8c7bbbaf8459eeec397a11e7}\label{classGame_aede5f46c8c7bbbaf8459eeec397a11e7}} 
+\index{Game@{Game}!gameLoop@{gameLoop}}
+\index{gameLoop@{gameLoop}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{gameLoop()}{gameLoop()}}
+{\footnotesize\ttfamily void Game\+::game\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The main game loop. 
+
+Runs the game loop, managing updates and rendering, as well as handling game state transitions. \mbox{\Hypertarget{classGame_a3026df653e29c36dec277d0f47048b7d}\label{classGame_a3026df653e29c36dec277d0f47048b7d}} 
+\index{Game@{Game}!loadFactories@{loadFactories}}
+\index{loadFactories@{loadFactories}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{loadFactories()}{loadFactories()}}
+{\footnotesize\ttfamily void Game\+::load\+Factories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes factory instances for various tile types. 
+
+Creates and stores instances of different tile factories in the {\ttfamily Factory} map. \mbox{\Hypertarget{classGame_a70c1a1d03664079d021091c39bca63dc}\label{classGame_a70c1a1d03664079d021091c39bca63dc}} 
+\index{Game@{Game}!loadFonts@{loadFonts}}
+\index{loadFonts@{loadFonts}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{loadFonts()}{loadFonts()}}
+{\footnotesize\ttfamily void Game\+::load\+Fonts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads font resources. 
+
+This method loads fonts used in GUI elements and stores them in the {\ttfamily fonts} map. \mbox{\Hypertarget{classGame_aa3a18d0bcece31df9cda2f75b5c79b67}\label{classGame_aa3a18d0bcece31df9cda2f75b5c79b67}} 
+\index{Game@{Game}!loadStylesheets@{loadStylesheets}}
+\index{loadStylesheets@{loadStylesheets}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{loadStylesheets()}{loadStylesheets()}}
+{\footnotesize\ttfamily void Game\+::load\+Stylesheets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads stylesheets for GUI elements. 
+
+This method sets up GUI styles by loading stylesheets into the {\ttfamily stylesheets} map. \mbox{\Hypertarget{classGame_ac3ffa65a566c0cd5e286182d92e67646}\label{classGame_ac3ffa65a566c0cd5e286182d92e67646}} 
+\index{Game@{Game}!loadTextures@{loadTextures}}
+\index{loadTextures@{loadTextures}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{loadTextures()}{loadTextures()}}
+{\footnotesize\ttfamily void Game\+::load\+Textures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads textures into the texture manager. 
+
+This method is responsible for loading all required textures into the {\ttfamily texmgr} so that they can be accessed throughout the game. \mbox{\Hypertarget{classGame_aedc609d591ef9dc375745773a63edf20}\label{classGame_aedc609d591ef9dc375745773a63edf20}} 
+\index{Game@{Game}!loadTiles@{loadTiles}}
+\index{loadTiles@{loadTiles}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{loadTiles()}{loadTiles()}}
+{\footnotesize\ttfamily void Game\+::load\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes tile objects in the game. 
+
+Loads and sets up tile objects and adds them to the {\ttfamily tile\+Atlas} for use in the game. \mbox{\Hypertarget{classGame_a6cdc6cb374ab8e7d8ac9b280284b3793}\label{classGame_a6cdc6cb374ab8e7d8ac9b280284b3793}} 
+\index{Game@{Game}!peekState@{peekState}}
+\index{peekState@{peekState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{peekState()}{peekState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGameState}{Game\+State}} $\ast$ Game\+::peek\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the current game state without removing it. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the current \mbox{\hyperlink{classGameState}{Game\+State}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_a5898f1edb6e3bc1700b2ffb1943bc609}\label{classGame_a5898f1edb6e3bc1700b2ffb1943bc609}} 
+\index{Game@{Game}!pushState@{pushState}}
+\index{pushState@{pushState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{pushState()}{pushState()}}
+{\footnotesize\ttfamily void Game\+::push\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGameState}{Game\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Adds a new game state to the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the \mbox{\hyperlink{classGameState}{Game\+State}} object to be pushed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game.\+h\item 
+Game.\+cpp\end{DoxyCompactItemize}

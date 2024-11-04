@@ -1,0 +1,103 @@
+\hypertarget{classLandmarkFactory}{}\doxysection{Landmark\+Factory Class Reference}
+\label{classLandmarkFactory}\index{LandmarkFactory@{LandmarkFactory}}
+
+
+Factory class for creating \mbox{\hyperlink{classLandmark}{Landmark}} tiles.  
+
+
+
+
+{\ttfamily \#include $<$Landmark\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Landmark\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classLandmarkFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Landmark\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classLandmarkFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classLandmarkFactory_a3e7bba9fcdd97d708d7737032e05c5b8}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Public method for creating and returning a new \mbox{\hyperlink{classLandmark}{Landmark}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classLandmarkFactory_afd7380fa3fbab7ddbb48f56a083ad0b0}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{classLandmark}{Landmark}} tile with the specified texture and animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory class for creating \mbox{\hyperlink{classLandmark}{Landmark}} tiles. 
+
+The \mbox{\hyperlink{classLandmarkFactory}{Landmark\+Factory}} class follows the factory pattern, providing methods to instantiate \mbox{\hyperlink{classLandmark}{Landmark}} tiles with specified textures and animations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLandmarkFactory_a3e7bba9fcdd97d708d7737032e05c5b8}\label{classLandmarkFactory_a3e7bba9fcdd97d708d7737032e05c5b8}} 
+\index{LandmarkFactory@{LandmarkFactory}!Create@{Create}}
+\index{Create@{Create}!LandmarkFactory@{LandmarkFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}}$\ast$ Landmark\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Public method for creating and returning a new \mbox{\hyperlink{classLandmark}{Landmark}} tile. 
+
+This method serves as the main interface for creating \mbox{\hyperlink{classLandmark}{Landmark}} tiles, using the factory pattern to instantiate them with the provided texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture for the tile. \\
+\hline
+{\em animations} & Vector of animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \mbox{\hyperlink{classLandmark}{Landmark}} tile. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLandmarkFactory_afd7380fa3fbab7ddbb48f56a083ad0b0}\label{classLandmarkFactory_afd7380fa3fbab7ddbb48f56a083ad0b0}} 
+\index{LandmarkFactory@{LandmarkFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!LandmarkFactory@{LandmarkFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Landmark\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new \mbox{\hyperlink{classLandmark}{Landmark}} tile with the specified texture and animations. 
+
+This protected method is overridden to provide the specific implementation for creating a \mbox{\hyperlink{classLandmark}{Landmark}} tile with the given texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture to apply to the landmark tile. \\
+\hline
+{\em animations} & Vector containing animations for the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created \mbox{\hyperlink{classLandmark}{Landmark}} tile. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Tile\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Landmark\+Factory.\+h\item 
+Landmark\+Factory.\+cpp\end{DoxyCompactItemize}

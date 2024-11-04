@@ -1,0 +1,392 @@
+\hypertarget{classCity}{}\doxysection{City Class Reference}
+\label{classCity}\index{City@{City}}
+
+
+Represents a city with its population, tax policies, and economic properties.  
+
+
+
+
+{\ttfamily \#include $<$City.\+h$>$}
+
+
+
+Collaboration diagram for City\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{classCity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCity_a1b1f549430f0a7ecd0ec7b1605415193}{City}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing default city parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCity_abdfdb99f8382e3238e9ca8ef9691b2fc}{City}} (std\+::string city\+Name, int tile\+Size, std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&tile\+Atlas)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor for initializing a city with a given map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_a3a475adcb64b3a7548ade422474c0c5c}{load}} (std\+::string city\+Name, std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&tile\+Atlas)
+\begin{DoxyCompactList}\small\item\em Loads city data from a saved state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_ace2c9e4cc612c65f678c5acec8584144}{save}} (std\+::string city\+Name)
+\begin{DoxyCompactList}\small\item\em Saves the current state of the city. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_a1a574d77329aae04d530ba6c51171454}{update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the city simulation by advancing time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_a312d672cb834b27ffd31bf7bdc6a46c3}{bulldoze}} (\mbox{\hyperlink{classTile}{Tile}} \&tile)
+\begin{DoxyCompactList}\small\item\em Demolishes the specified tile in the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a433f52731034c83474a51275854ba733}\label{classCity_a433f52731034c83474a51275854ba733}} 
+void \mbox{\hyperlink{classCity_a433f52731034c83474a51275854ba733}{shuffle\+Tiles}} ()
+\begin{DoxyCompactList}\small\item\em Randomly shuffles tiles for distributing resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a0067c3c39ee4e31ef156495f717e25a3}\label{classCity_a0067c3c39ee4e31ef156495f717e25a3}} 
+void \mbox{\hyperlink{classCity_a0067c3c39ee4e31ef156495f717e25a3}{tile\+Changed}} ()
+\begin{DoxyCompactList}\small\item\em Notifies the city that a tile has changed. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classCity_ae71080c32552a3797e72b7cf0bf80f9b}{get\+Homeless}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the current homeless population count. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classCity_a51cc0e72cc4610aa2e5fd7b9e2bcac7a}{get\+Unemployed}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the current unemployed population count. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_af2a925b0578a6d535bdc11efb56053e9}{set\+Tax\+Policy}} (\mbox{\hyperlink{classTaxPolicy}{Tax\+Policy}} $\ast$policy)
+\begin{DoxyCompactList}\small\item\em Sets the city\textquotesingle{}s tax policy. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCity_a10a8cef91835beed0b684bafdc406f3c}{get\+Tax\+Policy}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the current tax policy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_aed765ae2fe5954783d982c94b171868a}{set\+Caretaker}} (\mbox{\hyperlink{classCaretaker}{Caretaker}} $\ast$\mbox{\hyperlink{classCity_a3efefc97707d0b2306412f5633d982da}{caretaker}})
+\begin{DoxyCompactList}\small\item\em Sets the caretaker for the \mbox{\hyperlink{classMemento}{Memento}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMemento}{Memento}} $\ast$ \mbox{\hyperlink{classCity_a52d3762879e13d489c00343f4c641355}{create\+Memento}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new memento representing the current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_a3653b9858c380b7ccb5961a8270bdac7}{load\+Memento}} (\mbox{\hyperlink{classMemento}{Memento}} $\ast$memento)
+\begin{DoxyCompactList}\small\item\em Restores the state from a memento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_a8d6f76d695ce970d96cad07352afba43}{undo}} (\mbox{\hyperlink{classMemento}{Memento}} memento)
+\begin{DoxyCompactList}\small\item\em Undoes the current state by reverting to a previous memento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCity_ac6a5a981c438380fa532c54b97078ea5}{set\+Mediator}} (\mbox{\hyperlink{classCityMediator}{City\+Mediator}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Sets the mediator for the city. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCity_ab573f06c1a0423314c701b6290200b21}\label{classCity_ab573f06c1a0423314c701b6290200b21}} 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}
+\begin{DoxyCompactList}\small\item\em Pointer to the city\textquotesingle{}s map containing all tiles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a0760a3dc00c4e9f302af2ab9b1a54a74}\label{classCity_a0760a3dc00c4e9f302af2ab9b1a54a74}} 
+double \mbox{\hyperlink{classCity_a0760a3dc00c4e9f302af2ab9b1a54a74}{population}}
+\begin{DoxyCompactList}\small\item\em Total population of the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a3df2643d5b3164cca82acf26ceffa54d}\label{classCity_a3df2643d5b3164cca82acf26ceffa54d}} 
+double \mbox{\hyperlink{classCity_a3df2643d5b3164cca82acf26ceffa54d}{employable}}
+\begin{DoxyCompactList}\small\item\em Total number of citizens eligible for employment. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a94e45b789b1287b6ad0d40997b21a9a3}\label{classCity_a94e45b789b1287b6ad0d40997b21a9a3}} 
+double \mbox{\hyperlink{classCity_a94e45b789b1287b6ad0d40997b21a9a3}{satisfaction}}
+\begin{DoxyCompactList}\small\item\em Overall satisfaction score of the city\textquotesingle{}s population. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_aae272224cc69360ad5505c8f8c9b2f46}\label{classCity_aae272224cc69360ad5505c8f8c9b2f46}} 
+double \mbox{\hyperlink{classCity_aae272224cc69360ad5505c8f8c9b2f46}{earnings}}
+\begin{DoxyCompactList}\small\item\em Earnings of the city from tax and other sources, calculated monthly. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a0cabd36d33de31539d7dfd5938176680}\label{classCity_a0cabd36d33de31539d7dfd5938176680}} 
+double \mbox{\hyperlink{classCity_a0cabd36d33de31539d7dfd5938176680}{funds}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classCity}{City}}\textquotesingle{}s available funds for spending and development. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_af34dc53557663e266d39aefcbe9420a2}\label{classCity_af34dc53557663e266d39aefcbe9420a2}} 
+int \mbox{\hyperlink{classCity_af34dc53557663e266d39aefcbe9420a2}{day}}
+\begin{DoxyCompactList}\small\item\em The current day in the city\textquotesingle{}s simulation timeline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCity_ac8f372176b4bf0eed68048186369715c}\label{classCity_ac8f372176b4bf0eed68048186369715c}} 
+double \mbox{\hyperlink{classCity_ac8f372176b4bf0eed68048186369715c}{distribute\+Pool}} (double \&pool, \mbox{\hyperlink{classTile}{Tile}} $\ast$tile, double rate)
+\begin{DoxyCompactList}\small\item\em Helper function to distribute resources from a pool to a tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCity_a5e79133e3088e10db733ab9f58d090d3}\label{classCity_a5e79133e3088e10db733ab9f58d090d3}} 
+float \mbox{\hyperlink{classCity_a5e79133e3088e10db733ab9f58d090d3}{current\+Time}}
+\begin{DoxyCompactList}\small\item\em The current time in the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_abbe7b0ece0caee8c6e5a030b7b979f02}\label{classCity_abbe7b0ece0caee8c6e5a030b7b979f02}} 
+float \mbox{\hyperlink{classCity_abbe7b0ece0caee8c6e5a030b7b979f02}{time\+Per\+Day}}
+\begin{DoxyCompactList}\small\item\em Time duration that represents one day in the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_aa4487e962b40c10ab826aaa01435b230}\label{classCity_aa4487e962b40c10ab826aaa01435b230}} 
+\mbox{\hyperlink{classCityMediator}{City\+Mediator}} $\ast$ \mbox{\hyperlink{classCity_aa4487e962b40c10ab826aaa01435b230}{mediator}}
+\begin{DoxyCompactList}\small\item\em Pointer to a mediator for coordinating actions within the city. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_aa6d556b4c5e8d1ef0ffb45090f84dda2}\label{classCity_aa6d556b4c5e8d1ef0ffb45090f84dda2}} 
+\mbox{\hyperlink{classTaxPolicy}{Tax\+Policy}} $\ast$ \mbox{\hyperlink{classCity_aa6d556b4c5e8d1ef0ffb45090f84dda2}{tax\+Policy}}
+\begin{DoxyCompactList}\small\item\em The city\textquotesingle{}s current tax policy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a810d7c95486ae2572256d3c55dff78da}\label{classCity_a810d7c95486ae2572256d3c55dff78da}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classCity_a810d7c95486ae2572256d3c55dff78da}{shuffled\+Tiles}}
+\begin{DoxyCompactList}\small\item\em Vector containing shuffled tile indices for resource distribution. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a5ae8a7c1c07ed789ebf1c154dbfa7e81}\label{classCity_a5ae8a7c1c07ed789ebf1c154dbfa7e81}} 
+double \mbox{\hyperlink{classCity_a5ae8a7c1c07ed789ebf1c154dbfa7e81}{population\+Pool}}
+\begin{DoxyCompactList}\small\item\em Number of residents who are not in a residential zone. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_ae250434a2a3daab8178557c07383c8d8}\label{classCity_ae250434a2a3daab8178557c07383c8d8}} 
+double \mbox{\hyperlink{classCity_ae250434a2a3daab8178557c07383c8d8}{employment\+Pool}}
+\begin{DoxyCompactList}\small\item\em Number of residents who are unemployed but capable of working. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_aa582bf40edc076eb2d5869bb35cb76f7}\label{classCity_aa582bf40edc076eb2d5869bb35cb76f7}} 
+float \mbox{\hyperlink{classCity_aa582bf40edc076eb2d5869bb35cb76f7}{prop\+Can\+Work}}
+\begin{DoxyCompactList}\small\item\em Proportion of citizens capable of working. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a357d6fd2e9d8ffcd9fdbcaaccbb7e2bc}\label{classCity_a357d6fd2e9d8ffcd9fdbcaaccbb7e2bc}} 
+double \mbox{\hyperlink{classCity_a357d6fd2e9d8ffcd9fdbcaaccbb7e2bc}{birth\+Rate}}
+\begin{DoxyCompactList}\small\item\em Birth rate of the city\textquotesingle{}s population per day. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a172bbf57e51edcc2283cc5a96b186368}\label{classCity_a172bbf57e51edcc2283cc5a96b186368}} 
+double \mbox{\hyperlink{classCity_a172bbf57e51edcc2283cc5a96b186368}{death\+Rate}}
+\begin{DoxyCompactList}\small\item\em Death rate of the city\textquotesingle{}s population per day. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a08dc365c7d19853fc9576987337aaad5}\label{classCity_a08dc365c7d19853fc9576987337aaad5}} 
+int \mbox{\hyperlink{classCity_a08dc365c7d19853fc9576987337aaad5}{last\+Memento\+Day}}
+\begin{DoxyCompactList}\small\item\em The day when the last memento was created. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCity_a3efefc97707d0b2306412f5633d982da}\label{classCity_a3efefc97707d0b2306412f5633d982da}} 
+\mbox{\hyperlink{classCaretaker}{Caretaker}} $\ast$ \mbox{\hyperlink{classCity_a3efefc97707d0b2306412f5633d982da}{caretaker}}
+\begin{DoxyCompactList}\small\item\em Pointer to the caretaker managing mementos for state restoration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCity_a7ac5f51322222d06d2b374e257c5d773}{City\+Mediator}}
+\begin{DoxyCompactList}\small\item\em Grants the \mbox{\hyperlink{classCityMediator}{City\+Mediator}} class access to City’s private and protected members. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a city with its population, tax policies, and economic properties. 
+
+The \mbox{\hyperlink{classCity}{City}} class manages various attributes such as population, employment, tax revenue, and allows interactions through the Mediator and \mbox{\hyperlink{classMemento}{Memento}} patterns. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCity_a1b1f549430f0a7ecd0ec7b1605415193}\label{classCity_a1b1f549430f0a7ecd0ec7b1605415193}} 
+\index{City@{City}!City@{City}}
+\index{City@{City}!City@{City}}
+\doxysubsubsection{\texorpdfstring{City()}{City()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily City\+::\+City (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing default city parameters. 
+
+Sets initial rates, pools, and the default tax policy. \mbox{\Hypertarget{classCity_abdfdb99f8382e3238e9ca8ef9691b2fc}\label{classCity_abdfdb99f8382e3238e9ca8ef9691b2fc}} 
+\index{City@{City}!City@{City}}
+\index{City@{City}!City@{City}}
+\doxysubsubsection{\texorpdfstring{City()}{City()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily City\+::\+City (\begin{DoxyParamCaption}\item[{std\+::string}]{city\+Name,  }\item[{int}]{tile\+Size,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&}]{tile\+Atlas }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor for initializing a city with a given map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em city\+Name} & Name of the city to load. \\
+\hline
+{\em tile\+Size} & Size of each tile on the map. \\
+\hline
+{\em tile\+Atlas} & \mbox{\hyperlink{classMap}{Map}} of tile types used within the city. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCity_a312d672cb834b27ffd31bf7bdc6a46c3}\label{classCity_a312d672cb834b27ffd31bf7bdc6a46c3}} 
+\index{City@{City}!bulldoze@{bulldoze}}
+\index{bulldoze@{bulldoze}!City@{City}}
+\doxysubsubsection{\texorpdfstring{bulldoze()}{bulldoze()}}
+{\footnotesize\ttfamily void City\+::bulldoze (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTile}{Tile}} \&}]{tile }\end{DoxyParamCaption})}
+
+
+
+Demolishes the specified tile in the city. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile} & The tile to bulldoze. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_a52d3762879e13d489c00343f4c641355}\label{classCity_a52d3762879e13d489c00343f4c641355}} 
+\index{City@{City}!createMemento@{createMemento}}
+\index{createMemento@{createMemento}!City@{City}}
+\doxysubsubsection{\texorpdfstring{createMemento()}{createMemento()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMemento}{Memento}} $\ast$ City\+::create\+Memento (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new memento representing the current state. 
+
+This function generates a {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object that encapsulates the current state, enabling the state to be restored at a later time.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCity_ae71080c32552a3797e72b7cf0bf80f9b}\label{classCity_ae71080c32552a3797e72b7cf0bf80f9b}} 
+\index{City@{City}!getHomeless@{getHomeless}}
+\index{getHomeless@{getHomeless}!City@{City}}
+\doxysubsubsection{\texorpdfstring{getHomeless()}{getHomeless()}}
+{\footnotesize\ttfamily double City\+::get\+Homeless (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the current homeless population count. 
+
+\begin{DoxyReturn}{Returns}
+The number of homeless residents. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCity_a10a8cef91835beed0b684bafdc406f3c}\label{classCity_a10a8cef91835beed0b684bafdc406f3c}} 
+\index{City@{City}!getTaxPolicy@{getTaxPolicy}}
+\index{getTaxPolicy@{getTaxPolicy}!City@{City}}
+\doxysubsubsection{\texorpdfstring{getTaxPolicy()}{getTaxPolicy()}}
+{\footnotesize\ttfamily std\+::string City\+::get\+Tax\+Policy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the name of the current tax policy. 
+
+\begin{DoxyReturn}{Returns}
+The name of the tax policy as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCity_a51cc0e72cc4610aa2e5fd7b9e2bcac7a}\label{classCity_a51cc0e72cc4610aa2e5fd7b9e2bcac7a}} 
+\index{City@{City}!getUnemployed@{getUnemployed}}
+\index{getUnemployed@{getUnemployed}!City@{City}}
+\doxysubsubsection{\texorpdfstring{getUnemployed()}{getUnemployed()}}
+{\footnotesize\ttfamily double City\+::get\+Unemployed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the current unemployed population count. 
+
+\begin{DoxyReturn}{Returns}
+The number of unemployed residents. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCity_a3a475adcb64b3a7548ade422474c0c5c}\label{classCity_a3a475adcb64b3a7548ade422474c0c5c}} 
+\index{City@{City}!load@{load}}
+\index{load@{load}!City@{City}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void City\+::load (\begin{DoxyParamCaption}\item[{std\+::string}]{city\+Name,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classTile}{Tile}} $\ast$ $>$ \&}]{tile\+Atlas }\end{DoxyParamCaption})}
+
+
+
+Loads city data from a saved state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em city\+Name} & Name of the city to load. \\
+\hline
+{\em tile\+Atlas} & Reference map of tile types used in the city. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_a3653b9858c380b7ccb5961a8270bdac7}\label{classCity_a3653b9858c380b7ccb5961a8270bdac7}} 
+\index{City@{City}!loadMemento@{loadMemento}}
+\index{loadMemento@{loadMemento}!City@{City}}
+\doxysubsubsection{\texorpdfstring{loadMemento()}{loadMemento()}}
+{\footnotesize\ttfamily void City\+::load\+Memento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMemento}{Memento}} $\ast$}]{memento }\end{DoxyParamCaption})}
+
+
+
+Restores the state from a memento. 
+
+This function loads the state encapsulated in a given {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object. The {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} should have been created by {\ttfamily \mbox{\hyperlink{classCity_a52d3762879e13d489c00343f4c641355}{create\+Memento()}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em memento} & Pointer to the {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object containing the state to restore. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_ace2c9e4cc612c65f678c5acec8584144}\label{classCity_ace2c9e4cc612c65f678c5acec8584144}} 
+\index{City@{City}!save@{save}}
+\index{save@{save}!City@{City}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void City\+::save (\begin{DoxyParamCaption}\item[{std\+::string}]{city\+Name }\end{DoxyParamCaption})}
+
+
+
+Saves the current state of the city. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em city\+Name} & Name of the city to save. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_aed765ae2fe5954783d982c94b171868a}\label{classCity_aed765ae2fe5954783d982c94b171868a}} 
+\index{City@{City}!setCaretaker@{setCaretaker}}
+\index{setCaretaker@{setCaretaker}!City@{City}}
+\doxysubsubsection{\texorpdfstring{setCaretaker()}{setCaretaker()}}
+{\footnotesize\ttfamily void City\+::set\+Caretaker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCaretaker}{Caretaker}} $\ast$}]{caretaker }\end{DoxyParamCaption})}
+
+
+
+Sets the caretaker for the \mbox{\hyperlink{classMemento}{Memento}}. 
+
+This function sets a pointer to a {\ttfamily \mbox{\hyperlink{classCaretaker}{Caretaker}}} object, which is responsible for handling the \mbox{\hyperlink{classMemento}{Memento}}\textquotesingle{}s lifecycle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em caretaker} & Pointer to a {\ttfamily \mbox{\hyperlink{classCaretaker}{Caretaker}}} object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_ac6a5a981c438380fa532c54b97078ea5}\label{classCity_ac6a5a981c438380fa532c54b97078ea5}} 
+\index{City@{City}!setMediator@{setMediator}}
+\index{setMediator@{setMediator}!City@{City}}
+\doxysubsubsection{\texorpdfstring{setMediator()}{setMediator()}}
+{\footnotesize\ttfamily void City\+::set\+Mediator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCityMediator}{City\+Mediator}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Sets the mediator for the city. 
+
+This function sets a pointer to a {\ttfamily \mbox{\hyperlink{classCityMediator}{City\+Mediator}}} object, enabling communication between different city components through the mediator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & Pointer to a {\ttfamily \mbox{\hyperlink{classCityMediator}{City\+Mediator}}} object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_af2a925b0578a6d535bdc11efb56053e9}\label{classCity_af2a925b0578a6d535bdc11efb56053e9}} 
+\index{City@{City}!setTaxPolicy@{setTaxPolicy}}
+\index{setTaxPolicy@{setTaxPolicy}!City@{City}}
+\doxysubsubsection{\texorpdfstring{setTaxPolicy()}{setTaxPolicy()}}
+{\footnotesize\ttfamily void City\+::set\+Tax\+Policy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTaxPolicy}{Tax\+Policy}} $\ast$}]{policy }\end{DoxyParamCaption})}
+
+
+
+Sets the city\textquotesingle{}s tax policy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em policy} & Pointer to the \mbox{\hyperlink{classTaxPolicy}{Tax\+Policy}} to be applied. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_a8d6f76d695ce970d96cad07352afba43}\label{classCity_a8d6f76d695ce970d96cad07352afba43}} 
+\index{City@{City}!undo@{undo}}
+\index{undo@{undo}!City@{City}}
+\doxysubsubsection{\texorpdfstring{undo()}{undo()}}
+{\footnotesize\ttfamily void City\+::undo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMemento}{Memento}}}]{memento }\end{DoxyParamCaption})}
+
+
+
+Undoes the current state by reverting to a previous memento. 
+
+This function takes a {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object and undoes the current changes by restoring the state from the specified {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em memento} & The {\ttfamily \mbox{\hyperlink{classMemento}{Memento}}} object containing the state to revert to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCity_a1a574d77329aae04d530ba6c51171454}\label{classCity_a1a574d77329aae04d530ba6c51171454}} 
+\index{City@{City}!update@{update}}
+\index{update@{update}!City@{City}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void City\+::update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+Updates the city simulation by advancing time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Time delta representing the elapsed time since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classCity_a7ac5f51322222d06d2b374e257c5d773}\label{classCity_a7ac5f51322222d06d2b374e257c5d773}} 
+\index{City@{City}!CityMediator@{CityMediator}}
+\index{CityMediator@{CityMediator}!City@{City}}
+\doxysubsubsection{\texorpdfstring{CityMediator}{CityMediator}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classCityMediator}{City\+Mediator}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Grants the \mbox{\hyperlink{classCityMediator}{City\+Mediator}} class access to City’s private and protected members. 
+
+Declaring \mbox{\hyperlink{classCityMediator}{City\+Mediator}} as a friend class allows it to directly access and modify private and protected members of \mbox{\hyperlink{classCity}{City}}, facilitating coordinated interactions and communication between the city and mediator. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+City.\+h\item 
+City.\+cpp\end{DoxyCompactItemize}
