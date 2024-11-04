@@ -1,4 +1,5 @@
 #include "../LowTax.h"
+#include "../MidTax.h"
 #include "gtest/gtest.h"
 
 const double TOLERANCE = 1e-4; // used to account for floating point errors
@@ -22,4 +23,25 @@ TEST(LowTaxTest, GetTaxPolicy)
 {
     LowTax taxPolicy;
     EXPECT_EQ(taxPolicy.getTaxPolicy(), "low");
+}
+
+// Tests for mid tax
+TEST(MidTaxTest, CalculateTax)
+{
+    MidTax taxPolicy;
+    double revenue = 1000.0;
+    double expectedTax = 1000.0 * 0.10; // 10% tax
+    EXPECT_NEAR(taxPolicy.calculateTax(revenue), expectedTax, TOLERANCE);
+}
+
+TEST(MidTaxTest, GetTaxRate)
+{
+    MidTax taxPolicy;
+    EXPECT_NEAR(taxPolicy.getTaxRate(), 0.10, TOLERANCE);
+}
+
+TEST(MidTaxTest, GetTaxPolicy)
+{
+    MidTax taxPolicy;
+    EXPECT_EQ(taxPolicy.getTaxPolicy(), "mid");
 }

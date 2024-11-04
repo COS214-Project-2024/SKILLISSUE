@@ -19,8 +19,9 @@ enable_testing()
 add_executable(
   tax_test
   TaxesTest.cpp
-  ../LowTax.cpp
   ../TaxPolicy.cpp
+  ../LowTax.cpp
+  ../MidTax.cpp
 )
 target_link_libraries(
   tax_test
