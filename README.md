@@ -12,7 +12,7 @@ The **City Builder Simulation** is a C++ project designed to model the complexit
 * **Government Policies**: Implement taxation and budget management to fund city development
 
 ## Design Patterns Used
-The project integrates multiple design patterns, such as Singleton, Observer, Factory, Mediator, and Command, to support a scalable and modular architecture.
+The project integrates multiple design patterns, such as Singleton, Observer, Factory, Mediator, State, Strategy, Prototype, Proxy, Memento, Template and Command, to support a scalable and modular architecture.
 
 ## Prerequisites
 
