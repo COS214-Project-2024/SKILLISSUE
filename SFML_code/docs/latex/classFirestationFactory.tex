@@ -1,0 +1,103 @@
+\hypertarget{classFirestationFactory}{}\doxysection{Firestation\+Factory Class Reference}
+\label{classFirestationFactory}\index{FirestationFactory@{FirestationFactory}}
+
+
+Factory class for creating \mbox{\hyperlink{classFirestation}{Firestation}} tiles.  
+
+
+
+
+{\ttfamily \#include $<$Firestation\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Firestation\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classFirestationFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Firestation\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classFirestationFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classFirestationFactory_a1b6e38b04f1d2d7c74f162747ae32d1e}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Public method for creating and returning a new \mbox{\hyperlink{classFirestation}{Firestation}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classFirestationFactory_ad0813e3edaa4823e8311cb964b514a80}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{classFirestation}{Firestation}} tile with the specified texture and animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory class for creating \mbox{\hyperlink{classFirestation}{Firestation}} tiles. 
+
+The \mbox{\hyperlink{classFirestationFactory}{Firestation\+Factory}} class implements the factory pattern, providing a method to instantiate \mbox{\hyperlink{classFirestation}{Firestation}} tiles with specified textures and animations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFirestationFactory_a1b6e38b04f1d2d7c74f162747ae32d1e}\label{classFirestationFactory_a1b6e38b04f1d2d7c74f162747ae32d1e}} 
+\index{FirestationFactory@{FirestationFactory}!Create@{Create}}
+\index{Create@{Create}!FirestationFactory@{FirestationFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}}$\ast$ Firestation\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Public method for creating and returning a new \mbox{\hyperlink{classFirestation}{Firestation}} tile. 
+
+This method serves as the main interface for creating \mbox{\hyperlink{classFirestation}{Firestation}} tiles, using the factory pattern to instantiate them with the provided texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture for the tile. \\
+\hline
+{\em animations} & Vector of animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \mbox{\hyperlink{classFirestation}{Firestation}} tile. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFirestationFactory_ad0813e3edaa4823e8311cb964b514a80}\label{classFirestationFactory_ad0813e3edaa4823e8311cb964b514a80}} 
+\index{FirestationFactory@{FirestationFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!FirestationFactory@{FirestationFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Firestation\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new \mbox{\hyperlink{classFirestation}{Firestation}} tile with the specified texture and animations. 
+
+This protected method is overridden to provide the specific implementation for creating a \mbox{\hyperlink{classFirestation}{Firestation}} tile with the given texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture to apply to the fire station tile. \\
+\hline
+{\em animations} & Vector containing animations for the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created \mbox{\hyperlink{classFirestation}{Firestation}} tile. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Tile\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Firestation\+Factory.\+h\item 
+Firestation\+Factory.\+cpp\end{DoxyCompactItemize}

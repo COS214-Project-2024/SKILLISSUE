@@ -1,0 +1,90 @@
+\hypertarget{classHighTax}{}\doxysection{High\+Tax Class Reference}
+\label{classHighTax}\index{HighTax@{HighTax}}
+
+
+A concrete tax policy representing a high tax rate.  
+
+
+
+
+{\ttfamily \#include $<$High\+Tax.\+h$>$}
+
+
+
+Inheritance diagram for High\+Tax\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=142pt]{classHighTax__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for High\+Tax\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=142pt]{classHighTax__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHighTax_af6746c94397c8b3b614d4871088b82ac}{High\+Tax}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classHighTax}{High\+Tax}} policy. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classHighTax_a5f149b3290ccf7c174540c16616a2cfc}{calculate\+Tax}} (double Revenue)
+\begin{DoxyCompactList}\small\item\em Calculates tax on a given revenue based on the high tax rate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A concrete tax policy representing a high tax rate. 
+
+The \mbox{\hyperlink{classHighTax}{High\+Tax}} class inherits from \mbox{\hyperlink{classTaxPolicy}{Tax\+Policy}} and provides an implementation for calculating tax based on a high tax rate, affecting the revenue accordingly. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHighTax_af6746c94397c8b3b614d4871088b82ac}\label{classHighTax_af6746c94397c8b3b614d4871088b82ac}} 
+\index{HighTax@{HighTax}!HighTax@{HighTax}}
+\index{HighTax@{HighTax}!HighTax@{HighTax}}
+\doxysubsubsection{\texorpdfstring{HighTax()}{HighTax()}}
+{\footnotesize\ttfamily High\+Tax\+::\+High\+Tax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \mbox{\hyperlink{classHighTax}{High\+Tax}} policy. 
+
+Initializes a high tax policy with predefined settings for applying a higher tax rate. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHighTax_a5f149b3290ccf7c174540c16616a2cfc}\label{classHighTax_a5f149b3290ccf7c174540c16616a2cfc}} 
+\index{HighTax@{HighTax}!calculateTax@{calculateTax}}
+\index{calculateTax@{calculateTax}!HighTax@{HighTax}}
+\doxysubsubsection{\texorpdfstring{calculateTax()}{calculateTax()}}
+{\footnotesize\ttfamily double High\+Tax\+::calculate\+Tax (\begin{DoxyParamCaption}\item[{double}]{Revenue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calculates tax on a given revenue based on the high tax rate. 
+
+This method implements the tax calculation logic for a high tax rate, reducing the provided revenue according to this policy\textquotesingle{}s rules.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Revenue} & The revenue amount on which tax is to be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated tax amount. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTaxPolicy_ae114175c5adc22c053bf925fc80e5812}{Tax\+Policy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Tax.\+h\item 
+High\+Tax.\+cpp\end{DoxyCompactItemize}

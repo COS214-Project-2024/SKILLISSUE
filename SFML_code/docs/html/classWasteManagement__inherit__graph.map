@@ -1,0 +1,4 @@
+<map id="WasteManagement" name="WasteManagement">
+<area shape="rect" id="node1" title="Represents a waste management tile in the simulation." alt="" coords="5,80,153,107"/>
+<area shape="rect" id="node2" href="$classTile.html" title="Base class representing a single tile in the simulation." alt="" coords="56,5,103,32"/>
+</map>

@@ -1,0 +1,447 @@
+Now we\textquotesingle{}ll look at the (rather long) {\ttfamily update} function. We\textquotesingle{}ll split it into several parts
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCity_a1a574d77329aae04d530ba6c51171454}{City::update}}(\textcolor{keywordtype}{float} dt)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} popTotal = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} commercialRevenue = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} industrialRevenue = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Update the game time */}}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classCity_a5e79133e3088e10db733ab9f58d090d3}{currentTime}} += dt;}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>currentTime < this-\/>\mbox{\hyperlink{classCity_abbe7b0ece0caee8c6e5a030b7b979f02}{timePerDay}}) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{    ++\mbox{\hyperlink{classCity_af34dc53557663e266d39aefcbe9420a2}{day}};}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classCity_a5e79133e3088e10db733ab9f58d090d3}{currentTime}} = 0.0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(\mbox{\hyperlink{classCity_af34dc53557663e266d39aefcbe9420a2}{day}} \% 30 == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this-\/>\mbox{\hyperlink{classCity_a0cabd36d33de31539d7dfd5938176680}{funds}} += this-\/>\mbox{\hyperlink{classCity_aae272224cc69360ad5505c8f8c9b2f46}{earnings}};}
+\DoxyCodeLine{        this-\/>\mbox{\hyperlink{classCity_aae272224cc69360ad5505c8f8c9b2f46}{earnings}} = 0;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{comment}{/* Run first pass of tile updates. Mostly handles pool distribution */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < this-\/>\mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}.\mbox{\hyperlink{classMap_aed046be00bb2ea81ada68185c7e44063}{tiles}}.size(); ++i)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \mbox{\hyperlink{classTile}{Tile}}\& tile = this-\/>\mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}.\mbox{\hyperlink{classMap_aed046be00bb2ea81ada68185c7e44063}{tiles}}[this-\/>\mbox{\hyperlink{classCity_a810d7c95486ae2572256d3c55dff78da}{shuffledTiles}}[i]];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(tile.\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}} == TileType::RESIDENTIAL)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{comment}{/* Redistribute the pool and increase the population total by the tile's population */}}
+\DoxyCodeLine{            this-\/>\mbox{\hyperlink{classCity_ac8f372176b4bf0eed68048186369715c}{distributePool}}(this-\/>\mbox{\hyperlink{classCity_a5ae8a7c1c07ed789ebf1c154dbfa7e81}{populationPool}}, tile, this-\/>\mbox{\hyperlink{classCity_a357d6fd2e9d8ffcd9fdbcaaccbb7e2bc}{birthRate}} -\/ this-\/>\mbox{\hyperlink{classCity_a172bbf57e51edcc2283cc5a96b186368}{deathRate}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{            popTotal += tile.\mbox{\hyperlink{classTile_a55ce28eec1f1265ae58d1e7d4a7ad1f9}{population}};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(tile.\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}} == TileType::COMMERCIAL)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{comment}{/* Hire people */}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(rand() \% 100 < 15 * (1.0-\/this-\/>commercialTax))}
+\DoxyCodeLine{                this-\/>\mbox{\hyperlink{classCity_ac8f372176b4bf0eed68048186369715c}{distributePool}}(this-\/>\mbox{\hyperlink{classCity_ae250434a2a3daab8178557c07383c8d8}{employmentPool}}, tile, 0.00);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(tile.\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}} == TileType::INDUSTRIAL)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{comment}{/* Extract resources from the ground */}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this-\/>\mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}.\mbox{\hyperlink{classMap_a01af6639790f20ad9dcd4a4c79e4ab2e}{resources}}[i] > 0 \&\& rand() \% 100 < this-\/>\mbox{\hyperlink{classCity_a0760a3dc00c4e9f302af2ab9b1a54a74}{population}})}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                ++tile.\mbox{\hyperlink{classTile_a727838d6e6a89a85bd7f8d2c611b4788}{production}};}
+\DoxyCodeLine{                -\/-\/this-\/>\mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}.\mbox{\hyperlink{classMap_a01af6639790f20ad9dcd4a4c79e4ab2e}{resources}}[i];}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \textcolor{comment}{/* Hire people */}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(rand() \% 100 < 15 * (1.0-\/this-\/>industrialTax))}
+\DoxyCodeLine{                this-\/>\mbox{\hyperlink{classCity_ac8f372176b4bf0eed68048186369715c}{distributePool}}(this-\/>\mbox{\hyperlink{classCity_ae250434a2a3daab8178557c07383c8d8}{employmentPool}}, tile, 0.0);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        tile.\mbox{\hyperlink{classTile_a07ce694c5b16fc1c5e0a3711e682fa74}{update}}();}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+Initially we move to the next day if enough time has passed, much like how {\ttfamily \mbox{\hyperlink{classAnimationHandler_a6393ee5494fca5e4c7ced3c542e76b6e}{Animation\+Handler\+::update}}} works. If a month has passed then the {\ttfamily earnings} are added to {\ttfamily funds} and the {\ttfamily earnings} reset to 0. The bulk of the {\ttfamily update} function is a series of loops that iterate over every {\ttfamily tile} in the {\ttfamily map} (using {\ttfamily shuffled\+Tiles} of course). These loops must be separate as the order in which various things happen is important. First people attempt to move from the {\ttfamily population\+Pool} into the residential zones, and the population of each zone is adjusted according to the net birth rate. The commercial zones then attempt to hire people, where they will hire more people the lower the {\ttfamily commercial\+Tax} is. Finally the industrial zones will attempt to hire people too, but will also extract resources from the ground if any are left. (Remember the {\ttfamily resources} variable in {\ttfamily \mbox{\hyperlink{classMap}{Map}}}?) We then call {\ttfamily update} on the {\ttfamily tile} to change its {\ttfamily tile\+Variant} if necessary (i.\+e. the population is full).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Run second pass. Mostly handles goods manufacture */}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < this-\/>map.tiles.size(); ++i)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{classTile}{Tile}}\& tile = this-\/>map.tiles[this-\/>shuffledTiles[i]];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(tile.\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}} == TileType::INDUSTRIAL)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} receivedResources = 0;}
+\DoxyCodeLine{        \textcolor{comment}{/* Receive resources from smaller and connected zones */}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\& tile2 : this-\/>map.tiles)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(tile2.regions[0] == tile.\mbox{\hyperlink{classTile_a953fc8e7b4c488b48f239fe7269c2d5a}{regions}}[0] \&\& tile2.tileType == TileType::INDUSTRIAL)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(tile2.production > 0)}
+\DoxyCodeLine{                \{}
+\DoxyCodeLine{                    ++receivedResources;}
+\DoxyCodeLine{                    -\/-\/tile2.\mbox{\hyperlink{classTile_a727838d6e6a89a85bd7f8d2c611b4788}{production}};}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(receivedResources >= tile.\mbox{\hyperlink{classTile_a0bed0f2bacdc50165f5bcd1a37d1c267}{tileVariant}}+1) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{comment}{/* Turn resources into goods */}}
+\DoxyCodeLine{        tile.\mbox{\hyperlink{classTile_a9258c54a952de8371bbff34a835121a8}{storedGoods}} += (receivedResources+tile.\mbox{\hyperlink{classTile_a727838d6e6a89a85bd7f8d2c611b4788}{production}})*(tile.\mbox{\hyperlink{classTile_a0bed0f2bacdc50165f5bcd1a37d1c267}{tileVariant}}+1);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In the second pass the industrial zones attempt to take any resources from smaller zones that they are connected to via roads or zones (those in the same region) before turning those {\ttfamily resource}s into {\ttfamily stored\+Goods}. Each zone can only recieve 1 resource from every other tile and can only recieve 1 more than its {\ttfamily tile\+Variant} in total resources. The larger the {\ttfamily tile\+Variant} (and so the larger and more advanced the industrial zone) the more goods it can produce per resource and the more resources it can receive.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Run third pass. Mostly handles goods distribution */}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < this-\/>map.tiles.size(); ++i)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{classTile}{Tile}}\& tile = this-\/>map.tiles[this-\/>shuffledTiles[i]];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(tile.\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}} == TileType::COMMERCIAL)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} receivedGoods = 0;}
+\DoxyCodeLine{        \textcolor{keywordtype}{double} maxCustomers = 0.0;}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\& tile2 : this-\/>map.tiles)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(tile2.regions[0] == tile.\mbox{\hyperlink{classTile_a953fc8e7b4c488b48f239fe7269c2d5a}{regions}}[0] \&\&}
+\DoxyCodeLine{                tile2.tileType == TileType::INDUSTRIAL \&\&}
+\DoxyCodeLine{                tile2.storedGoods > 0)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                \textcolor{keywordflow}{while}(tile2.storedGoods > 0 \&\& receivedGoods != tile.\mbox{\hyperlink{classTile_a0bed0f2bacdc50165f5bcd1a37d1c267}{tileVariant}}+1)}
+\DoxyCodeLine{                \{}
+\DoxyCodeLine{                    -\/-\/tile2.\mbox{\hyperlink{classTile_a9258c54a952de8371bbff34a835121a8}{storedGoods}};}
+\DoxyCodeLine{                    ++receivedGoods;}
+\DoxyCodeLine{                    industrialRevenue += 100 * (1.0-\/industrialTax);}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(tile2.regions[0] == tile.\mbox{\hyperlink{classTile_a953fc8e7b4c488b48f239fe7269c2d5a}{regions}}[0] \&\&}
+\DoxyCodeLine{                tile2.tileType == TileType::RESIDENTIAL)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                maxCustomers += tile2.population;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(receivedGoods == tile.\mbox{\hyperlink{classTile_a0bed0f2bacdc50165f5bcd1a37d1c267}{tileVariant}}+1) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{comment}{/* Calculate the overall revenue for the tile */}}
+\DoxyCodeLine{        tile.\mbox{\hyperlink{classTile_a727838d6e6a89a85bd7f8d2c611b4788}{production}} = (receivedGoods*100.0 + rand() \% 20) * (1.0-\/this-\/>commercialTax);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{double} revenue = tile.\mbox{\hyperlink{classTile_a727838d6e6a89a85bd7f8d2c611b4788}{production}} * maxCustomers * tile.\mbox{\hyperlink{classTile_a55ce28eec1f1265ae58d1e7d4a7ad1f9}{population}} / 100.0;}
+\DoxyCodeLine{        commercialRevenue += revenue;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In the third and final pass the goods produced by the industrial zones are distributed amongst the commercial zones which then sell the goods. First, any goods in connected industrial zones are moved into the commercial zone producing taxable income for the industrial zones. Any connected residential regions increase the maximum number of customers the commerical zone can recieve. We then calculate the revenue the commercial zones generate from selling the goods.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{comment}{/* Adjust population pool for births and deaths */}}
+\DoxyCodeLine{    this-\/>populationPool = this-\/>adjustPopulation(this-\/>populationPool, this-\/>birthRate -\/ this-\/>deathRate);}
+\DoxyCodeLine{    popTotal += this-\/>populationPool;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Adjust the employment pool for the changing population */}}
+\DoxyCodeLine{    \textcolor{keywordtype}{float} newWorkers = (popTotal -\/ this-\/>population) * this-\/>propCanWork;}
+\DoxyCodeLine{    newWorkers *= newWorkers < 0 ? -\/1 : 1;}
+\DoxyCodeLine{    this-\/>employmentPool += newWorkers;}
+\DoxyCodeLine{    this-\/>employable += newWorkers;}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>employmentPool < 0) this-\/>employmentPool = 0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>employable < 0) this-\/>employable = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Update the city population */}}
+\DoxyCodeLine{    this-\/>population = popTotal;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Calculate city income from tax */}}
+\DoxyCodeLine{    this-\/>earnings = (this-\/>population -\/ this-\/>populationPool) * 15 * this-\/>residentialTax;}
+\DoxyCodeLine{    this-\/>earnings += commercialRevenue * this-\/>commercialTax;}
+\DoxyCodeLine{    this-\/>earnings += industrialRevenue * this-\/>industrialTax;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In the last part of {\ttfamily update} we adjust the {\ttfamily population\+Pool} based on the net birth rate, and we add new people to the {\ttfamily employment\+Pool} if the total population is different from the population on the previous day. This simulates citizens entering the job market, although of course if the population decreases then the number of employable people will drop too. Finally we tax all the income (as well as the residential zones) and increase {\ttfamily earnings} by the total amount.
+
+And with that the final class is completed! Now all that\textquotesingle{}s left is to incorporate this into {\ttfamily \mbox{\hyperlink{classGameStateEditor}{Game\+State\+Editor}}} and put a {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} in that class too. Firstly we\textquotesingle{}ll replace the {\ttfamily map} variable in {\ttfamily \mbox{\hyperlink{classGameStateEditor}{Game\+State\+Editor}}} with a {\ttfamily \mbox{\hyperlink{classCity}{City}}}, {\ttfamily city} instead. So now instead of {\ttfamily this-\/$>$map.\+tile\+Size} calls (for example) we will have {\ttfamily this-\/$>$city.\+map.\+tile\+Size} calls. (Beware the {\ttfamily map\+Pixel\+To\+Coords} function if you find and replace {\ttfamily map} with {\ttfamily city.\+map}!) We\textquotesingle{}ll also need to add a {\ttfamily gui\+System} variable like we did in {\ttfamily \mbox{\hyperlink{classGameStateStart}{Game\+State\+Start}}}. Oh, and remember to include {\ttfamily $<$map$>$}, {\ttfamily $<$string}, and {\ttfamily \char`\"{}gui.\+hpp\char`\"{}}!
+
+Inside the constructor we should of course replace {\ttfamily map.\+load} with the {\ttfamily \mbox{\hyperlink{classCity}{City}}} equivalent,
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{this-\/>city = \mbox{\hyperlink{classCity}{City}}(\textcolor{stringliteral}{"{}city"{}}, this-\/>game-\/>tileSize, this-\/>game-\/>tileAtlas);}
+\DoxyCodeLine{this-\/>city.shuffleTiles();}
+
+\end{DoxyCode}
+
+
+And we\textquotesingle{}ll also need to add the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} system. This one will be considerably longer than in {\ttfamily \mbox{\hyperlink{classGameStateStart}{Game\+State\+Start}}}!
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Create gui elements */}}
+\DoxyCodeLine{this-\/>guiSystem.emplace(\textcolor{stringliteral}{"{}rightClickMenu"{}}, \mbox{\hyperlink{classGui}{Gui}}(sf::Vector2f(196, 16), 2, \textcolor{keyword}{false}, this-\/>game-\/>stylesheets.at(\textcolor{stringliteral}{"{}button"{}}),}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Flatten \$"{}}          + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}grass"{}}].getCost(),         \textcolor{stringliteral}{"{}grass"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Forest \$"{}}           + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}forest"{}}].getCost(),        \textcolor{stringliteral}{"{}forest"{}} ),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Residential Zone \$"{}} + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}residential"{}}].getCost(),   \textcolor{stringliteral}{"{}residential"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Commercial Zone \$"{}}  + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}commercial"{}}].getCost(),    \textcolor{stringliteral}{"{}commercial"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Industrial Zone \$"{}}  + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}industrial"{}}].getCost(),    \textcolor{stringliteral}{"{}industrial"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}Road \$"{}}             + this-\/>game-\/>tileAtlas[\textcolor{stringliteral}{"{}road"{}}].getCost(),          \textcolor{stringliteral}{"{}road"{}})}
+\DoxyCodeLine{    \}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{this-\/>guiSystem.emplace(\textcolor{stringliteral}{"{}selectionCostText"{}}, \mbox{\hyperlink{classGui}{Gui}}(sf::Vector2f(196, 16), 0, \textcolor{keyword}{false}, this-\/>game-\/>stylesheets.at(\textcolor{stringliteral}{"{}text"{}}),}
+\DoxyCodeLine{    \{ std::make\_pair(\textcolor{stringliteral}{"{}"{}}, \textcolor{stringliteral}{"{}"{}}) \}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{this-\/>guiSystem.emplace(\textcolor{stringliteral}{"{}infoBar"{}}, \mbox{\hyperlink{classGui}{Gui}}(sf::Vector2f(this-\/>game-\/>window.getSize().x / 5 , 16), 2, \textcolor{keyword}{true}, this-\/>game-\/>stylesheets.at(\textcolor{stringliteral}{"{}button"{}}),}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}time"{}},          \textcolor{stringliteral}{"{}time"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}funds"{}},         \textcolor{stringliteral}{"{}funds"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}population"{}},    \textcolor{stringliteral}{"{}population"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}employment"{}},    \textcolor{stringliteral}{"{}employment"{}}),}
+\DoxyCodeLine{        std::make\_pair(\textcolor{stringliteral}{"{}current tile"{}},  \textcolor{stringliteral}{"{}tile"{}})}
+\DoxyCodeLine{    \}));}
+\DoxyCodeLine{this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).setPosition(sf::Vector2f(0, this-\/>game-\/>window.getSize().y -\/ 16));}
+\DoxyCodeLine{this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).show();}
+
+\end{DoxyCode}
+
+
+The {\ttfamily \char`\"{}right\+Click\+Menu\char`\"{}} will (as its name implies) be shown when the player presses the right mouse button. It will list all of the possible tiles that they can place along with their prices, and when a tile is chosen {\ttfamily current\+Tile} will be set to that tile. Any time the player selects tiles, from then on, will cause the selected tiles to be replaced with {\ttfamily current\+Tile}. {\ttfamily \char`\"{}selection\+Cost\+Text\char`\"{}} will be displayed when the player is selecting tiles, and will tell them how much the tiles they are placing will cost. It will go red if the player does not have enough funds to place the tiles. Lastly {\ttfamily \char`\"{}info\+Bar\char`\"{}} will sit and span the bottom of the screen, displaying the game day and other useful information for the player. If we want it to display information we\textquotesingle{}ll have to update that information all the time, so we can put that code inside of {\ttfamily update}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classGameStateEditor_ada8bfb7aeddeb0e36f935cbd2cdebfab}{GameStateEditor::update}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} dt)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_a1a574d77329aae04d530ba6c51171454}{update}}(dt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Update the info bar at the bottom of the screen */}}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}infoBar"{}}).setEntryText(0, \textcolor{stringliteral}{"{}Day: "{}} + std::to\_string(this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_af34dc53557663e266d39aefcbe9420a2}{day}}));}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}infoBar"{}}).setEntryText(1, \textcolor{stringliteral}{"{}\$"{}} + std::to\_string(\textcolor{keywordtype}{long}(this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_a0cabd36d33de31539d7dfd5938176680}{funds}})));}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}infoBar"{}}).setEntryText(2, std::to\_string(\textcolor{keywordtype}{long}(this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_a0760a3dc00c4e9f302af2ab9b1a54a74}{population}})) + \textcolor{stringliteral}{"{} ("{}} + std::to\_string(\textcolor{keywordtype}{long}(this-\/>city.getHomeless())) + \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}infoBar"{}}).setEntryText(3, std::to\_string(\textcolor{keywordtype}{long}(this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_a3df2643d5b3164cca82acf26ceffa54d}{employable}})) + \textcolor{stringliteral}{"{} ("{}} + std::to\_string(\textcolor{keywordtype}{long}(this-\/>city.getUnemployed())) + \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}infoBar"{}}).setEntryText(4, tileTypeToStr(\mbox{\hyperlink{classGameStateEditor_a9864dde58f48b929b176afb7edd750ce}{currentTile}}-\/>\mbox{\hyperlink{classTile_a1c8bdaadbe1006b20b33b74241b455d6}{tileType}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* Highlight entries of the right click context menu */}}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).highlight(this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getEntry(this-\/>game-\/>window.mapPixelToCoords(sf::Mouse::getPosition(this-\/>game-\/>window), this-\/>guiView)));}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The first entry of the {\ttfamily \char`\"{}infobar\char`\"{}} will be the game day, the second the {\ttfamily city}\textquotesingle{}s funds, the third the population (with the number of homeless in parentheses), the fourth the number of employable people (with the number left unemployed in parentheses), and the fifth the name of the {\ttfamily current\+Tile}. We have to first typecast to a {\ttfamily long} so that we don\textquotesingle{}t get floating point populations appearing (we used a {\ttfamily double} for ease of calculation but we truncate it here to print the \textquotesingle{}real\textquotesingle{} value). With {\ttfamily update} done let\textquotesingle{}s make sure that the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} is actually drawn to the screen
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classGameStateEditor_a080f96d0248a984d7c9fbb2149db4884}{GameStateEditor::draw}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} dt)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.clear(sf::Color::Black);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.setView(this-\/>\mbox{\hyperlink{classGameStateEditor_afb73d22921131a21ac9f0d5c82f5d92a}{guiView}});}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.draw(this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a57ba11192994ff8f9e4c4031cb363f6f}{background}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.setView(this-\/>\mbox{\hyperlink{classGameStateEditor_a140a3091ba9b1354fdc07ef4a2d82190}{gameView}});}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameStateEditor_acbdbc8ae654e5856d0b716c3748235a0}{city}}.\mbox{\hyperlink{classCity_ab573f06c1a0423314c701b6290200b21}{map}}.\mbox{\hyperlink{classMap_a7592f5a84825f8bf13d6b534b60a37b6}{draw}}(this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}, dt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.setView(this-\/>\mbox{\hyperlink{classGameStateEditor_afb73d22921131a21ac9f0d5c82f5d92a}{guiView}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} gui : this-\/>\mbox{\hyperlink{classGameStateEditor_ac54d4b8fd3fa14d464976d8f7198987e}{guiSystem}}) this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.draw(gui.second);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+First we switch to the {\ttfamily gui\+View} and then we draw each {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} in turn like in {\ttfamily \mbox{\hyperlink{classGameStateStart}{Game\+State\+Start}}}. The {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} is of course drawn after the {\ttfamily city}, otherwise the player wouldn\textquotesingle{}t be able to see it! Finally we can add the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} code to {\ttfamily handle\+Input}. Before we get to the {\ttfamily switch} statement it would be sensible to save ourselves some writing and create {\ttfamily game\+Pos} and {\ttfamily gui\+Pos} variables that record the position of the mouse in {\ttfamily game\+View} and {\ttfamily gui\+View} coordinates
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classGameStateEditor_a844fc3ad5c866b250f95b57db88c5a6f}{GameStateEditor::handleInput}}()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    sf::Event event;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    sf::Vector2f guiPos = this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.mapPixelToCoords(sf::Mouse::getPosition(this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}), this-\/>guiView);}
+\DoxyCodeLine{    sf::Vector2f gamePos = this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.mapPixelToCoords(sf::Mouse::getPosition(this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}), this-\/>gameView);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(this-\/>\mbox{\hyperlink{classGameState_a355a79415b9ef63c2aec1448a99f6e71}{game}}-\/>\mbox{\hyperlink{classGame_a223de215aeb661cd423ac145756cc730}{window}}.pollEvent(event))}
+
+\end{DoxyCode}
+
+
+Inside of the {\ttfamily Mouse\+Moved} event we\textquotesingle{}ll add the code to display the {\ttfamily \char`\"{}selection\+Cost\+Text\char`\"{}} {\ttfamily \mbox{\hyperlink{classGui}{Gui}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{        \textcolor{keywordflow}{else}}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            this-\/>city.map.select(selectionStart, selectionEnd,}
+\DoxyCodeLine{                \{}
+\DoxyCodeLine{                    this-\/>currentTile-\/>tileType,    TileType::FOREST,}
+\DoxyCodeLine{                    TileType::WATER,                TileType::ROAD,}
+\DoxyCodeLine{                    TileType::RESIDENTIAL,          TileType::COMMERCIAL,}
+\DoxyCodeLine{                    TileType::INDUSTRIAL}
+\DoxyCodeLine{                \});}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).setEntryText(0, \textcolor{stringliteral}{"{}\$"{}} +}
+\DoxyCodeLine{        std::to\_string(this-\/>currentTile-\/>cost * this-\/>city.map.numSelected));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this-\/>city.funds <= this-\/>city.map.numSelected * this-\/>currentTile-\/>cost)}
+\DoxyCodeLine{            this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).highlight(0);}
+\DoxyCodeLine{        \textcolor{keywordflow}{else}}
+\DoxyCodeLine{            this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).highlight(-\/1);}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).setPosition(guiPos + sf::Vector2f(16, -\/16));}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).show();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{comment}{/* Highlight entries of the right click context menu */}}
+\DoxyCodeLine{    this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).highlight(this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getEntry(guiPos));}
+\DoxyCodeLine{    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The total cost is of course the cost per tile multiplied by the number of selected tiles. If the city does not has enough {\ttfamily funds} we highlight the text, making it red. We then position the text to the bottom right of the cursors and {\ttfamily show} it. We also {\ttfamily highlight} the entry of the {\ttfamily \char`\"{}right\+Click\+Menu\char`\"{}} that the player is hovering over. For the {\ttfamily Mouse\+Button\+Pressed} event, we hide the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} when the middle mouse button is pressed
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} sf::Event::MouseButtonPressed:}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{/* Start panning */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(event.mouseButton.button == sf::Mouse::Middle)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).hide();}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).hide();}
+
+\end{DoxyCode}
+
+
+When the left mouse button is pressed we select a tile from the {\ttfamily \char`\"{}right\+Click\+Menu\char`\"{}} if it is visible, or we start selecting tiles if it isn\textquotesingle{}t
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(event.mouseButton.button == sf::Mouse::Left)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{/* Select a context menu entry */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).visible == \textcolor{keyword}{true})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        std::string msg = this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).activate(guiPos);}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(msg != \textcolor{stringliteral}{"{}null"{}}) this-\/>currentTile = \&this-\/>game-\/>tileAtlas.at(msg);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).hide();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{comment}{/* Select map tile */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{comment}{/* Select map tile */}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this-\/>actionState != ActionState::SELECTING)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            this-\/>actionState = ActionState::SELECTING;}
+\DoxyCodeLine{            selectionStart.x = gamePos.y / (this-\/>city.map.tileSize)}
+\DoxyCodeLine{                + gamePos.x / (2*this-\/>city.map.tileSize) -\/ this-\/>city.map.width * 0.5 -\/ 0.5;}
+\DoxyCodeLine{            selectionStart.y = gamePos.y / (this-\/>city.map.tileSize)}
+\DoxyCodeLine{                -\/ gamePos.x / (2*this-\/>city.map.tileSize) + this-\/>city.map.width * 0.5 + 0.5;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+When we created the {\ttfamily \char`\"{}right\+Click\+Menu\char`\"{}} we set the {\ttfamily message}s to be equal to the name of the tile in the {\ttfamily tile\+Atlas}, and so we can easily set {\ttfamily current\+Tile} to the one clicked. When an entry is selected we {\ttfamily hide} the menu. Finally, in the {\ttfamily Mouse\+Button\+Pressed} event we handle what happens when the right mouse button is pressed
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(event.mouseButton.button == sf::Mouse::Right)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{/* Stop selecting */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>actionState == ActionState::SELECTING)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this-\/>actionState = ActionState::NONE;}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).hide();}
+\DoxyCodeLine{        this-\/>city.map.clearSelected();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{comment}{/* Open the tile select menu */}}
+\DoxyCodeLine{        sf::Vector2f pos = guiPos;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(pos.x > this-\/>game-\/>window.getSize().x -\/ this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getSize().x)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            pos -\/= sf::Vector2f(this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getSize().x, 0);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(pos.y > this-\/>game-\/>window.getSize().y -\/ this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getSize().y)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            pos -\/= sf::Vector2f(0, this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).getSize().y);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).setPosition(pos);}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}rightClickMenu"{}}).show();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{break};}
+
+\end{DoxyCode}
+
+
+As before we stop selecting if the right mouse button is pressed, but we also make sure that we hide the {\ttfamily \char`\"{}selection\+Cost\+Text\char`\"{}}. If the player isn\textquotesingle{}t selecting then we open the {\ttfamily \char`\"{}right\+Click\+Menu\char`\"{}}. The {\ttfamily if} statements make sure that the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} is not opened in a position so as to go off the edge of the screen; it will always open with a corner on the mouse cursor, but which corner depends on where the mouse is when the button is pressed. We then set the position of the {\ttfamily \mbox{\hyperlink{classGui}{Gui}}} before {\ttfamily show}ing it.
+
+Next we\textquotesingle{}ll add the code to change the selected tiles. When the left mouse button is released
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Stop selecting */}}
+\DoxyCodeLine{\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(event.mouseButton.button == sf::Mouse::Left)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(this-\/>actionState == ActionState::SELECTING)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{comment}{/* Replace tiles if enough funds and a tile is selected */}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this-\/>currentTile != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} cost = this-\/>currentTile-\/>cost * this-\/>city.map.numSelected;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this-\/>city.funds >= cost)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                this-\/>city.bulldoze(*this-\/>currentTile);}
+\DoxyCodeLine{                this-\/>city.funds -\/= this-\/>currentTile-\/>cost * this-\/>city.map.numSelected;}
+\DoxyCodeLine{                this-\/>city.tileChanged();}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        this-\/>guiSystem.at(\textcolor{stringliteral}{"{}selectionCostText"{}}).hide();}
+\DoxyCodeLine{        this-\/>actionState = ActionState::NONE;}
+\DoxyCodeLine{        this-\/>city.map.clearSelected();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Now as well as clearing the selection we hide the {\ttfamily \char`\"{}selection\+Cost\+Text\char`\"{}} and replace the selected tiles if the {\ttfamily city} has enough {\ttfamily funds} to do so. We also call {\ttfamily tile\+Changed} to update the regions and roads.
+
+Lastly we need to readjust the dimensions and position of the {\ttfamily \char`\"{}infobar\char`\"{}} when the screen is resized
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Resize the window */}}
+\DoxyCodeLine{\textcolor{keywordflow}{case} sf::Event::Resized:}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    gameView.setSize(event.size.width, event.size.height);}
+\DoxyCodeLine{    gameView.zoom(zoomLevel);}
+\DoxyCodeLine{    guiView.setSize(event.size.width, event.size.height);}
+\DoxyCodeLine{    this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).setDimensions(sf::Vector2f(event.size.width / this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).entries.size(), 16));}
+\DoxyCodeLine{    this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).setPosition(this-\/>game-\/>window.mapPixelToCoords(sf::Vector2i(0, event.size.height -\/ 16), this-\/>guiView));}
+\DoxyCodeLine{    this-\/>guiSystem.at(\textcolor{stringliteral}{"{}infoBar"{}}).show();}
+\DoxyCodeLine{    this-\/>game-\/>background.setPosition(this-\/>game-\/>window.mapPixelToCoords(sf::Vector2i(0, 0), this-\/>guiView));}
+\DoxyCodeLine{    this-\/>game-\/>background.setScale(}
+\DoxyCodeLine{        \textcolor{keywordtype}{float}(event.size.width) / \textcolor{keywordtype}{float}(this-\/>game-\/>background.getTexture()-\/>getSize().x),}
+\DoxyCodeLine{        \textcolor{keywordtype}{float}(event.size.height) / \textcolor{keywordtype}{float}(this-\/>game-\/>background.getTexture()-\/>getSize().y));}
+\DoxyCodeLine{    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This is just the same code as we had in the constructor, but placed in the {\ttfamily resize} function instead.
+
+Phew, that was a lot of code! Try compiling and playing the game, hopefully it does everything it\textquotesingle{}s supposed to... I hope you enjoyed this adventure into SFML, there\textquotesingle{}s still a lot you can do with this game! Perhaps add some new power station and pylon tiles and create an electricity system (add another region to help distribute the electricity) or make the zones demand water. You could also add some nice background music (use the \href{http://www.sfml-dev.org/documentation/2.1/group__audio.php}{\texttt{ {\ttfamily sf\+::\+Music} class}}) or add the option to create a new game instead of just continuing from an existing one. Above all, enjoy yourself whilst you do it, and happy programming! 

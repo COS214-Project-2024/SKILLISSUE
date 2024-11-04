@@ -1,0 +1,78 @@
+\hypertarget{classDRReceiver}{}\doxysection{DRReceiver Class Reference}
+\label{classDRReceiver}\index{DRReceiver@{DRReceiver}}
+
+
+Handles the distribution of resources across the map.  
+
+
+
+
+{\ttfamily \#include $<$DRReceiver.\+h$>$}
+
+
+
+Collaboration diagram for DRReceiver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classDRReceiver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDRReceiver_a542ac2d621cd8192051fe09bdb8c53f7}{DRReceiver}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classDRReceiver}{DRReceiver}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDRReceiver_aeed03f4dca505de2cb214a60e9d1d5b4}{Distribute}} (\mbox{\hyperlink{classMap}{Map}} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Distributes resources across the tiles in the specified map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDRReceiver_a662aa34046ce9aa2d20c0ea7287366ce}\label{classDRReceiver_a662aa34046ce9aa2d20c0ea7287366ce}} 
+\mbox{\hyperlink{classResourceManager}{Resource\+Manager}} \mbox{\hyperlink{classDRReceiver_a662aa34046ce9aa2d20c0ea7287366ce}{proxy}}
+\begin{DoxyCompactList}\small\item\em Proxy \mbox{\hyperlink{classResourceManager}{Resource\+Manager}} used to manage resources during distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the distribution of resources across the map. 
+
+The \mbox{\hyperlink{classDRReceiver}{DRReceiver}} class provides the functionality to distribute resources to various tiles on the map, interacting with the \mbox{\hyperlink{classResourceManager}{Resource\+Manager}} to manage resources. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDRReceiver_a542ac2d621cd8192051fe09bdb8c53f7}\label{classDRReceiver_a542ac2d621cd8192051fe09bdb8c53f7}} 
+\index{DRReceiver@{DRReceiver}!DRReceiver@{DRReceiver}}
+\index{DRReceiver@{DRReceiver}!DRReceiver@{DRReceiver}}
+\doxysubsubsection{\texorpdfstring{DRReceiver()}{DRReceiver()}}
+{\footnotesize\ttfamily DRReceiver\+::\+DRReceiver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for \mbox{\hyperlink{classDRReceiver}{DRReceiver}}. 
+
+Initializes the \mbox{\hyperlink{classDRReceiver}{DRReceiver}} object and sets up the resource management proxy. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDRReceiver_aeed03f4dca505de2cb214a60e9d1d5b4}\label{classDRReceiver_aeed03f4dca505de2cb214a60e9d1d5b4}} 
+\index{DRReceiver@{DRReceiver}!Distribute@{Distribute}}
+\index{Distribute@{Distribute}!DRReceiver@{DRReceiver}}
+\doxysubsubsection{\texorpdfstring{Distribute()}{Distribute()}}
+{\footnotesize\ttfamily void DRReceiver\+::\+Distribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMap}{Map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Distributes resources across the tiles in the specified map. 
+
+This method iterates over tiles in the map and allocates resources as required, using the \mbox{\hyperlink{classResourceManager}{Resource\+Manager}} to handle resource transactions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & Pointer to the \mbox{\hyperlink{classMap}{Map}} object where resources are distributed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+DRReceiver.\+h\item 
+DRReceiver.\+cpp\end{DoxyCompactItemize}

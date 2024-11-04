@@ -1,0 +1,93 @@
+\hypertarget{classTileFactory}{}\doxysection{Tile\+Factory Class Reference}
+\label{classTileFactory}\index{TileFactory@{TileFactory}}
+
+
+Abstract base factory class for creating \mbox{\hyperlink{classTile}{Tile}} objects.  
+
+
+
+
+{\ttfamily \#include $<$Tile\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Tile\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classTileFactory__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classTileFactory_a96474f26e0a493ed5372ca058564c8b3}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates and returns a new \mbox{\hyperlink{classTile}{Tile}} by delegating to Create\+Tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to create a specific type of \mbox{\hyperlink{classTile}{Tile}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base factory class for creating \mbox{\hyperlink{classTile}{Tile}} objects. 
+
+The \mbox{\hyperlink{classTileFactory}{Tile\+Factory}} class defines the framework for tile creation, following the factory pattern, allowing derived factories to create various types of tiles. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTileFactory_a96474f26e0a493ed5372ca058564c8b3}\label{classTileFactory_a96474f26e0a493ed5372ca058564c8b3}} 
+\index{TileFactory@{TileFactory}!Create@{Create}}
+\index{Create@{Create}!TileFactory@{TileFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Tile\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Creates and returns a new \mbox{\hyperlink{classTile}{Tile}} by delegating to Create\+Tile. 
+
+This method provides the main interface for tile creation, using the factory pattern to instantiate tiles with the provided texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture for the tile. \\
+\hline
+{\em animations} & Vector of animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \mbox{\hyperlink{classTile}{Tile}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}\label{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}} 
+\index{TileFactory@{TileFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!TileFactory@{TileFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTile}{Tile}}$\ast$ Tile\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function to create a specific type of \mbox{\hyperlink{classTile}{Tile}}. 
+
+This method must be implemented by derived classes to instantiate tiles of a particular type with a specified texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture to apply to the tile. \\
+\hline
+{\em animations} & Vector containing animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created \mbox{\hyperlink{classTile}{Tile}} object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classWaterPlantFactory_a129ddd335ea7d1012f38e620a1227278}{Water\+Plant\+Factory}}, \mbox{\hyperlink{classWaterFactory_af0be0bc888b3aa9d300b03bf5e6954a5}{Water\+Factory}}, \mbox{\hyperlink{classWasteManagementFactory_ae871f946f0004b2af8a109b2c777be07}{Waste\+Management\+Factory}}, \mbox{\hyperlink{classSewagePlantFactory_a61f9118e86d62cb399bd5988e66a1637}{Sewage\+Plant\+Factory}}, \mbox{\hyperlink{classRoadFactory_a75cdc98579a834dddf0ea293c072ca8e}{Road\+Factory}}, \mbox{\hyperlink{classResidentialFactory_ab637b6c2f945195063a1e7309a0f4163}{Residential\+Factory}}, \mbox{\hyperlink{classPowerPlantFactory_a19ac31e4006cd2a2a45bbbbec4d2eca5}{Power\+Plant\+Factory}}, \mbox{\hyperlink{classLandmarkFactory_afd7380fa3fbab7ddbb48f56a083ad0b0}{Landmark\+Factory}}, \mbox{\hyperlink{classIndustrialFactory_a157533970cc7a0ce90e9b291208618ac}{Industrial\+Factory}}, \mbox{\hyperlink{classHospitalFactory_ae4fdb9c22d80070584c4f3c2be174deb}{Hospital\+Factory}}, \mbox{\hyperlink{classGrassFactory_a7272be349093531c894135bba056acf8}{Grass\+Factory}}, \mbox{\hyperlink{classForestFactory_abda1b88a74bcf2c27e58e7e9c911ec35}{Forest\+Factory}}, \mbox{\hyperlink{classFirestationFactory_ad0813e3edaa4823e8311cb964b514a80}{Firestation\+Factory}}, and \mbox{\hyperlink{classCommercialFactory_a96b23a3d98768155c81c0a6b8a42f054}{Commercial\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Tile\+Factory.\+h\item 
+Tile\+Factory.\+cpp\end{DoxyCompactItemize}

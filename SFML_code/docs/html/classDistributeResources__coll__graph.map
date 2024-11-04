@@ -1,0 +1,8 @@
+<map id="DistributeResources" name="DistributeResources">
+<area shape="rect" id="node1" title="Command for distributing resources across the map." alt="" coords="92,260,245,287"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for implementing commands in a command pattern." alt="" coords="5,171,95,197"/>
+<area shape="rect" id="node3" href="$classDRReceiver.html" title="Handles the distribution of resources across the map." alt="" coords="119,171,218,197"/>
+<area shape="rect" id="node4" href="$classResourceManager.html" title="Manages access and consumption of various resources." alt="" coords="99,81,238,108"/>
+<area shape="rect" id="node5" href="$classResourceInterface.html" title="An abstract interface for resource management operations." alt="" coords="99,5,239,32"/>
+<area shape="rect" id="node6" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="242,171,293,197"/>
+</map>

@@ -1,0 +1,103 @@
+\hypertarget{classWaterFactory}{}\doxysection{Water\+Factory Class Reference}
+\label{classWaterFactory}\index{WaterFactory@{WaterFactory}}
+
+
+Factory class for creating \mbox{\hyperlink{classWater}{Water}} tiles.  
+
+
+
+
+{\ttfamily \#include $<$Water\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Water\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classWaterFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Water\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classWaterFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classWaterFactory_ad093bb0f85ccba3f9a768a3aba46f45a}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Public method for creating and returning a new \mbox{\hyperlink{classWater}{Water}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classWaterFactory_af0be0bc888b3aa9d300b03bf5e6954a5}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{classWater}{Water}} tile with the specified texture and animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory class for creating \mbox{\hyperlink{classWater}{Water}} tiles. 
+
+The \mbox{\hyperlink{classWaterFactory}{Water\+Factory}} class follows the factory pattern, providing methods to instantiate \mbox{\hyperlink{classWater}{Water}} tiles with specified textures and animations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWaterFactory_ad093bb0f85ccba3f9a768a3aba46f45a}\label{classWaterFactory_ad093bb0f85ccba3f9a768a3aba46f45a}} 
+\index{WaterFactory@{WaterFactory}!Create@{Create}}
+\index{Create@{Create}!WaterFactory@{WaterFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}}$\ast$ Water\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Public method for creating and returning a new \mbox{\hyperlink{classWater}{Water}} tile. 
+
+This method serves as the main interface for creating \mbox{\hyperlink{classWater}{Water}} tiles, using the factory pattern to instantiate them with the provided texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture for the tile. \\
+\hline
+{\em animations} & Vector of animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \mbox{\hyperlink{classWater}{Water}} tile. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWaterFactory_af0be0bc888b3aa9d300b03bf5e6954a5}\label{classWaterFactory_af0be0bc888b3aa9d300b03bf5e6954a5}} 
+\index{WaterFactory@{WaterFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!WaterFactory@{WaterFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Water\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new \mbox{\hyperlink{classWater}{Water}} tile with the specified texture and animations. 
+
+This protected method is overridden to provide the specific implementation for creating a \mbox{\hyperlink{classWater}{Water}} tile with the given texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture to apply to the water tile. \\
+\hline
+{\em animations} & Vector containing animations for the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created \mbox{\hyperlink{classWater}{Water}} tile. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Tile\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Water\+Factory.\+h\item 
+Water\+Factory.\+cpp\end{DoxyCompactItemize}

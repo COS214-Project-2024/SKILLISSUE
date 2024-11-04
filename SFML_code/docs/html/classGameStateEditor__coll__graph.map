@@ -1,0 +1,15 @@
+<map id="GameStateEditor" name="GameStateEditor">
+<area shape="rect" id="node1" title="Represents the editor state of the game." alt="" coords="247,363,381,389"/>
+<area shape="rect" id="node2" href="$classGameState.html" title="Abstract base class representing a state in the game." alt="" coords="33,273,128,300"/>
+<area shape="rect" id="node3" href="$classGame.html" title="Manages the main game loop, state stack, and resources." alt="" coords="41,184,102,211"/>
+<area shape="rect" id="node4" href="$classTextureManager.html" title="Manages loading and retrieving textures for use in the simulation." alt="" coords="5,95,132,121"/>
+<area shape="rect" id="node5" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="234,5,285,32"/>
+<area shape="rect" id="node9" href="$classCity.html" title="Represents a city with its population, tax policies, and economic properties." alt="" coords="414,95,462,121"/>
+<area shape="rect" id="node6" href="$classCaretaker.html" title="The Caretaker class is responsible for managing Memento objects, allowing state saving and restoratio..." alt="" coords="587,5,673,32"/>
+<area shape="rect" id="node7" href="$classResourceManager.html" title="Manages access and consumption of various resources." alt="" coords="315,273,454,300"/>
+<area shape="rect" id="node8" href="$classResourceInterface.html" title="An abstract interface for resource management operations." alt="" coords="315,184,455,211"/>
+<area shape="rect" id="node11" href="$classCityMediator.html" title="Acts as a mediator for coordinating actions within the city." alt="" coords="479,184,586,211"/>
+<area shape="rect" id="node10" href="$classTaxPolicy.html" title="Abstract base class for tax policy implementations." alt="" coords="397,5,479,32"/>
+<area shape="rect" id="node12" href="$classTile.html" title="Base class representing a single tile in the simulation." alt="" coords="509,273,556,300"/>
+<area shape="rect" id="node13" href="$classAnimationHandler.html" title="A class to handle multiple animations and control the current animation state." alt="" coords="611,184,751,211"/>
+</map>

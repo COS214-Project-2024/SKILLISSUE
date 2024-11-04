@@ -1,0 +1,4 @@
+<map id="GameStateStart" name="GameStateStart">
+<area shape="rect" id="node1" title="Represents the initial state of the game when it starts." alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node2" href="$classGameState.html" title="Abstract base class representing a state in the game." alt="" coords="21,5,116,32"/>
+</map>
