@@ -37,7 +37,7 @@ TEST(LowTaxTest, GetTaxPolicy)
 
 // Tests for mid tax
 /**
- * @brief Test to verify that low tax taxes the correct amount (5%)
+ * @brief Test to verify that mid tax taxes the correct amount (5%)
  */
 TEST(MidTaxTest, CalculateTax)
 {
@@ -48,7 +48,7 @@ TEST(MidTaxTest, CalculateTax)
 }
 
 /**
- * @brief Test to verify the getter of tax rate for low tax
+ * @brief Test to verify the getter of tax rate for mid tax
  */
 TEST(MidTaxTest, GetTaxRate)
 {
@@ -57,7 +57,7 @@ TEST(MidTaxTest, GetTaxRate)
 }
 
 /**
- * @brief Test to verify the getter of tax policy for low tax
+ * @brief Test to verify the getter of tax policy for mid tax
  */
 TEST(MidTaxTest, GetTaxPolicy)
 {
