@@ -22,6 +22,7 @@ add_executable(
   ../TaxPolicy.cpp
   ../LowTax.cpp
   ../MidTax.cpp
+  ../HighTax.cpp
 )
 target_link_libraries(
   tax_test

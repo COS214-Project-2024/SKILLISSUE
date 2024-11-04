@@ -1,3 +1,4 @@
+#include "../HighTax.h"
 #include "../LowTax.h"
 #include "../MidTax.h"
 #include "gtest/gtest.h"
@@ -44,4 +45,25 @@ TEST(MidTaxTest, GetTaxPolicy)
 {
     MidTax taxPolicy;
     EXPECT_EQ(taxPolicy.getTaxPolicy(), "mid");
+}
+
+// Tests for high tax
+TEST(HighTaxTest, CalculateTax)
+{
+    HighTax taxPolicy;
+    double revenue = 1000.0;
+    double expectedTax = 1000.0 * 0.25; // 25% tax
+    EXPECT_NEAR(taxPolicy.calculateTax(revenue), expectedTax, TOLERANCE);
+}
+
+TEST(HighTaxTest, GetTaxRate)
+{
+    HighTax taxPolicy;
+    EXPECT_NEAR(taxPolicy.getTaxRate(), 0.25, TOLERANCE);
+}
+
+TEST(HighTaxTest, GetTaxPolicy)
+{
+    HighTax taxPolicy;
+    EXPECT_EQ(taxPolicy.getTaxPolicy(), "high");
 }
