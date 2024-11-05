@@ -1,0 +1,10 @@
+<map id="Commercial" name="Commercial">
+<area shape="rect" id="node1" title="Represents a commercial tile in the simulation." alt="" coords="85,171,186,197"/>
+<area shape="rect" id="node2" href="$classTile.html" title="Base class representing a single tile in the simulation." alt="" coords="112,95,159,121"/>
+<area shape="rect" id="node3" href="$classAnimationHandler.html" title="A class to handle multiple animations and control the current animation state." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node4" href="$classCityMediator.html" title="Acts as a mediator for coordinating actions within the city." alt="" coords="237,5,343,32"/>
+<area shape="rect" id="node5" href="$classCity.html" title="Represents a city with its population, tax policies, and economic properties." alt="" coords="421,95,469,121"/>
+<area shape="rect" id="node6" href="$classTaxPolicy.html" title="Abstract base class for tax policy implementations." alt="" coords="403,5,486,32"/>
+<area shape="rect" id="node7" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="515,5,566,32"/>
+<area shape="rect" id="node8" href="$classCaretaker.html" title="The Caretaker class is responsible for managing Memento objects, allowing state saving and restoratio..." alt="" coords="590,5,675,32"/>
+</map>

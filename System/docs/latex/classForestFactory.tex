@@ -1,0 +1,103 @@
+\hypertarget{classForestFactory}{}\doxysection{Forest\+Factory Class Reference}
+\label{classForestFactory}\index{ForestFactory@{ForestFactory}}
+
+
+Factory class responsible for creating \mbox{\hyperlink{classForest}{Forest}} tiles.  
+
+
+
+
+{\ttfamily \#include $<$Forest\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Forest\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classForestFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Forest\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classForestFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classForestFactory_a6eadef8a42f9a63692f168bab48880e8}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Public method to create a new \mbox{\hyperlink{classForest}{Forest}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classForestFactory_abda1b88a74bcf2c27e58e7e9c911ec35}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{classForest}{Forest}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory class responsible for creating \mbox{\hyperlink{classForest}{Forest}} tiles. 
+
+This class inherits from \mbox{\hyperlink{classTileFactory}{Tile\+Factory}} and provides a specific implementation for creating tiles of type \mbox{\hyperlink{classForest}{Forest}}, using a texture and animations as input. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classForestFactory_a6eadef8a42f9a63692f168bab48880e8}\label{classForestFactory_a6eadef8a42f9a63692f168bab48880e8}} 
+\index{ForestFactory@{ForestFactory}!Create@{Create}}
+\index{Create@{Create}!ForestFactory@{ForestFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}}$\ast$ Forest\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Public method to create a new \mbox{\hyperlink{classForest}{Forest}} tile. 
+
+This method is the main entry point for creating \mbox{\hyperlink{classForest}{Forest}} tiles. It calls the protected Create\+Tile method and provides access to external classes to create \mbox{\hyperlink{classForest}{Forest}} tiles using this factory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the SFML texture to be applied to the tile. \\
+\hline
+{\em animations} & A vector of \mbox{\hyperlink{classAnimation}{Animation}} objects to be used for the tile\textquotesingle{}s animation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created \mbox{\hyperlink{classTile}{Tile}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classForestFactory_abda1b88a74bcf2c27e58e7e9c911ec35}\label{classForestFactory_abda1b88a74bcf2c27e58e7e9c911ec35}} 
+\index{ForestFactory@{ForestFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!ForestFactory@{ForestFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Forest\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new \mbox{\hyperlink{classForest}{Forest}} tile. 
+
+This method is responsible for creating an instance of a \mbox{\hyperlink{classForest}{Forest}} tile using the provided texture and animations. It is intended to be called only within the factory, as part of the creation process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the SFML texture to be applied to the tile. \\
+\hline
+{\em animations} & A vector of \mbox{\hyperlink{classAnimation}{Animation}} objects to be used for the tile\textquotesingle{}s animation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created \mbox{\hyperlink{classTile}{Tile}} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Tile\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Forest\+Factory.\+h\item 
+Forest\+Factory.\+cpp\end{DoxyCompactItemize}

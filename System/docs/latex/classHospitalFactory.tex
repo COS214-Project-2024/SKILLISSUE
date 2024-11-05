@@ -1,0 +1,103 @@
+\hypertarget{classHospitalFactory}{}\doxysection{Hospital\+Factory Class Reference}
+\label{classHospitalFactory}\index{HospitalFactory@{HospitalFactory}}
+
+
+Factory class for creating \mbox{\hyperlink{classHospital}{Hospital}} tiles.  
+
+
+
+
+{\ttfamily \#include $<$Hospital\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for Hospital\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classHospitalFactory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Hospital\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classHospitalFactory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classHospitalFactory_a893e8ea38405c41192fd8e2206bc04bb}{Create}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Public method for creating and returning a new \mbox{\hyperlink{classHospital}{Hospital}} tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTile}{Tile}} $\ast$ \mbox{\hyperlink{classHospitalFactory_ae4fdb9c22d80070584c4f3c2be174deb}{Create\+Tile}} (sf\+::\+Texture \&texture, const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&animations)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{classHospital}{Hospital}} tile with the specified texture and animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory class for creating \mbox{\hyperlink{classHospital}{Hospital}} tiles. 
+
+The \mbox{\hyperlink{classHospitalFactory}{Hospital\+Factory}} class follows the factory pattern, providing methods to instantiate \mbox{\hyperlink{classHospital}{Hospital}} tiles with specified textures and animations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHospitalFactory_a893e8ea38405c41192fd8e2206bc04bb}\label{classHospitalFactory_a893e8ea38405c41192fd8e2206bc04bb}} 
+\index{HospitalFactory@{HospitalFactory}!Create@{Create}}
+\index{Create@{Create}!HospitalFactory@{HospitalFactory}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}}$\ast$ Hospital\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})}
+
+
+
+Public method for creating and returning a new \mbox{\hyperlink{classHospital}{Hospital}} tile. 
+
+This method serves as the main interface for creating \mbox{\hyperlink{classHospital}{Hospital}} tiles, using the factory pattern to instantiate them with the provided texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture for the tile. \\
+\hline
+{\em animations} & Vector of animations associated with the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \mbox{\hyperlink{classHospital}{Hospital}} tile. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHospitalFactory_ae4fdb9c22d80070584c4f3c2be174deb}\label{classHospitalFactory_ae4fdb9c22d80070584c4f3c2be174deb}} 
+\index{HospitalFactory@{HospitalFactory}!CreateTile@{CreateTile}}
+\index{CreateTile@{CreateTile}!HospitalFactory@{HospitalFactory}}
+\doxysubsubsection{\texorpdfstring{CreateTile()}{CreateTile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTile}{Tile}} $\ast$ Hospital\+Factory\+::\+Create\+Tile (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{texture,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classAnimation}{Animation}} $>$ \&}]{animations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new \mbox{\hyperlink{classHospital}{Hospital}} tile with the specified texture and animations. 
+
+This protected method is overridden to implement the creation of a \mbox{\hyperlink{classHospital}{Hospital}} tile with the given texture and animations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Reference to the texture to apply to the hospital tile. \\
+\hline
+{\em animations} & Vector containing animations for the tile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the created \mbox{\hyperlink{classHospital}{Hospital}} tile. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTileFactory_ada2f4b4d2a844d5cc4992c17edd59e3f}{Tile\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Hospital\+Factory.\+h\item 
+Hospital\+Factory.\+cpp\end{DoxyCompactItemize}

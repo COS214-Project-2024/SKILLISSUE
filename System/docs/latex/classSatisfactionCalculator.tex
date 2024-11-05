@@ -1,0 +1,110 @@
+\hypertarget{classSatisfactionCalculator}{}\doxysection{Satisfaction\+Calculator Class Reference}
+\label{classSatisfactionCalculator}\index{SatisfactionCalculator@{SatisfactionCalculator}}
+
+
+\mbox{\hyperlink{classCommand}{Command}} class responsible for calculating the satisfaction level of the population.  
+
+
+
+
+{\ttfamily \#include $<$Satisfaction\+Calculator.\+h$>$}
+
+
+
+Inheritance diagram for Satisfaction\+Calculator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classSatisfactionCalculator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Satisfaction\+Calculator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{classSatisfactionCalculator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSatisfactionCalculator_a19e2835357c22d48b39423bc5ec48070}{Satisfaction\+Calculator}} (\mbox{\hyperlink{classMap}{Map}} $\ast$\mbox{\hyperlink{classSatisfactionCalculator_a214a9e593059d41013639ed724864ba1}{map}}, std\+::string \mbox{\hyperlink{classSatisfactionCalculator_a7a6f335c8ad485c4e8d4faba1f366c95}{taxtype}}, double \mbox{\hyperlink{classSatisfactionCalculator_a4659aa76741a58b70c3e64177c4b07bc}{population}}, double \&\mbox{\hyperlink{classSatisfactionCalculator_ab7e88ec0a60a2bdb4cb997ac8aaa5d6a}{satisfaction}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSatisfactionCalculator}{Satisfaction\+Calculator}} command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSatisfactionCalculator_af04618eac16780a33fdff460185d0577}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes the satisfaction calculation command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSatisfactionCalculator_ab2503fb129cad869d7694d8adb0d6cc2}\label{classSatisfactionCalculator_ab2503fb129cad869d7694d8adb0d6cc2}} 
+\mbox{\hyperlink{classSCReceiver}{SCReceiver}} \mbox{\hyperlink{classSatisfactionCalculator_ab2503fb129cad869d7694d8adb0d6cc2}{receiver}}
+\begin{DoxyCompactList}\small\item\em Receiver responsible for executing satisfaction-\/related calculations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSatisfactionCalculator_a214a9e593059d41013639ed724864ba1}\label{classSatisfactionCalculator_a214a9e593059d41013639ed724864ba1}} 
+\mbox{\hyperlink{classMap}{Map}} $\ast$ \mbox{\hyperlink{classSatisfactionCalculator_a214a9e593059d41013639ed724864ba1}{map}}
+\begin{DoxyCompactList}\small\item\em Pointer to the map used to retrieve satisfaction-\/related data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSatisfactionCalculator_a7a6f335c8ad485c4e8d4faba1f366c95}\label{classSatisfactionCalculator_a7a6f335c8ad485c4e8d4faba1f366c95}} 
+std\+::string \mbox{\hyperlink{classSatisfactionCalculator_a7a6f335c8ad485c4e8d4faba1f366c95}{taxtype}}
+\begin{DoxyCompactList}\small\item\em Type of tax policy affecting satisfaction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSatisfactionCalculator_a4659aa76741a58b70c3e64177c4b07bc}\label{classSatisfactionCalculator_a4659aa76741a58b70c3e64177c4b07bc}} 
+double \mbox{\hyperlink{classSatisfactionCalculator_a4659aa76741a58b70c3e64177c4b07bc}{population}}
+\begin{DoxyCompactList}\small\item\em Current population size impacting satisfaction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSatisfactionCalculator_ab7e88ec0a60a2bdb4cb997ac8aaa5d6a}\label{classSatisfactionCalculator_ab7e88ec0a60a2bdb4cb997ac8aaa5d6a}} 
+double \& \mbox{\hyperlink{classSatisfactionCalculator_ab7e88ec0a60a2bdb4cb997ac8aaa5d6a}{satisfaction}}
+\begin{DoxyCompactList}\small\item\em Reference to the satisfaction metric that will be updated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classCommand}{Command}} class responsible for calculating the satisfaction level of the population. 
+
+The \mbox{\hyperlink{classSatisfactionCalculator}{Satisfaction\+Calculator}} class inherits from \mbox{\hyperlink{classCommand}{Command}} and uses an \mbox{\hyperlink{classSCReceiver}{SCReceiver}} to calculate satisfaction based on factors like tax type, population, and map data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSatisfactionCalculator_a19e2835357c22d48b39423bc5ec48070}\label{classSatisfactionCalculator_a19e2835357c22d48b39423bc5ec48070}} 
+\index{SatisfactionCalculator@{SatisfactionCalculator}!SatisfactionCalculator@{SatisfactionCalculator}}
+\index{SatisfactionCalculator@{SatisfactionCalculator}!SatisfactionCalculator@{SatisfactionCalculator}}
+\doxysubsubsection{\texorpdfstring{SatisfactionCalculator()}{SatisfactionCalculator()}}
+{\footnotesize\ttfamily Satisfaction\+Calculator\+::\+Satisfaction\+Calculator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMap}{Map}} $\ast$}]{map,  }\item[{std\+::string}]{taxtype,  }\item[{double}]{population,  }\item[{double \&}]{satisfaction }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classSatisfactionCalculator}{Satisfaction\+Calculator}} command. 
+
+Initializes the \mbox{\hyperlink{classSatisfactionCalculator}{Satisfaction\+Calculator}} with required parameters, allowing it to calculate satisfaction based on map data, tax type, and population.
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & Pointer to the \mbox{\hyperlink{classMap}{Map}} object used in satisfaction calculation. \\
+\hline
+{\em taxtype} & String representing the type of tax policy applied. \\
+\hline
+{\em population} & Current population size. \\
+\hline
+{\em satisfaction} & Reference to the satisfaction value that will be updated. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSatisfactionCalculator_af04618eac16780a33fdff460185d0577}\label{classSatisfactionCalculator_af04618eac16780a33fdff460185d0577}} 
+\index{SatisfactionCalculator@{SatisfactionCalculator}!execute@{execute}}
+\index{execute@{execute}!SatisfactionCalculator@{SatisfactionCalculator}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void Satisfaction\+Calculator\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the satisfaction calculation command. 
+
+This method uses the receiver to compute satisfaction based on the provided map, tax type, population, and updates the satisfaction value accordingly. 
+
+Implements \mbox{\hyperlink{classCommand_a6fd7d9bd8df8bfc881e4d6c7cd1878b7}{Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Satisfaction\+Calculator.\+h\item 
+Satisfaction\+Calculator.\+cpp\end{DoxyCompactItemize}

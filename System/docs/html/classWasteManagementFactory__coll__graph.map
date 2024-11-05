@@ -1,0 +1,4 @@
+<map id="WasteManagementFactory" name="WasteManagementFactory">
+<area shape="rect" id="node1" title="Factory class for creating WasteManagement tiles." alt="" coords="5,80,200,107"/>
+<area shape="rect" id="node2" href="$classTileFactory.html" title="Abstract base factory class for creating Tile objects." alt="" coords="56,5,149,32"/>
+</map>

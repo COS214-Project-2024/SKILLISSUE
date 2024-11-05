@@ -1,0 +1,4 @@
+<map id="HighTax" name="HighTax">
+<area shape="rect" id="node1" title="A concrete tax policy representing a high tax rate." alt="" coords="9,80,84,107"/>
+<area shape="rect" id="node2" href="$classTaxPolicy.html" title="Abstract base class for tax policy implementations." alt="" coords="5,5,88,32"/>
+</map>

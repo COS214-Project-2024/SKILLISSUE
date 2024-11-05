@@ -1,0 +1,6 @@
+<map id="SatisfactionCalculator" name="SatisfactionCalculator">
+<area shape="rect" id="node1" title="Command class responsible for calculating the satisfaction level of the population." alt="" coords="62,95,227,121"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for implementing commands in a command pattern." alt="" coords="5,5,95,32"/>
+<area shape="rect" id="node3" href="$classMap.html" title="Represents a map composed of tiles within the simulation." alt="" coords="119,5,170,32"/>
+<area shape="rect" id="node4" href="$classSCReceiver.html" title="Responsible for calculating the satisfaction level within the simulation." alt="" coords="194,5,290,32"/>
+</map>
