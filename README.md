@@ -33,8 +33,8 @@ The project integrates multiple design patterns, such as Singleton, Observer, Fa
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/CityBuilderSimulation.git
-cd CityBuilderSimulation
+git clone https://github.com/github.com/COS214-Project-2024/SKILLISSUE
+cd System
 ```
 
 ### Step 2: Install Dependencies
@@ -65,7 +65,7 @@ make
 Ensure the following file structure is maintained:
 
 ```
-CityBuilderSimulation/
+SKILLISSUE/
 ├── Data/
 │   └── media/
 │       ├── background.png
